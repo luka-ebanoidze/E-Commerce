@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+
+import axios from "axios";
 
 import { public_axios } from "@src/utils/public_axios";
+import { TLocalStorage } from "@src/types/localstorage";
+
+import { AuthContext, TAuthorizationStage } from "@src/context/AuthContext";
 
 type TLoginForm = {
   email: string;
@@ -9,6 +15,8 @@ type TLoginForm = {
 };
 
 export default function LoginView() {
+  const { setStatus } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -18,11 +26,26 @@ export default function LoginView() {
 
   async function onSubmit(data: TLoginForm) {
     try {
-      await public_axios.post('/auth/signin', data)
+      const resp = await axios.post("http://localhost:8080/login", data);
+      console.log(resp.data);
+      if(resp.data.AccessToken) {
+        localStorage.setItem(TLocalStorage.ACCESSTOKEN, resp.data.AccessToken);
+        setStatus(TAuthorizationStage.AUTHORIZED)  
+      }
     } catch (error: any) {
       setError('root', {message: 'something went wrong'} )
-      
     }
+
+    // try {
+    //   console.log(data)
+    //   const resp = await public_axios.post('/login', data)
+    //   if(resp.data.accessToken) {
+    //     localStorage.setItem(TLocalStorage.ACCESSTOKEN, resp.data.accessToken);
+    //     setStatus(TAuthorizationStage.AUTHORIZED)
+    //   }
+    // } catch (error: any) {
+    //   setError('root', {message: 'something went wrong'} )
+    // }
   }
 
   return (
@@ -44,7 +67,7 @@ export default function LoginView() {
                 </label>
                 <input
                   {...register("email", { required: true })}
-                  type="email"
+                  type="text"
                   name="email"
                   id="email"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -78,7 +101,8 @@ export default function LoginView() {
               </div>
               {errors?.root && (
                 <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                  <span className="font-medium">Try again</span> Email or Password isnt correct
+                  <span className="font-medium">Try again</span> Email or
+                  Password isnt correct
                 </p>
               )}
               <button

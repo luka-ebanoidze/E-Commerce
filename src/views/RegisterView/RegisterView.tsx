@@ -2,17 +2,22 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
+import axios from "axios";
+
 import { public_axios } from "@src/utils/public_axios";
 
-const [created, setCreated] = useState<boolean>(false);
 
 type TRegisterForm = {
-  username: string;
   email: string;
   password: string;
+  number: string;
+  firstName: string;
+  lastName: string;
 };
 
 export default function RegisterView() {
+
+  const [created, setCreated] = useState<boolean>(false);
 
   const {
     register,
@@ -23,13 +28,30 @@ export default function RegisterView() {
 
   async function onSubmit(data: TRegisterForm) {
     try {
-      const resp = await public_axios.post("/auth/signup", data);
-      if (resp.data?.id) {
-        setCreated(true)
+      const resp = await axios.post("http://localhost:8080/register", data);
+      console.log(resp);
+      
+      // console.log(resp.data?.id);
+      
+      // if (resp.data?.id) {
+      //   setCreated(true);
+      // }
+
+      if (resp.statusText === 'OK') {
+        setCreated(true);
       }
     } catch (error: any) {
       setError("root", { message: error.response.data.errors?.[0].msg });
     }
+
+    // try {
+    //   const resp = await public_axios.post("/register", data);
+    //   if (resp.data?.id) {
+    //     setCreated(true)
+    //   }
+    // } catch (error: any) {
+    //   setError("root", { message: error.response.data.errors?.[0].msg });
+    // }
   }
 
   return (
@@ -47,17 +69,36 @@ export default function RegisterView() {
             >
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Username
+                  First Name
                 </label>
                 <input
-                  {...register("username", { required: true })}
+                  {...register("firstName", { required: true })}
                   type="text"
-                  name="username"
-                  id="username"
+                  name="firstName"
+                  id="firstName"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Enter username"
+                  placeholder="Enter First Name"
                 />
-                {errors.username && (
+                {errors.firstName && (
+                  <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+                    <span className="font-medium">Oh, snapp!</span> Some error
+                    message.
+                  </p>
+                )}
+              </div>
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Last Name
+                </label>
+                <input
+                  {...register("lastName", { required: true })}
+                  type="text"
+                  name="lastName"
+                  id="lastName"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Enter Last Name"
+                />
+                {errors.lastName && (
                   <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                     <span className="font-medium">Oh, snapp!</span> Some error
                     message.
@@ -77,6 +118,25 @@ export default function RegisterView() {
                   placeholder="name@company.com"
                 />
                 {errors.email && (
+                  <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+                    <span className="font-medium">Oh, snapp!</span> Some error
+                    message.
+                  </p>
+                )}
+              </div>
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Phone Number
+                </label>
+                <input
+                  {...register("number", { required: true })}
+                  type="text"
+                  name="number"
+                  id="number"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="+(000)-000-000-000"
+                />
+                {errors.number && (
                   <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                     <span className="font-medium">Oh, snapp!</span> Some error
                     message.
@@ -115,7 +175,7 @@ export default function RegisterView() {
               </button>
               {created && (
                 <p className="mt-2 text-sm text-green-600 dark:text-green-500">
-                  <p className="mt-3">Successfully created</p>
+                  {/* <p className="mt-3">Successfully created</p> */}
                   <span className="font-medium">
                     <Link to="/login">shesvla</Link>
                   </span>{" "}
