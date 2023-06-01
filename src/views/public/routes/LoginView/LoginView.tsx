@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 
@@ -23,6 +23,8 @@ export default function LoginView() {
   const { setStatus } = useContext(AuthContext);
   const { setCurrentUser } = useContext(UserContext);
 
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -32,10 +34,11 @@ export default function LoginView() {
 
   async function onSubmit(data: TLoginForm) {
     try {
-      // const resp = await axios.post("http://localhost:8080/login", data);
-      const resp = await public_axios.post("/login", data);
+      const resp = await axios.post("http://localhost:8080/login", data);
+      // const resp = await public_axios.post("/login", data);
 
       if (resp.data.AccessToken) {
+        // navigate("/");
 
         localStorage.setItem(TLocalStorage.ACCESSTOKEN, resp.data.AccessToken);
         setStatus(TAuthorizationStage.AUTHORIZED);

@@ -1,4 +1,3 @@
-
 import { HomeContent } from "./HomeContent/HomeContent";
 import { HomeNavigation } from "./HomeNavigation/HomeNavigation";
 import { Slider } from "@src/components/Slider";
