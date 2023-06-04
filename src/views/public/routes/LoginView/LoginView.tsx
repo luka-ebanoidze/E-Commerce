@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import axios from "axios";
 
@@ -32,13 +32,15 @@ export default function LoginView() {
     formState: { errors },
   } = useForm<TLoginForm>();
 
+  
+
   async function onSubmit(data: TLoginForm) {
     try {
       const resp = await axios.post("http://localhost:8080/login", data);
       // const resp = await public_axios.post("/login", data);
 
       if (resp.data.AccessToken) {
-        // navigate("/");
+        navigate("/");
 
         localStorage.setItem(TLocalStorage.ACCESSTOKEN, resp.data.AccessToken);
         setStatus(TAuthorizationStage.AUTHORIZED);
