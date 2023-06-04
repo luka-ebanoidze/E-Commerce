@@ -6,14 +6,14 @@ import "./index.css";
 
 import { BrowserRouter } from "react-router-dom";
 
-import { AuthProvider } from "./providers/AuthProvider.tsx";
+import { Providers } from "./providers/Providers.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthProvider>
+      <Providers>
         <App />
-      </AuthProvider>
+      </Providers>
     </BrowserRouter>
   </React.StrictMode>
 );

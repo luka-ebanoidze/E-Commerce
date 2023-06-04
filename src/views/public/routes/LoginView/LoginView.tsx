@@ -1,13 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import axios from "axios";
 
 import { public_axios } from "@src/utils/public_axios";
+
 import { TLocalStorage } from "@src/types/localstorage";
 
-import { AuthContext, TAuthorizationStage } from "@src/context/AuthContext";
+import { AuthContext } from "@src/context/AuthContext";
+import { TAuthorizationStage } from "@src/types/auth.types";
+
+import { UserContext } from "@src/context/UserContext";
+import { TUserContextRole } from "@src/types/user.types";
 
 type TLoginForm = {
   email: string;
@@ -16,6 +21,9 @@ type TLoginForm = {
 
 export default function LoginView() {
   const { setStatus } = useContext(AuthContext);
+  const { setCurrentUser } = useContext(UserContext);
+
+  const navigate = useNavigate()
 
   const {
     register,
@@ -24,16 +32,37 @@ export default function LoginView() {
     formState: { errors },
   } = useForm<TLoginForm>();
 
+  
+
   async function onSubmit(data: TLoginForm) {
     try {
       const resp = await axios.post("http://localhost:8080/login", data);
-      console.log(resp.data);
-      if(resp.data.AccessToken) {
+      // const resp = await public_axios.post("/login", data);
+
+      if (resp.data.AccessToken) {
+        navigate("/");
+
         localStorage.setItem(TLocalStorage.ACCESSTOKEN, resp.data.AccessToken);
-        setStatus(TAuthorizationStage.AUTHORIZED)  
+        setStatus(TAuthorizationStage.AUTHORIZED);
+
+        const info = await axios.get("http://localhost:8080/me", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem(
+              TLocalStorage.ACCESSTOKEN
+            )}`,
+          },
+        });
+
+        if (
+          info.data?.firstName === "admin" &&
+          info.data?.lastName === "admin"
+        ) {
+          setCurrentUser(TUserContextRole.ADMIN)
+        }
       }
+
     } catch (error: any) {
-      setError('root', {message: 'something went wrong'} )
+      setError("root", { message: "something went wrong" });
     }
 
     // try {

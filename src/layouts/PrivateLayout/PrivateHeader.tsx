@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
-import { AuthContext, TAuthorizationStage } from "@src/context/AuthContext";
+import { AuthContext } from "@src/context/AuthContext";
+import { TAuthorizationStage } from "@src/types/auth.types";
 import { TLocalStorage } from "@src/types/localstorage";
 import { Link } from "react-router-dom";
 

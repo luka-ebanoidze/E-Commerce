@@ -1,14 +1,6 @@
 import { createContext } from "react";
 
-export enum TAuthorizationStage {
-  AUTHORIZED = "authorized",
-  UNAUTHORIZED = "unauthorized",
-}
-
-type AuthContextValue = {
-  status: TAuthorizationStage;
-  setStatus: React.Dispatch<React.SetStateAction<TAuthorizationStage>>;
-};
+import { AuthContextValue, TAuthorizationStage } from "@src/types/auth.types";
 
 export const AuthContext = createContext<AuthContextValue>({
   status: TAuthorizationStage.UNAUTHORIZED,
