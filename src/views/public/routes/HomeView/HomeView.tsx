@@ -7,10 +7,10 @@ export default function HomeView() {
     <div className="flex flex-col gap-5 py-10">
       <div className="flex gap-10 min-h-[500px]">
         <HomeNavigation />
-        <HomeContent />
+        <Slider />
       </div>
       <div className="flex justify-center w-full">
-        <Slider />
+        <HomeContent />
       </div>
     </div>
   );
