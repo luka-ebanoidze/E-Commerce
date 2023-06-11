@@ -1,13 +1,11 @@
-import { TLocalStorage } from "@src/types/localstorage";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
-import { useParams } from "react-router-dom";
+import { BsCart3 } from "react-icons/bs";
 
-type TProduct = {
-  id: any;
-  thumbnail: string;
-};
+import { NavHeader } from "@src/components/NavHeader";
+import { SimilarProducts } from "./SimilarProducts";
 
 export default function ProductView() {
   const productId = useParams();
@@ -16,11 +14,13 @@ export default function ProductView() {
     thumbnail: any;
     title: any;
     description: any;
+    price: any;
   }>({
     id: undefined,
     thumbnail: undefined,
     title: undefined,
     description: undefined,
+    price: undefined,
   });
 
   useEffect(() => {
@@ -39,14 +39,31 @@ export default function ProductView() {
   console.log(productData);
 
   return (
-    <div className="flex">
-      <div>
-        <img src={productData.thumbnail} alt="" />
+    <>
+      <NavHeader />
+      <div className="flex bg-[red] justify-around my-[70px]">
+        <div>
+          <img
+            className="w-[500px] h-[500px]"
+            src={productData.thumbnail}
+            alt="product"
+          />
+        </div>
+        <div className="flex flex-col justify-around items-center mt-5">
+          <h1 className="text-5xl">{productData.title}</h1>
+          <p className="text-m">{productData.description}</p>
+          <h2 className="text-xl">{productData.price}</h2>
+          <div className="flex gap-[70px] items-center">
+            <h2 className="text-xl">Buy Now</h2>
+            <div>
+              <Link to='/cart'>
+                <BsCart3 size={20} />
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <h1>{productData.title}</h1>
-        <p>{productData.description}</p>
-      </div>
-    </div>
+      <SimilarProducts />
+    </>
   );
 }
