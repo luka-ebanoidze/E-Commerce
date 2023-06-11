@@ -1,8 +1,11 @@
 import { BsCart3 } from "react-icons/bs";
 import { Rating } from "@mui/material";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type TProducts = {
+  id: number;
   title: string;
   price: number;
   thumbnail: string;
@@ -10,15 +13,22 @@ type TProducts = {
 };
 
 export function ProductsContainer(props: TProducts) {
-  const { title, thumbnail, price, rating } = props;
-  //   console.log(raiting);
+  const navigate = useNavigate();
+  const { title, thumbnail, price, rating, id } = props;
 
   function AddToCart() {
-    console.log("added to cart");
+    console.log("added");
+  }
+
+  function MoveToSingleProduct(id: number) {
+    navigate(`/products/${id}`)
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2 bg-red-500 h-[500px] rounded-lg">
+    <div
+      onClick={() => MoveToSingleProduct(id)}
+      className="flex flex-col items-center justify-center gap-2 bg-red-500 h-[500px] rounded-lg hover:cursor-pointer"
+    >
       <h1 className="text-2xl h-[100px] text-center">{title}</h1>
       <img className="h-[270px] w-11/12" src={thumbnail} alt="thumbnail" />
       <p className="text-xl">{price}</p>
