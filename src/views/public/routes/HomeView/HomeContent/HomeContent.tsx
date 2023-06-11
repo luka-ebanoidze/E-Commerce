@@ -28,6 +28,7 @@ export function HomeContent() {
                 price={product.price}
                 thumbnail={product.thumbnail}
                 rating={product.rating}
+                id={product.id}
               />
             );
           })}
