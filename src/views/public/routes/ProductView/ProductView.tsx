@@ -36,7 +36,7 @@ export default function ProductView() {
     }
   }, []);
 
-  console.log(productData);
+  // console.log(productData);
 
   return (
     <>
