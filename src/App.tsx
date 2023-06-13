@@ -19,27 +19,37 @@ import AdminView from "./views/private/routes/AdminPanelView";
 import { PrivateRoutes } from "./views/private/PrivateRoutes";
 import axios from "axios";
 import { TLocalStorage } from "./types/localstorage";
+import { TAuthorizationStage } from "./types/auth.types";
 
 function App() {
   const { setCurrentUser } = useContext(UserContext);
+  const { setStatus } = useContext(AuthContext);
+
   const { status } = useContext(AuthContext);
   const { currentUser } = useContext(UserContext);
-  // console.log(currentUser);
-  // console.log(status);
+  console.log(currentUser);
+  console.log(status);
 
-  // (async function () {
-  //   const info = await axios.get("http://localhost:8080/me", {
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem(
-  //         TLocalStorage.ACCESSTOKEN
-  //       )}`,
-  //     },
-  //   });
+  async function fetchData() {
+    
+    if (localStorage.getItem("acces-token")) {
+      const info = await axios.get("http://localhost:8080/me", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("acces-token")}`,
+        },
+      });
+      setStatus(TAuthorizationStage.AUTHORIZED);
+      if (info.data?.firstName === "admin" && info.data?.lastName === "admin") {
+        setCurrentUser(TUserContextRole.ADMIN);
+      } 
+      console.log(info);
+    }
+  }
 
-  //   if (info.data?.firstName === "admin" && info.data?.lastName === "admin") {
-  //     setCurrentUser(TUserContextRole.ADMIN);
-  //   }
-  // })();
+  useEffect(() => {
+    fetchData();
+  }, []);
+
 
   return (
     <Suspense fallback={<div>loading...</div>}>
@@ -50,28 +60,20 @@ function App() {
           }
         >
           {PublicRoutes}
-          <Route
-            path="/profile"
-            element={
-              <PrivateRoute
-                currentUser={currentUser}
-                roles={[...Object.values(TUserContextRole)]}
-                children={<ProfileView />}
-              />
-            }
-          />
-          <Route
-            path="/admin"
-            element={
-              <PrivateRoute
-                currentUser={currentUser}
-                roles={[TUserContextRole.ADMIN]}
-                children={<AdminView />}
-              />
-            }
-          />
 
-          <Route path="/" element={<Navigate to={"/"} />} />
+          {status === "unauthorized" ? (
+            <>
+              <Route path="/profile" element={<ProfileView />} />
+            </>
+          ) : (
+            <></>
+          )}
+
+          {currentUser === "admin" && (
+            <Route path="/admin" element={<AdminView />} />
+          )}
+
+          <Route path="*" element={<Navigate to={"/"} />} />
         </Route>
       </Routes>
     </Suspense>

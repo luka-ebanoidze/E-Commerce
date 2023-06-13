@@ -39,14 +39,13 @@ export default function LoginView() {
       if (resp.data.AccessToken) {
         navigate("/");
 
-        // setCurrentUser(TUserContextRole.USER);
-        localStorage.setItem(TLocalStorage.ACCESSTOKEN, resp.data.AccessToken);
+        localStorage.setItem('acces-token', resp.data.AccessToken);
         setStatus(TAuthorizationStage.AUTHORIZED);
 
         const info = await axios.get("http://localhost:8080/me", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem(
-              TLocalStorage.ACCESSTOKEN
+              'acces-token'
             )}`,
           },
         });
