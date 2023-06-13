@@ -8,8 +8,6 @@ import { PrivateRoute } from "./PrivateRoute";
 //   currentUser: TUserContextRole;
 // };
 
-const ProfileView = lazy(() => import("./routes/ProfileView"));
-const AdminView = lazy(() => import("./routes/AdminPanelView"));
 
 export const PrivateRoutes = [
   // <Route

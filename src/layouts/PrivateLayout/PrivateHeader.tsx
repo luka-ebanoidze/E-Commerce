@@ -1,8 +1,7 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "@src/context/AuthContext";
 import { TAuthorizationStage } from "@src/types/auth.types";
-import { TLocalStorage } from "@src/types/localstorage";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 import MainContainer from "@src/components/MainContainer/MainContainer";
@@ -17,7 +16,6 @@ export function PrivateHeader() {
   const handleLogout = () => {
     localStorage.removeItem('acces-token');
     setStatus(TAuthorizationStage.UNAUTHORIZED);
-    
   };
 
 
