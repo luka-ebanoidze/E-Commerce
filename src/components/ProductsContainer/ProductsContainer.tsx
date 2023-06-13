@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+import { Slider } from "../Slider";
+
 type TProducts = {
   id: number;
   title: string;
@@ -21,7 +23,7 @@ export function ProductsContainer(props: TProducts) {
   }
 
   function MoveToSingleProduct(id: number) {
-    navigate(`/products/${id}`)
+    navigate(`/products/${id}`);
   }
 
   return (
