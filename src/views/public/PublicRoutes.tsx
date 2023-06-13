@@ -1,5 +1,5 @@
-import { lazy } from "react"
-import { Routes,Route } from "react-router-dom"
+import { lazy } from "react";
+import { Route } from "react-router-dom";
 
 const HomeView = lazy(() => import("./routes/HomeView"));
 const ProductsView = lazy(() => import("./routes/ProductsView"));
@@ -8,16 +8,11 @@ const LoginView = lazy(() => import("./routes/LoginView"));
 const RegisterView = lazy(() => import("./routes/RegisterView"));
 const CartView = lazy(() => import("./routes/CartView"));
 
-
-export function PublicRoutes() {
-  return (
-    <Routes>
-      <Route path="/" element={<HomeView />} />
-      <Route path="/products/:id" element={<ProductView />} />
-      <Route path="/products" element={<ProductsView />} />
-      <Route path="/login" element={<LoginView />} />
-      <Route path="/register" element={<RegisterView />} />
-      <Route path="/cart" element={<CartView />} />
-    </Routes>
-  );
-}
+export const PublicRoutes = [
+  <Route path="/" element={<HomeView />} key={1} />,
+  <Route path="/products/:id" element={<ProductView />} key={2} />,
+  <Route path="/products" element={<ProductsView />} key={3} />,
+  <Route path="/login" element={<LoginView />} key={4} />,
+  <Route path="/register" element={<RegisterView />} key={5} />,
+  <Route path="/cart" element={<CartView />} key={6} />,
+];
