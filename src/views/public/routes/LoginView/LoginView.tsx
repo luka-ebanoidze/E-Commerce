@@ -33,6 +33,8 @@ export default function LoginView() {
   } = useForm<TLoginForm>();
 
   async function onSubmit(data: TLoginForm) {
+    console.log(123);
+    
     try {
       const resp = await axios.post("http://localhost:8080/login", data);
       // const resp = await public_axios.post("/login", data);
@@ -40,13 +42,13 @@ export default function LoginView() {
       if (resp.data.AccessToken) {
         // navigate("/");
 
-        localStorage.setItem(TLocalStorage.ACCESSTOKEN, resp.data.AccessToken);
+        localStorage.setItem('acces-token', resp.data.AccessToken);
         setStatus(TAuthorizationStage.AUTHORIZED);
 
         const info = await axios.get("http://localhost:8080/me", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem(
-              TLocalStorage.ACCESSTOKEN
+              'acces-token'
             )}`,
           },
         });
