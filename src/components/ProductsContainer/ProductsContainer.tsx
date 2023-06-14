@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import { Slider } from "../Slider";
+import { useCart } from "react-use-cart";
 
 type TProducts = {
   id: number;
@@ -12,11 +12,14 @@ type TProducts = {
   price: number;
   thumbnail: string;
   rating: number;
+  item: any;
 };
 
 export function ProductsContainer(props: TProducts) {
+  const { addItem } = useCart();
+
   const navigate = useNavigate();
-  const { title, thumbnail, price, rating, id } = props;
+  const { title, thumbnail, price, rating, id, item } = props;
 
   function AddToCart() {
     console.log("added");
@@ -33,12 +36,21 @@ export function ProductsContainer(props: TProducts) {
         className="flex flex-col items-center bg-blue-300 w-full"
       >
         <h1 className="text-2xl h-[90px] text-center">{title}</h1>
-        <img className="h-[270px] w-11/12 mb-3" src={thumbnail} alt="thumbnail" />
+        <img
+          className="h-[270px] w-11/12 mb-3"
+          src={thumbnail}
+          alt="thumbnail"
+        />
         <p className="text-xl">{price}</p>
       </div>
       <div className="w-11/12 flex justify-between items-center bg-green-300">
         <Rating name="half-rating" defaultValue={rating} precision={0.1} />
-        <button onClick={AddToCart}>
+        <button
+          onClick={() => {
+            AddToCart();
+            addItem(item);
+          }}
+        >
           <BsCart3 size={25} />
         </button>
       </div>
