@@ -14,6 +14,7 @@ export function HomeContent() {
     price: number;
     thumbnail: string;
     rating: number;
+    item: any;
   };
 
   return (
@@ -29,6 +30,7 @@ export function HomeContent() {
                 thumbnail={product.thumbnail}
                 rating={product.rating}
                 id={product.id}
+                item={product}
               />
             );
           })}
