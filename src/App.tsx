@@ -26,8 +26,11 @@ function App() {
   const { currentUser } = useContext(UserContext);
   // console.log(currentUser);
   // console.log(status);
+
+=======
   const { setStatus } = useContext(AuthContext);
   const { setCurrentUser } = useContext(UserContext);
+
 
   async function fetchData() {
     if (localStorage.getItem("acces-token")) {
@@ -39,7 +42,12 @@ function App() {
       });
       if (info.data?.firstName === "admin" && info.data?.lastName === "admin") {
         setCurrentUser(TUserContextRole.ADMIN);
+
+      } 
+      // console.log(info);
+=======
       }
+
     }
   }
 
@@ -57,15 +65,24 @@ function App() {
         >
           {PublicRoutes}
 
+
+          {status === "authorized" ? (
+            <>
+              <Route path="/profile" element={<ProfileView />} />
+            </>
+          ) : (
+            <></>
+=======
           {status === "authorized" && (
             <Route path="/profile" element={<ProfileView />} />
+
           )}
 
           {currentUser === "admin" && (
             <Route path="/admin" element={<AdminView />} />
           )}
 
-          <Route path="*" element={<Navigate to={"/"} />} />
+          {/* <Route path="*" element={<Navigate to={"/"} />} /> */}
         </Route>
       </Routes>
     </Suspense>
