@@ -27,8 +27,8 @@ function App() {
 
   const { status } = useContext(AuthContext);
   const { currentUser } = useContext(UserContext);
-  console.log(currentUser);
-  console.log(status);
+  // console.log(currentUser);
+  // console.log(status);
 
   async function fetchData() {
     
@@ -42,7 +42,7 @@ function App() {
       if (info.data?.firstName === "admin" && info.data?.lastName === "admin") {
         setCurrentUser(TUserContextRole.ADMIN);
       } 
-      console.log(info);
+      // console.log(info);
     }
   }
 
@@ -61,7 +61,7 @@ function App() {
         >
           {PublicRoutes}
 
-          {status === "unauthorized" ? (
+          {status === "authorized" ? (
             <>
               <Route path="/profile" element={<ProfileView />} />
             </>
@@ -73,7 +73,7 @@ function App() {
             <Route path="/admin" element={<AdminView />} />
           )}
 
-          <Route path="*" element={<Navigate to={"/"} />} />
+          {/* <Route path="*" element={<Navigate to={"/"} />} /> */}
         </Route>
       </Routes>
     </Suspense>
