@@ -10,8 +10,8 @@ const CartView = lazy(() => import("./routes/CartView"));
 
 export const PublicRoutes = [
   <Route path="/" element={<HomeView />} key={1} />,
-  <Route path="/products/:id" element={<ProductView />} key={2} />,
-  <Route path="/products" element={<ProductsView />} key={3} />,
+  <Route path="/:category/:product/:id" element={<ProductView />} key={2} />,
+  <Route path="/products/:category" element={<ProductsView />} key={3} />,
   <Route path="/login" element={<LoginView />} key={4} />,
   <Route path="/register" element={<RegisterView />} key={5} />,
   <Route path="/cart" element={<CartView />} key={6} />,
