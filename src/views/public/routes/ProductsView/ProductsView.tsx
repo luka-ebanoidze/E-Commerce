@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import axios from "axios";
 
 import { ProductsContainer } from "@src/components/ProductsContainer";
+import { NavHeader } from "@src/components/NavHeader";
+
 import { useEffect, useState } from "react";
 
 
@@ -43,19 +45,22 @@ export default function ProductsView() {
     
 
   return (
-    <div className="grid grid-cols-4 gap-4">
-      {productData.map((product: any) => (
-        <ProductsContainer
-          key={product.id}
-          title={product.title}
-          price={product.price}
-          thumbnail={product.thumbnail}
-          rating={product.rating}
-          id={product.id}
-          item={product}
-          category={product.category}
-        />
-      ))}
+    <div>
+      <NavHeader />
+      <div className="grid grid-cols-4 gap-4">
+        {productData.map((product: any) => (
+          <ProductsContainer
+            key={product.id}
+            title={product.title}
+            price={product.price}
+            thumbnail={product.thumbnail}
+            rating={product.rating}
+            id={product.id}
+            item={product}
+            category={product.category}
+          />
+        ))}
+      </div>
     </div>
   );
 }

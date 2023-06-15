@@ -22,12 +22,18 @@ export function NavCategory({ category }: any) {
     >
       <div
         onClick={() => {
-          navigate(`products/${category}`)
+          navigate(`products/${category}`);
         }}
       >
         {category}
       </div>
-      {activeCategory === category && <NavContents category={category} />}
+      {activeCategory === category && (
+        <div onMouseEnter={()=> {
+          setActiveCategory(category);
+        }}>
+          <NavContents category={category} />
+        </div>
+      )}
     </div>
   );
 }
