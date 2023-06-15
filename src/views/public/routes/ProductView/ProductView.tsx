@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { BsCart3 } from "react-icons/bs";
 
 import { NavHeader } from "@src/components/NavHeader";
 import { SimilarProducts } from "./SimilarProducts";
+import { NavContext } from "@src/components/Navigation/context/NavContext";
 
 export default function ProductView() {
   const productId = useParams();
@@ -36,7 +37,6 @@ export default function ProductView() {
     }
   }, []);
 
-  console.log(productData);
 
   return (
     <>

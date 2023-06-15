@@ -15,6 +15,7 @@ export function HomeContent() {
     thumbnail: string;
     rating: number;
     item: any;
+    category: any;
   };
 
   return (
@@ -31,6 +32,7 @@ export function HomeContent() {
                 rating={product.rating}
                 id={product.id}
                 item={product}
+                category={product.category}
               />
             );
           })}
