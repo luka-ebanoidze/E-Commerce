@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import axios from "axios";
 
@@ -23,7 +23,7 @@ export default function LoginView() {
   const { setStatus } = useContext(AuthContext);
   const { setCurrentUser } = useContext(UserContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const {
     register,
@@ -37,10 +37,9 @@ export default function LoginView() {
     
     try {
       const resp = await axios.post("http://localhost:8080/login", data);
-      // const resp = await public_axios.post("/login", data);
 
       if (resp.data.AccessToken) {
-        // navigate("/");
+        navigate("/");
 
         localStorage.setItem('acces-token', resp.data.AccessToken);
         setStatus(TAuthorizationStage.AUTHORIZED);
@@ -57,10 +56,9 @@ export default function LoginView() {
           info.data?.firstName === "admin" &&
           info.data?.lastName === "admin"
         ) {
-          setCurrentUser(TUserContextRole.ADMIN)
+          setCurrentUser(TUserContextRole.ADMIN);
         }
       }
-
     } catch (error: any) {
       setError("root", { message: "something went wrong" });
     }
