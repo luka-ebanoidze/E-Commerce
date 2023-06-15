@@ -17,7 +17,7 @@ export function NavCategory({ category }: any) {
         setActiveCategory(category);
       }}
       onMouseLeave={() => {
-        // setActiveCategory("");
+        setActiveCategory("");
       }}
     >
       <div
