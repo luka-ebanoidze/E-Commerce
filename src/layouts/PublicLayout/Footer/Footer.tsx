@@ -1,4 +1,5 @@
 import MainContainer from "@src/components/MainContainer/MainContainer";
+import { GoogleMap } from "./GoogleMap";
 
 export function Footer() {
   return (
@@ -16,7 +17,9 @@ export function Footer() {
           </div>
         </div>
         <button>Contact Us</button>
-        <div className="w-[300px] h-[300px] bg-red-300">Map</div>
+        <div className="w-[500px] h-[500px] bg-red-300">
+          <GoogleMap />
+        </div>
       </footer>
     </MainContainer>
   );
