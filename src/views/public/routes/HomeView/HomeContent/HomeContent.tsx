@@ -2,11 +2,22 @@ import { Card } from "@src/components/Card/Card";
 
 import { useGetProducts } from "@src/hooks/useGetProducts";
 import { ProductsContainer } from "@src/components/ProductsContainer";
+import { Pagination } from "@src/components/Pagination";
+import { useState } from "react";
 
 export function HomeContent() {
+  const [activePage, setActivePage] = useState(1);
+
+  const limit = 10;
+
+  console.log(activePage);
+  
+
   const {
     products: { data, loading },
-  } = useGetProducts();
+    totalNum: {totalNum}
+  } = useGetProducts(activePage, limit);
+  
 
   type TProducts = {
     id: number;
@@ -37,6 +48,7 @@ export function HomeContent() {
             );
           })}
         </div>
+        <Pagination setActivePage={setActivePage} total={totalNum} limit={limit} />
       </Card>
     </div>
   );
