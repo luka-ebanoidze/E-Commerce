@@ -1,22 +1,58 @@
 import { Card } from "@src/components/Card/Card";
+import { useEffect, useState } from "react";
 
 import { useGetProducts } from "@src/hooks/useGetProducts";
+
 import { ProductsContainer } from "@src/components/ProductsContainer";
 import { Pagination } from "@src/components/Pagination";
-import { useState } from "react";
+import { Filter } from "@src/components/Filter";
 
 export function HomeContent() {
   const [activePage, setActivePage] = useState(1);
+  const [filterKey, setFilterKey] = useState([]);
+  const [filteredArr, setFilteredArr] = useState([]);
+  const [productss, setProducts] = useState([])
 
   const limit = 10;
 
-  console.log(activePage);
-  
-
   const {
     products: { data, loading },
-    totalNum: {totalNum}
+    totalNum: { totalNum },
   } = useGetProducts(activePage, limit);
+  // setProducts(data)
+  // console.log(productss);
+  
+
+  // const filtered = [];
+  // console.log(filterKey);
+  
+
+  // console.log(activePage);
+
+  // console.log(filterKey);
+
+  // useEffect(() => {
+  //   setFilteredArr(
+  //     data?.products.filter((product: any) => product.price > 500)
+  //   );
+  //   console.log(filteredArr);
+  // }, []);
+
+  // useEffect(()=>{
+  //  console.log(
+  //    data?.products.filter(
+  //      (product: any) =>
+  //        product.price > +filterKey[0] && product.price < +filterKey[1]
+  //    )
+  //  );
+  //  setProducts(data)
+  //  console.log(data, 'data');
+   
+  // },[filterKey])
+
+  
+
+
   
 
   type TProducts = {
@@ -32,6 +68,7 @@ export function HomeContent() {
   return (
     <div className="w-full">
       <Card>
+        <Filter setFilterKey={setFilterKey} />
         <div className="grid grid-cols-4 gap-4">
           {data?.products.map((product: TProducts) => {
             return (
@@ -48,7 +85,11 @@ export function HomeContent() {
             );
           })}
         </div>
-        <Pagination setActivePage={setActivePage} total={totalNum} limit={limit} />
+        <Pagination
+          setActivePage={setActivePage}
+          total={totalNum}
+          limit={limit}
+        />
       </Card>
     </div>
   );

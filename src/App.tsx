@@ -59,7 +59,7 @@ function App() {
             <Route path="/admin" element={<AdminView />} />
           )}
 
-          {/* <Route path="*" element={<Navigate to={"/"} />} /> */}
+          <Route path="*" element={<Navigate to={"/"} />} />
         </Route>
       </Routes>
     </Suspense>
