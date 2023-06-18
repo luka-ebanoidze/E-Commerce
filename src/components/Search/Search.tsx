@@ -1,38 +1,90 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 export function Search() {
+  const [searchValue, setSearchValue] = useState("");
+  const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+
+  async function searchProducts() {
+    try {
+      const resp = await axios.get(
+        `https://dummyjson.com/products/search?q=${searchValue}`
+      );
+      setProducts(resp.data?.products);
+    } catch (error: any) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    searchProducts();
+  }, [searchValue]);
+
+  function navigateToSearchedProducts(keyWord: any) {
+    navigate(`/products/${keyWord}`);
+  }
+
   return (
-    <form className="w-6/12">
-      <div className="flex w-full">
-        <div className="relative w-full">
-          <input
-            type="search"
-            id="search-dropdown"
-            className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-l-2 border border-gray-400 focus:ring-500 focus:border-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-500 outline-none"
-            placeholder="Search..."
-            required
-          />
-          <button
-            type="submit"
-            className="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            <svg
-              aria-hidden="true"
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+    <div className="w-6/12 bg-black relative">
+      <form>
+        <div className="flex w-full">
+          <div className="relative w-full">
+            <input
+              type="search"
+              value={searchValue}
+              onChange={(e) => {
+                setSearchValue(e.target.value);
+              }}
+              id="search-dropdown"
+              className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-l-2 border border-gray-400 focus:ring-500 focus:border-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-500 outline-none"
+              placeholder="Search..."
+              required
+            />
+            <button
+              onClick={() => {
+                navigateToSearchedProducts(searchValue);
+              }}
+              type="submit"
+              className="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              ></path>
-            </svg>
-            <span className="sr-only">Search</span>
-          </button>
+              <svg
+                aria-hidden="true"
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+              <span className="sr-only">Search</span>
+            </button>
+          </div>
         </div>
+      </form>
+      <div className="absolute w-full z-50 bg-green-500 flex flex-col gap-3">
+        {searchValue !== "" &&
+          products.slice(0, 5).map((product: any) => (
+            <div
+              className="flex justify-between items-center pr-10"
+              key={product.id}
+            >
+              <div className="w-[100px] h-[100px] bg-blue-500 object-cover">
+                <img src={product.thumbnail} className="w-full h-full" />
+              </div>
+              <div>{product.title}</div>
+              <div>{product.price} $</div>
+            </div>
+          ))}
+        {searchValue !== "" && products.length === 0 && <div>not fount</div>}
       </div>
-    </form>
+    </div>
   );
 }
