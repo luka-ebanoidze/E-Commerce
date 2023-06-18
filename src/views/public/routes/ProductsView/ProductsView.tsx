@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 
 export default function ProductsView() {
   const param = useParams();
+  console.log(param);
+  
 
   // const [productData, setProductData] = useState<{
   //   id: any;
@@ -31,6 +33,9 @@ export default function ProductsView() {
 
     useEffect(() => {
       try {
+        // if(param.category) {
+        //   console.log(param.category); 
+        // }
         (async function () {
           const resp = await axios.get(
             `https://dummyjson.com/products/category/${param.category}`
