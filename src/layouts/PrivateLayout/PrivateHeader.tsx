@@ -3,6 +3,8 @@ import { AuthContext } from "@src/context/AuthContext";
 import { TAuthorizationStage } from "@src/types/auth.types";
 import { Link } from "react-router-dom";
 
+import { UserContext } from "@src/context/UserContext";
+
 
 import MainContainer from "@src/components/MainContainer/MainContainer";
 
@@ -12,6 +14,7 @@ import { BsCart3 } from "react-icons/bs";
 
 export function PrivateHeader() {
   const { setStatus } = useContext(AuthContext);
+  const { currentUser } = useContext(UserContext);
 
   const handleLogout = () => {
     localStorage.removeItem('acces-token');
@@ -27,7 +30,9 @@ export function PrivateHeader() {
             <Link to="/">
               <MainLogo />
             </Link>
-            <Search />
+            <div className="w-6/12 bg-black relative">
+              <Search />
+            </div>
             <div className="flex items-center lg:order-2">
               <Link
                 to="/cart"
@@ -48,6 +53,14 @@ export function PrivateHeader() {
               >
                 Log out
               </Link>
+              {currentUser === "admin" && (
+                <Link
+                  to="/admin"
+                  className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                >
+                  Admin Panel
+                </Link>
+              )}
             </div>
           </div>
         </nav>
