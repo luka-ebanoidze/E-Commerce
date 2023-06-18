@@ -27,7 +27,7 @@ export function Search() {
   }
 
   return (
-    <div className="w-6/12 bg-black relative">
+    <div className="w-full">
       <form>
         <div className="flex w-full">
           <div className="relative w-full">

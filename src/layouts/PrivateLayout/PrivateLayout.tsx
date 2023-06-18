@@ -4,7 +4,10 @@ import { Footer } from "../PublicLayout/Footer";
 
 import MainContainer from "@src/components/MainContainer/MainContainer";
 
+
 export default function PrivateLayout() {
+  
+
   return (
     <div>
       <PrivateHeader />
