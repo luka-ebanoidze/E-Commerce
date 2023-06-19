@@ -9,6 +9,7 @@ import { useNavigate } from "react-router";
 export function NavCategory({ category }: any) {
   const { activeCategory, setActiveCategory } = useContext(NavContext);
   const navigate = useNavigate()
+  
 
   return (
     <div
