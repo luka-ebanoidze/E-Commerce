@@ -5,6 +5,8 @@ export function useGetProducts(page = 1, limit = 0) {
     totalNum: undefined,
   });
 
+  const limita = true
+
   // function getSkip(page: number, limit: number) {
   //   // console.log(page, 'page');
   //   // console.log(limit, 'limit');
@@ -27,7 +29,7 @@ export function useGetProducts(page = 1, limit = 0) {
     try {
       setProducts((prev) => ({ ...prev, loading: true }));
       const resp = await axios.get(
-        `https://dummyjson.com/products?limit=10&skip=${(page - 1) * limit}`
+        `https://dummyjson.com/products?${limita && 'limit=100'}&skip=${(page - 1) * limit}`
       );
       setTotalNum({ totalNum: resp.data.total });
       setProducts((prev) => ({ ...prev, loading: false, data: resp.data }));
