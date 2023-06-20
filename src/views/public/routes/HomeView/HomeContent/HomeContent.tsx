@@ -50,10 +50,6 @@ export function HomeContent() {
    
   // },[filterKey])
 
-  
-
-
-  
 
   type TProducts = {
     id: number;
@@ -69,7 +65,7 @@ export function HomeContent() {
     <div className="w-full">
       <Card>
         <Filter setFilterKey={setFilterKey} />
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-4 max-2xl:grid-cols-3 max-xl:grid-cols-2 max-md:grid-cols-1">
           {data?.products.map((product: TProducts) => {
             return (
               <ProductsContainer

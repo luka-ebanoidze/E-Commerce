@@ -22,7 +22,7 @@ export function NavContents({ category }: any) {
   const { activeCategory } = useContext(NavContext);
 
   return (
-    <div className="bg-fuchsia-400 h-full w-full absolute right-[-100%] top-[0] z-30">
+    <div className="bg-fuchsia-400 xl:h-full w-full absolute right-[-100%] top-[0] z-30 max-xl:right-0 max-xl:top-[100%] ">
       {navigation.map((el: any) => {
         if (el.category === activeCategory) {
           return (
