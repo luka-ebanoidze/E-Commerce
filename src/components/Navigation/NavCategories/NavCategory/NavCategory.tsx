@@ -1,5 +1,5 @@
 import { TCategory } from "@src/types/category";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NavContext } from "../../context/NavContext";
 
 import { NavContents } from "../../NavContents";
@@ -11,30 +11,46 @@ export function NavCategory({ category }: any) {
   const navigate = useNavigate()
   
 
+  const [clicked,setClicked] = useState()
+  
+
   return (
-    <div
-      className=""
-      onMouseEnter={() => {
-        setActiveCategory(category);
-      }}
-      onMouseLeave={() => {
-        setActiveCategory("");
-      }}
-    >
+
       <div
+        className="bg-green-500 w-full flex justify-between"
+        onMouseEnter={() => {
+          setActiveCategory(category);
+          console.log(activeCategory);
+        }}
         onClick={() => {
-          navigate(`products/${category}`);
+          setActiveCategory(category);
+        }}
+        onMouseLeave={() => {
+          setActiveCategory("");
         }}
       >
-        {category}
+        <div
+          onClick={() => {
+            navigate(`products/${category}`);
+          }}
+        >
+          {category}
+        </div>
+        <div onClick={()=> setActiveCategory(category)} className="absolute right-0 hidden max-md:flex">click</div>
+      <div
+        onMouseEnter={() => {
+          setActiveCategory(activeCategory);
+        }}
+      >
+        <NavContents category={activeCategory} />
       </div>
-      {activeCategory === category && (
+      {/* {activeCategory === category && (
         <div onMouseEnter={()=> {
           setActiveCategory(category);
         }}>
           <NavContents category={category} />
         </div>
-      )}
+      )} */}
     </div>
   );
 }

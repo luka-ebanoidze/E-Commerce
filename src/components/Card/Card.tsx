@@ -6,6 +6,6 @@ type Props = {
 
 export function Card({ children }: Props) {
   return (
-    <div className="w-full h-full bg-[#fff] rounded-xl">{children}</div>
+    <div className="w-full flex flex-col items-center h-full bg-[#fff] rounded-xl">{children}</div>
   );
 }
