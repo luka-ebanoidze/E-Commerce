@@ -11,7 +11,7 @@ export function Navigation() {
 
   return (
     <NavContext.Provider value={{ activeCategory, setActiveCategory }}>
-      <div className="w-1/3 bg-green-300 flex relative max-xl:w-full">
+      <div className="w-1/3 flex relative max-xl:w-full">
         <Card>
           <NavCategories />
         </Card>

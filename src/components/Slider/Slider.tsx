@@ -28,7 +28,7 @@ export function Slider() {
   }
 
   return (
-    <div className="bg-white w-3/4 h-[400px] relative max-xl:w-full max-xl:h-[350px] max-lg:h-[300px] max-sm:h-[250px]">
+    <div className="bg-white rounded-xl overflow-hidden w-3/4 h-[400px] relative max-xl:w-full max-xl:h-[350px] max-lg:h-[300px] max-sm:h-[250px]">
       <img className="w-full h-full" src={images?.[currentIndex]} alt="" />
 
       <div
