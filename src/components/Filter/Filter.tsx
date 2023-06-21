@@ -18,7 +18,8 @@ export function Filter(props: any) {
 
   return (
     <div className="h-[100px] mb-8 w-full bg-gray-700 flex justify-around items-center">
-      <div className="flex gap-3">
+      Filter
+      {/* <div className="flex gap-3">
         <p>Filter By Price :</p>
         <span className="flex">
           <p>From :</p>
@@ -48,7 +49,7 @@ export function Filter(props: any) {
       </div>
       <div>
         <p>Filter By RATE :</p>
-      </div>
+      </div> */}
     </div>
   );
 }
