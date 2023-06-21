@@ -56,7 +56,7 @@ export function ProductsContainer(props: TProducts) {
           className="relative"
           onClick={() => {
             AddToCart();
-            addItem(item);
+            addItem(item); 
           }}
         >
           <div className="absolute w-[20px] h-[20px] text-white pb-[2px] top-[-40%] right-[-40%] bg-blue-600 rounded-full flex justify-center items-center">
