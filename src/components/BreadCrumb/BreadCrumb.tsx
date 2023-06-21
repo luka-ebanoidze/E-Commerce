@@ -14,8 +14,9 @@ export function BreadCrumb() {
   }
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center max-sm:hidden">
       <div
+        className="max-sm:text-sm"
         onClick={() => {
           navigate("/");
         }}
@@ -27,7 +28,14 @@ export function BreadCrumb() {
       </span>
       {arr.map((item: any, index: number) => (
         <div className="flex items-center" key={item}>
-          <div onClick={()=> {navigate(`/products/${item[1]}`)}}>{item[1]}</div>
+          <div
+            className="max-sm:text-sm"
+            onClick={() => {
+              navigate(`/products/${item[1]}`);
+            }}
+          >
+            {item[1]}
+          </div>
           <div className="mx-3">
             {index !== arr.length - 1 && (
               <span>
