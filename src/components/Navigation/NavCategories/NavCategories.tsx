@@ -13,7 +13,7 @@ export function NavCategories() {
       <div className="h-[50px] text-white font-bold tracking-widest rounded-t-xl bg-blue-600 flex justify-center items-center">
         Navigation
       </div>
-      <div className="w-full py-1 pl-3 divide-y flex flex-col  hover:cursor-pointer max-xl:grid max-xl:grid-cols-3 max-md:grid-cols-1 max-sm:grid-cols-1">
+      <div className="w-full py-1 pl-3 divide-y max-xl:divide-y-0 max-md:divide-y flex flex-col  hover:cursor-pointer max-xl:grid max-xl:grid-cols-3 max-md:grid-cols-1 max-sm:grid-cols-1">
         {categories.map((el: any, index: any) => (
           <NavCategory key={index} category={el.category} />
         ))}

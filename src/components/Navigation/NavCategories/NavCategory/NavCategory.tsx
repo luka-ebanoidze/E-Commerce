@@ -6,13 +6,13 @@ import { NavContents } from "../../NavContents";
 import { Navigate } from "react-router";
 import { useNavigate } from "react-router";
 
+import { AiFillCaretDown } from "react-icons/ai";
+
 export function NavCategory({ category }: any) {
   const { activeCategory, setActiveCategory } = useContext(NavContext);
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
 
-  const [clicked,setClicked] = useState()
-  
+  const [clicked, setClicked] = useState(false);
 
   return (
     <div
@@ -37,12 +37,15 @@ export function NavCategory({ category }: any) {
         {category}
       </div>
       <div
-        onClick={() => setActiveCategory(category)}
-        className="absolute right-0 hidden max-md:flex"
+        onClick={() => {
+          setActiveCategory(category);
+          setClicked(!clicked);
+        }}
+        className="absolute right-5 hidden max-md:flex"
       >
-        click
+        <AiFillCaretDown size={20} />
       </div>
-      {activeCategory === category && (
+      {activeCategory === category && clicked && (
         <div
           onMouseEnter={() => {
             setActiveCategory(activeCategory);
