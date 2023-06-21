@@ -13,15 +13,15 @@ export default function ContactUsView() {
   }
 
   return (
-    <div className="flex items-center justify-center ">
+    <div className="flex items-center justify-center mt-20 h-[100vh]">
       <form
-        className="bg-red-300 w-1/3"
+        className="p-5 rounded-xl bg-white w-1/3 h-[350px] flex flex-col justify-between"
         onSubmit={(e) => {
           sendText(e);
         }}
       >
         <div className="mb-6">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          <label className="block mb-2 text-md font-bold text-gray-900 dark:text-white">
             Your email
           </label>
           <input
@@ -32,12 +32,12 @@ export default function ContactUsView() {
             type="email"
             id="email"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="name@flowbite.com"
+            placeholder="email"
             required
           />
         </div>
         <div className="mb-6">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          <label className="block mb-2 text-md font-bold text-gray-900 dark:text-white">
             Text
           </label>
           <textarea
@@ -45,6 +45,7 @@ export default function ContactUsView() {
               setText(e.target.value);
             }}
             value={text}
+            placeholder="Text"
             id="text"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
