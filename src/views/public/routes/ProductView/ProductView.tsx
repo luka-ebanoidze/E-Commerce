@@ -41,22 +41,22 @@ export default function ProductView() {
   return (
     <>
       <NavHeader />
-      <div className="flex bg-[red] justify-around my-[70px]">
+      <div className="flex bg-[red] justify-around my-[70px] max-xl:gap-5 max-xl:items-center max-xl:flex-col">
         <div>
           <img
-            className="w-[500px] h-[500px]"
+            className="w-[450px] h-[450px] max-xl:h-[375px] max-xl:w-[375px] max-sm:h-[300px] max-sm:w-[325px]"
             src={productData.thumbnail}
             alt="product"
           />
         </div>
-        <div className="flex flex-col justify-around items-center mt-5">
+        <div className="flex flex-col justify-around items-center mt-5 max-xl:h-[350px]">
           <h1 className="text-5xl">{productData.title}</h1>
           <p className="text-m">{productData.description}</p>
           <h2 className="text-xl">{productData.price}</h2>
           <div className="flex gap-[70px] items-center">
             <h2 className="text-xl">Buy Now</h2>
             <div>
-              <Link to='/cart'>
+              <Link to="/cart">
                 <BsCart3 size={20} />
               </Link>
             </div>
