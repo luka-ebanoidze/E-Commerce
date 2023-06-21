@@ -15,42 +15,42 @@ export function NavCategory({ category }: any) {
   
 
   return (
-
+    <div
+      className="w-full h-[30px]   flex justify-between"
+      onMouseEnter={() => {
+        setActiveCategory(category);
+        console.log(activeCategory);
+      }}
+      onClick={() => {
+        setActiveCategory(category);
+      }}
+      onMouseLeave={() => {
+        setActiveCategory("");
+      }}
+    >
       <div
-        className="bg-green-500 w-full flex justify-between"
-        onMouseEnter={() => {
-          setActiveCategory(category);
-          console.log(activeCategory);
-        }}
+        className=""
         onClick={() => {
-          setActiveCategory(category);
-        }}
-        onMouseLeave={() => {
-          setActiveCategory("");
+          navigate(`products/${category}`);
         }}
       >
+        {category}
+      </div>
+      <div
+        onClick={() => setActiveCategory(category)}
+        className="absolute right-0 hidden max-md:flex"
+      >
+        click
+      </div>
+      {activeCategory === category && (
         <div
-          onClick={() => {
-            navigate(`products/${category}`);
+          onMouseEnter={() => {
+            setActiveCategory(activeCategory);
           }}
         >
-          {category}
+          <NavContents category={activeCategory} />
         </div>
-        <div onClick={()=> setActiveCategory(category)} className="absolute right-0 hidden max-md:flex">click</div>
-      <div
-        onMouseEnter={() => {
-          setActiveCategory(activeCategory);
-        }}
-      >
-        <NavContents category={activeCategory} />
-      </div>
-      {/* {activeCategory === category && (
-        <div onMouseEnter={()=> {
-          setActiveCategory(category);
-        }}>
-          <NavContents category={category} />
-        </div>
-      )} */}
+      )}
     </div>
   );
 }

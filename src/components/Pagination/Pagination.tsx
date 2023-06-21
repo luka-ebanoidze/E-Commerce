@@ -27,7 +27,7 @@ export function Pagination(props: any) {
           onClick={() => {
             setActivePage(index);
           }}
-          className="w-[50px] h-[50px] bg-blue-100 flex justify-center items-center max-lg:w-[35px] max-lg:h-[35px]"
+          className="w-[50px] h-[50px] bg-blue-600 text-white flex justify-center items-center max-lg:w-[35px] max-lg:h-[35px]"
           key={index}
         >
           {index}
