@@ -2,10 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function Search() {
+export function Search(props: any) {
   const [searchValue, setSearchValue] = useState("");
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+
+  const { searching, setSearching } = props;
 
   async function searchProducts() {
     try {
@@ -27,10 +29,10 @@ export function Search() {
   }
 
   return (
-    <div className="w-full">
-      <form>
-        <div className="flex w-full">
-          <div className="relative w-full">
+    <div className="w-full max-sm:relative max-sm:top-0">
+      <form className="">
+        <div className="flex w-full relative">
+          <div className="relative w-full flex justify-center">
             <input
               type="search"
               value={searchValue}
@@ -38,16 +40,23 @@ export function Search() {
                 setSearchValue(e.target.value);
               }}
               id="search-dropdown"
-              className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-l-2 border border-gray-400 focus:ring-500 focus:border-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-500 outline-none"
+              className={`${
+                searching ? "max-sm:block" : "max-sm:hidden"
+              } block p-2.5 w-full  z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-l-2 border border-gray-400 focus:ring-500 focus:border-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-500 outline-none`}
               placeholder="Search..."
               required
             />
             <button
               onClick={() => {
                 navigateToSearchedProducts(searchValue);
+                setSearching(true);
               }}
               type="submit"
-              className="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-600 rounded-r-lg border border-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-700"
+              className={`${
+                searching
+                  ? "max-sm:absolute right-[-9%] z-20 max-sm:rounded-l-0"
+                  : "max-sm:rounded-l-lg"
+              } sm:absolute top-0 right-[-2%] z-20 p-2.5 text-sm font-medium text-white bg-blue-600 rounded-r-lg border border-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-700`}
             >
               <svg
                 aria-hidden="true"

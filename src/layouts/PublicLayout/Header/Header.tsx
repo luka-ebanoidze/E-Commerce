@@ -13,8 +13,10 @@ import { useCart } from "react-use-cart";
 
 export function Header() {
   const [clicked, setClicked] = useState(false);
+  const [searching, setSearching] = useState(false);
 
   const { totalItems } = useCart();
+  console.log(searching);
 
   return (
     <div className="bg-white fixed mb-5 z-50 w-full flex justify-center border-slid border-b-[3px] border-blue-600">
@@ -24,8 +26,20 @@ export function Header() {
             <Link to="/">
               <MainLogo />
             </Link>
-            <div className="w-6/12 max-lg:w-8/12 relative">
-              <Search />
+            <div
+              className={`${
+                searching && "max-sm:absolute"
+              } w-6/12 max-lg:w-8/12 relative `}
+            >
+              {searching && (
+                <div
+                  onClick={() => setSearching(false)}
+                  className="absolute sm:hidden left-[-20%] top-2"
+                >
+                  <GrFormClose size={25} />
+                </div>
+              )}
+              <Search searching={searching} setSearching={setSearching} />
             </div>
 
             <div
@@ -61,8 +75,8 @@ export function Header() {
           </div>
         </nav>
         {clicked && (
-          <div className="w-1/3 h-full bg-white absolute top-0 right-0 z-40 pt-10">
-            <div className="flex flex-col h-[100vh] bg-white gap-10 items-center lg:order-2 ">
+          <div className="w-1/3 max-sm:w-2/3 h-full bg-white absolute top-0 right-0 z-40 pt-10">
+            <div className="flex flex-col h-[100vh] bg-white gap-10 items-center lg:order-2 pt-10">
               <div
                 onClick={() => setClicked(false)}
                 className="absolute top-5 right-5"
