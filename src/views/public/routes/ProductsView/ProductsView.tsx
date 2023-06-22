@@ -1,4 +1,3 @@
-
 import { useParams } from "react-router";
 import axios from "axios";
 
@@ -7,12 +6,9 @@ import { NavHeader } from "@src/components/NavHeader";
 
 import { useEffect, useState } from "react";
 
-
-
 export default function ProductsView() {
   const param = useParams();
   console.log(param);
-  
 
   // const [productData, setProductData] = useState<{
   //   id: any;
@@ -28,31 +24,28 @@ export default function ProductsView() {
   //   price: undefined,
   // });
 
-  const [productData, setProductData] = useState([])
-  
+  const [productData, setProductData] = useState([]);
 
-    useEffect(() => {
-      try {
-        // if(param.category) {
-        //   console.log(param.category); 
-        // }
-        (async function () {
-          const resp = await axios.get(
-            `https://dummyjson.com/products/category/${param.category}`
-          );
-          setProductData(resp.data.products);
-         
-        })();
-      } catch (error) {
-        console.log(error);
-      }
-    }, []);  
-    
+  useEffect(() => {
+    try {
+      // if(param.category) {
+      //   console.log(param.category);
+      // }
+      (async function () {
+        const resp = await axios.get(
+          `https://dummyjson.com/products/category/${param.category}`
+        );
+        setProductData(resp.data.products);
+      })();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
-    <div>
+    <div className="mt-20">
       <NavHeader />
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-4 max-2xl:grid-cols-3 max-xl:grid-cols-2 max-md:grid-cols-1">
         {productData.map((product: any) => (
           <ProductsContainer
             key={product.id}
