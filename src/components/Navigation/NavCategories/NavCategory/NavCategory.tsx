@@ -1,16 +1,16 @@
-import { TCategory } from "@src/types/category";
 import { useContext, useState } from "react";
 import { NavContext } from "../../context/NavContext";
 
 import { NavContents } from "../../NavContents";
-import { Navigate } from "react-router";
 import { useNavigate } from "react-router";
 
 import { AiFillCaretDown } from "react-icons/ai";
 
-export function NavCategory({ category }: any) {
+export function NavCategory({ category, products }: any) {
   const { activeCategory, setActiveCategory } = useContext(NavContext);
   const navigate = useNavigate();
+
+  // console.log(category, products);
 
   const [clicked, setClicked] = useState(false);
 
@@ -19,7 +19,7 @@ export function NavCategory({ category }: any) {
       className="w-full h-[30px]   flex justify-between"
       onMouseEnter={() => {
         setActiveCategory(category);
-        console.log(activeCategory);
+        setClicked(true);
       }}
       onClick={() => {
         setActiveCategory(category);
@@ -51,7 +51,7 @@ export function NavCategory({ category }: any) {
             setActiveCategory(activeCategory);
           }}
         >
-          <NavContents category={activeCategory} />
+          <NavContents category={activeCategory} products={products} />
         </div>
       )}
     </div>

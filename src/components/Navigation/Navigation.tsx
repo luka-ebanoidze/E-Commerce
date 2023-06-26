@@ -2,9 +2,10 @@ import { Card } from "../Card";
 
 import { NavContents } from "./NavContents";
 import { NavCategories } from "./NavCategories";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { NavContext } from "./context/NavContext";
+import axios from "axios";
 
 export function Navigation() {
   const [activeCategory, setActiveCategory] = useState<string>("");

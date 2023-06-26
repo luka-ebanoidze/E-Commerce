@@ -1,25 +1,34 @@
-import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export function Filter(props: any) {
-  const { setFilterKey } = props;
+  const { setFilteredArray } = props;
 
   const [filterFirstValue, SetfilterFirstValue] = useState("0");
   const [filterSecondValue, SetfilterSecondValue] = useState("0");
 
-  function FilterByPrice(val1: any, val2: any) {
-    // console.log(val1);
-    // console.log(val2);
-    setFilterKey([val1, val2]);
-  }
+  const getProducts = async () => {
+    try {
+      const resp = await axios.get(`http://localhost:3001/products`);
+      setFilteredArray(
+        resp.data.filter(
+          (product: any) =>
+            product.price > filterFirstValue &&
+            product.price < filterSecondValue
+        )
+      );
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
 
-  useEffect(() => {
-    FilterByPrice(filterFirstValue, filterSecondValue);
-  }, [filterFirstValue, filterSecondValue]);
+  function FilterByPrice(val1: any, val2: any) {
+    getProducts();
+  }
 
   return (
     <div className="h-[100px] mb-8 w-full bg-gray-700 flex justify-around items-center">
-      Filter
-      {/* <div className="flex gap-3">
+      <div className="flex gap-3">
         <p>Filter By Price :</p>
         <span className="flex">
           <p>From :</p>
@@ -47,9 +56,6 @@ export function Filter(props: any) {
           Filter
         </button>
       </div>
-      <div>
-        <p>Filter By RATE :</p>
-      </div> */}
     </div>
   );
 }

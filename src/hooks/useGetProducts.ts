@@ -1,19 +1,10 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+
 export function useGetProducts(page = 1, limit = 0) {
   const [totalNum, setTotalNum] = useState<{ totalNum: any }>({
     totalNum: undefined,
   });
-
-  const limita = true
-
-  // function getSkip(page: number, limit: number) {
-  //   // console.log(page, 'page');
-  //   // console.log(limit, 'limit');
-
-  //   return (page - 1) * limit;
-  // }
-  // console.log(getSkip(page, limit), 'skip');
 
   const [products, setProducts] = useState<{
     data?: any;
@@ -25,20 +16,34 @@ export function useGetProducts(page = 1, limit = 0) {
     error: undefined,
   });
 
+  //droebiti totalis dasatvleli
+  const getTotal = async () => {
+    try {
+      const resp = await axios.get(`http://localhost:3001/products`);
+      setTotalNum({ totalNum: resp.data.length });
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
+
   const getProducts = async () => {
     try {
       setProducts((prev) => ({ ...prev, loading: true }));
       const resp = await axios.get(
-        `https://dummyjson.com/products?${limita && 'limit=20'}&skip=${(page - 1) * limit}`
+        `http://localhost:3001/products?skip=${(page - 1) * limit}&take=${limit}`
       );
-      setTotalNum({ totalNum: resp.data.total });
+
+      // setTotalNum({ totalNum: resp.data.total });
       setProducts((prev) => ({ ...prev, loading: false, data: resp.data }));
     } catch (error: any) {
+      console.log("ara");
+
       setProducts((prev) => ({ ...prev, error: error.message }));
     }
   };
 
   useEffect(() => {
+    getTotal();
     getProducts();
   }, [page, limit]);
 

@@ -65,6 +65,7 @@ export default function CartView() {
                 thumbnail={item.thumbnail}
                 rating={item.rating}
                 id={item.id}
+                category={item.category}
               />
             </div>
             <div className="flex w-[300px] h-[100px] justify-between flex-col max-sm:w-[150px]">

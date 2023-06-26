@@ -12,26 +12,23 @@ type TProducts = {
   price: number;
   thumbnail: string;
   rating: number;
+  category: string;
 };
 
 export function CartContainer(props: TProducts) {
   const navigate = useNavigate();
-  const { title, thumbnail, price, rating, id } = props;
+  const { title, thumbnail, price, rating, id, category } = props;
 
-  function AddToCart() {
-    console.log("added");
+  function MoveToSingleProduct(id: number, category: string) {
+    navigate(`/products/${category}/${id}`);
   }
 
-  function MoveToSingleProduct(id: number) {
-    navigate(`/products/${id}`);
-  }
-
-
+  // console.log(title);
 
   return (
     <div className="flex flex-col items-center border-solid  border-[3px] border-gray-400 justify-between gap-2  pb-2 rounded-lg overflow-hidden hover:cursor-pointer">
       <div
-        onClick={() => MoveToSingleProduct(id)}
+        onClick={() => MoveToSingleProduct(id, category)}
         className="flex flex-col items-center  w-full "
       >
         <h1 className="text-2xl h-[90px] text-center">{title}</h1>
