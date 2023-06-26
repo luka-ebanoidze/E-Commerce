@@ -9,46 +9,15 @@ import { Filter } from "@src/components/Filter";
 
 export function HomeContent() {
   const [activePage, setActivePage] = useState(1);
-  const [filterKey, setFilterKey] = useState([]);
-  const [filteredArr, setFilteredArr] = useState([]);
-  const [productss, setProducts] = useState([])
-
+  const [filteredArr, setFilteredArray] = useState();
   const limit = 10;
+
+  let productss: any = []
 
   const {
     products: { data, loading },
     totalNum: { totalNum },
   } = useGetProducts(activePage, limit);
-  // setProducts(data)
-  // console.log(productss);
-  
-
-  // const filtered = [];
-  // console.log(filterKey);
-  
-
-  // console.log(activePage);
-
-  // console.log(filterKey);
-
-  // useEffect(() => {
-  //   setFilteredArr(
-  //     data?.products.filter((product: any) => product.price > 500)
-  //   );
-  //   console.log(filteredArr);
-  // }, []);
-
-  // useEffect(()=>{
-  //  console.log(
-  //    data?.products.filter(
-  //      (product: any) =>
-  //        product.price > +filterKey[0] && product.price < +filterKey[1]
-  //    )
-  //  );
-  //  setProducts(data)
-  //  console.log(data, 'data');
-   
-  // },[filterKey])
 
 
   type TProducts = {
@@ -63,10 +32,10 @@ export function HomeContent() {
 
   return (
     <div className="w-full">
-      <div className="w-full flex flex-col items-center h-full bg-gray-400 rounded-xl">
-        <Filter setFilterKey={setFilterKey} />
+      <div className="w-full flex flex-col items-cente h-full bg-gray-400 rounded-xl">
+        <Filter setFilteredArray={setFilteredArray} />
         <div className="grid grid-cols-4 bg-gray-400 gap-4 max-2xl:grid-cols-3 max-xl:grid-cols-2 max-md:grid-cols-1">
-          {data?.products.map((product: TProducts) => {
+          {data?.map((product: TProducts) => {
             return (
               <ProductsContainer
                 key={product.id}
@@ -81,11 +50,13 @@ export function HomeContent() {
             );
           })}
         </div>
-        <Pagination
-          setActivePage={setActivePage}
-          total={totalNum}
-          limit={limit}
-        />
+        <div className="w-full flex justify-center">
+          <Pagination
+            setActivePage={setActivePage}
+            total={totalNum}
+            limit={limit}
+          />
+        </div>
       </div>
     </div>
   );

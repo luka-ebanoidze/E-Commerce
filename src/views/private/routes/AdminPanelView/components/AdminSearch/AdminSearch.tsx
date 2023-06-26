@@ -1,18 +1,27 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AdminContext } from "../../context/AdminContext";
+
 
 export function AdminSearch() {
   const [searchValue, setSearchValue] = useState("");
   const [products, setProducts] = useState([]);
+
+
+
+
+  const { reload, setReload } = useContext(AdminContext);
+  
   const navigate = useNavigate();
 
   async function searchProducts() {
     try {
       const resp = await axios.get(
-        `https://dummyjson.com/products/search?q=${searchValue}`
-      );
-      setProducts(resp.data?.products);
+        `http://localhost:3001/products?search=${searchValue}`
+      );   
+      
+      setProducts(resp.data);
     } catch (error: any) {
       console.log(error);
     }
@@ -20,7 +29,8 @@ export function AdminSearch() {
 
   useEffect(() => {
     searchProducts();
-  }, [searchValue]);
+    
+  }, [searchValue, reload]);
 
   return (
     <div className="w-full border-4">

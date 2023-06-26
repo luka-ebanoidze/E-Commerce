@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 
 export default function ProductsView() {
   const param = useParams();
-  console.log(param);
 
   // const [productData, setProductData] = useState<{
   //   id: any;
@@ -33,9 +32,10 @@ export default function ProductsView() {
       // }
       (async function () {
         const resp = await axios.get(
-          `https://dummyjson.com/products/category/${param.category}`
+          `http://localhost:3001/products?category=${param.category}`
         );
-        setProductData(resp.data.products);
+        
+        setProductData(resp.data);
       })();
     } catch (error) {
       console.log(error);
@@ -43,7 +43,7 @@ export default function ProductsView() {
   }, []);
 
   return (
-    <div className="mt-20">
+    <div className="mt-20 h-[100vh]">
       <NavHeader />
       <div className="grid grid-cols-4 gap-4 max-2xl:grid-cols-3 max-xl:grid-cols-2 max-md:grid-cols-1">
         {productData.map((product: any) => (

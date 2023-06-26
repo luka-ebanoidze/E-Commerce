@@ -12,11 +12,12 @@ export function Search(props: any) {
   async function searchProducts() {
     try {
       const resp = await axios.get(
-        `https://dummyjson.com/products/search?q=${searchValue}`
+        `http://localhost:3001/products?search=${searchValue}`
       );
-      setProducts(resp.data?.products);
+      
+      setProducts(resp.data);
     } catch (error: any) {
-      console.log(error);
+      console.log(error); 
     }
   }
 

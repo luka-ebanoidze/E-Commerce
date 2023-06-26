@@ -16,7 +16,6 @@ export function Header() {
   const [searching, setSearching] = useState(false);
 
   const { totalItems } = useCart();
-  console.log(searching);
 
   return (
     <div className="bg-white fixed mb-5 z-50 w-full flex justify-center border-slid border-b-[3px] border-blue-600">

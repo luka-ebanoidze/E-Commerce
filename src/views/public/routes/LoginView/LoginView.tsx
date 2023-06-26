@@ -33,7 +33,7 @@ export default function LoginView() {
   } = useForm<TLoginForm>();
 
   async function onSubmit(data: TLoginForm) {
-    // console.log(123);
+    
     
     try {
       const resp = await axios.post("http://localhost:8080/login", data);

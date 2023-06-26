@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-import { categories } from "@src/config/categories";
-import { TCategory } from "@src/types/category";
+import axios from "axios";
 
 export function CreateProduct(props: any) {
   const { setClicked } = props;
@@ -11,25 +10,26 @@ export function CreateProduct(props: any) {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
 
-  function createProduct() {
-    console.log(categories.find((el) => el.category === category));
-    if (categories.find((el) => el.category === category)) {
-      categories
-        .find((el) => el.category === category)
-        ?.products.push({ id: '999', title: title });
-    } else {
-      categories.push({
-        id: "new id",
-        category: category,
-        products: [{ id: "new product id", title: title }],
-      });
+  async function createProduct() {
+    try {
+      const resp = await axios.post(
+        "http://localhost:3001/products",
+        {
+          title: title,
+          description: desc,
+          price: +price,
+          category: category,
+        },
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0ZDJlMjZhLTI2MzAtNDcyNS1hMDFkLTNiODI0YTZkNDc0MiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY4NzcyNjY0NSwiZXhwIjoxNjg3ODEzMDQ1fQ.5Y2kyLbzG1jYfqf5xiJBY4p0WQj5lZPnrf7HYKkbRUM`,
+          },
+        }
+      );
+      
+    } catch (error) {
+      console.log(error);
     }
-
-    // console.log(title, "title");
-    // console.log(desc, "desc");
-    // console.log(price, "price");
-    // console.log(category, "category");
-    localStorage.setItem("navigation", JSON.stringify(categories));
   }
 
   return (

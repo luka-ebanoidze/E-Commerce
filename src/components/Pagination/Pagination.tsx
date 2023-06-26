@@ -5,23 +5,21 @@ for (let i = 0; i < 5; i++) {
   pages.push(i);
 }
 
-// console.log(pages);
 
 export function Pagination(props: any) {
   const { setActivePage, total, limit } = props;
   const [totalPages, setTotalPages] = useState(0);
-
-  let limits = 5
+  
 
   const pages: any = []
 
-  for(let i = 1; i <= Math.ceil(total / limits); i++) {
+  for(let i = 1; i <= Math.ceil(total / limit); i++) {
     pages.push(i)
   }
   
 
   return (
-    <div className="grid grid-cols-10 gap-3 m-5 max-sm:grid-cols-5">
+    <div className="flex flex-wrap justify-center gap-3 m-5">
       {pages.map((index: number) => (
         <div
           onClick={() => {

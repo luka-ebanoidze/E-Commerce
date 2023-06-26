@@ -32,7 +32,7 @@ export default function ProductView() {
     try {
       (async function () {
         const resp = await axios.get(
-          `https://dummyjson.com/products/${productId.id}`
+          `http://localhost:3001/products/${productId.id}`
         );
         setProductData(resp.data);
       })();

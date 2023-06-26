@@ -23,13 +23,7 @@ export function ProductsContainer(props: TProducts) {
   const navigate = useNavigate();
   const { title, thumbnail, price, rating, id, item, category } = props;
 
-  function AddToCart() {
-    console.log("added");
-  }
-
   function MoveToSingleProduct(id: number, category: any, title: any) {
-    console.log(title);
-    
     navigate(`/${category}/${title}/${id}`);
   }
 
@@ -37,14 +31,16 @@ export function ProductsContainer(props: TProducts) {
   // console.log(id);
 
   return (
-    <div className="flex flex-col items-center justify-between bg-white h-[410px] pb-2 rounded-lg overflow-hidden hover:cursor-pointer max-lg:h-[350px] max-sm:h-[300px]">
+    <div className="flexflex-col items-center justify-between bg-white h-[410px] pb-2 rounded-lg overflow-hidden hover:cursor-pointer max-lg:h-[350px] max-sm:h-[300px]">
       <div
         onClick={() => MoveToSingleProduct(id, category, title)}
         className="flex flex-col items-center w-full"
       >
-        <h1 className="text-xl bg-blue-600 w-full mb-1 flex justify-center items-center h-[60px] text-center">{title}</h1>
+        <h1 className="text-xl bg-blue-600 w-full mb-1 flex justify-center items-center h-[60px] text-center">
+          {title}
+        </h1>
         <img
-          className="h-[250px] border-solid border-2 w-11/12 mb-2 max-lg:h-[200px] max-sm:h-[150px]"
+          className="h-[250px] w-[350px] border-solid border-2 w-11/12 mb-2 max-lg:h-[200px] max-sm:h-[150px]"
           src={thumbnail}
           alt="thumbnail"
         />
@@ -55,8 +51,7 @@ export function ProductsContainer(props: TProducts) {
         <button
           className="relative"
           onClick={() => {
-            AddToCart();
-            addItem(item); 
+            addItem(item);
           }}
         >
           <div className="absolute w-[20px] h-[20px] text-white pb-[2px] top-[-40%] right-[-40%] bg-blue-600 rounded-full flex justify-center items-center">
