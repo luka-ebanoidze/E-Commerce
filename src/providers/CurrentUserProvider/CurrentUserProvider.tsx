@@ -48,8 +48,6 @@ export function CurrentUserProvider({ children }: PropsWithChildren) {
 //     return <></>;
 //   }
 
-  console.log(currentUser);
-
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       {children}

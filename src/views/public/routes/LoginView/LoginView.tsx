@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext, useEffect } from "react";
+import jwt_decode from "jwt-decode";
 
 import axios from "axios";
 
@@ -13,6 +14,7 @@ import { TAuthorizationStage } from "@src/types/auth.types";
 
 import { UserContext } from "@src/context/UserContext";
 import { TUserContextRole } from "@src/types/user.types";
+import { CurrentUserContext } from "@src/providers/CurrentUserProvider/CurrentUserProvider";
 
 type TLoginForm = {
   email: string;
@@ -20,8 +22,10 @@ type TLoginForm = {
 };
 
 export default function LoginView() {
+
   const { setStatus } = useContext(AuthContext);
-  const { setCurrentUser } = useContext(UserContext);
+  // const { setCurrentUser } = useContext(UserContext);
+  const { setCurrentUser } = useContext(CurrentUserContext)
 
   const navigate = useNavigate();
 
@@ -33,31 +37,21 @@ export default function LoginView() {
   } = useForm<TLoginForm>();
 
   async function onSubmit(data: TLoginForm) {
-    
-    
+
     try {
-      const resp = await axios.post("http://localhost:8080/login", data);
+      const resp = await axios.post("http://localhost:3001/auth/signin", data);
 
-      if (resp.data.AccessToken) {
-        navigate("/");
+      if (resp.data.accessToken) {
 
-        localStorage.setItem('acces-token', resp.data.AccessToken);
-        setStatus(TAuthorizationStage.AUTHORIZED);
+        const decodedToken = jwt_decode(resp.data.accessToken);
 
-        const info = await axios.get("http://localhost:8080/me", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem(
-              'acces-token'
-            )}`,
-          },
+        setCurrentUser({
+          user_id: (decodedToken as { id: string; role: string }).id,
+          user_role: (decodedToken as { id: string; role: string }).role,
         });
 
-        if (
-          info.data?.firstName === "admin" &&
-          info.data?.lastName === "admin"
-        ) {
-          setCurrentUser(TUserContextRole.ADMIN);
-        }
+        localStorage.setItem("acces-token", resp.data.accessToken);
+        setStatus(TAuthorizationStage.AUTHORIZED);
       }
     } catch (error: any) {
       setError("root", { message: "something went wrong" });
