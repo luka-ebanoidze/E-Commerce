@@ -10,9 +10,8 @@ import { public_axios } from "@src/utils/public_axios";
 type TRegisterForm = {
   email: string;
   password: string;
-  number: string;
-  firstName: string;
-  lastName: string;
+  username: string;
+  role: string
 };
 
 export default function RegisterView() {
@@ -27,8 +26,10 @@ export default function RegisterView() {
   } = useForm<TRegisterForm>();
 
   async function onSubmit(data: TRegisterForm) {
+    console.log(data);
+    
     try {
-      const resp = await axios.post("http://localhost:8080/register", data);
+      const resp = await axios.post("http://localhost:3001/auth/signup", data);
       console.log(resp);
       
       // console.log(resp.data?.id);
@@ -69,36 +70,17 @@ export default function RegisterView() {
             >
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  First Name
+                  User Name
                 </label>
                 <input
-                  {...register("firstName", { required: true })}
+                  {...register("username", { required: true })}
                   type="text"
-                  name="firstName"
-                  id="firstName"
+                  name="username"
+                  id="username"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Enter First Name"
                 />
-                {errors.firstName && (
-                  <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                    <span className="font-medium">Oh, snapp!</span> Some error
-                    message.
-                  </p>
-                )}
-              </div>
-              <div>
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Last Name
-                </label>
-                <input
-                  {...register("lastName", { required: true })}
-                  type="text"
-                  name="lastName"
-                  id="lastName"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Enter Last Name"
-                />
-                {errors.lastName && (
+                {errors.username && (
                   <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                     <span className="font-medium">Oh, snapp!</span> Some error
                     message.
@@ -125,23 +107,14 @@ export default function RegisterView() {
                 )}
               </div>
               <div>
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Phone Number
-                </label>
                 <input
-                  {...register("number", { required: true })}
+                  {...register("role")}
+                  value={"USER"}
                   type="text"
-                  name="number"
-                  id="number"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="+(000)-000-000-000"
+                  name="role"
+                  id="role"
+                  className="hidden"
                 />
-                {errors.number && (
-                  <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-                    <span className="font-medium">Oh, snapp!</span> Some error
-                    message.
-                  </p>
-                )}
               </div>
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
