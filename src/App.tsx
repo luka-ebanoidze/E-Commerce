@@ -6,7 +6,7 @@ import { TUserContextRole } from "./types/user.types";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 import { PrivateRoute } from "./views/private/PrivateRoute";
-import { PublicRoutes } from "./views/public/PublicRoutes";
+import { PublicRoutes } from "./views/public/routes/PublicRoutes";
 import { PrivateRoutes } from "./views/private/PrivateRoutes";
 // import { PrivateRoutes } from "./views/private/PrivateRoutes";
 
@@ -39,34 +39,33 @@ function App() {
 
   return (
     <Suspense fallback={<div>loading...</div>}>
+      <Routes>
+        <Route
+          element={
+            status === "authorized" ? <PrivateLayout /> : <PublicLayout />
+          }
+        >
+          {PublicRoutes}
 
-        <Routes>
-          <Route
-            element={
-              status === "authorized" ? <PrivateLayout /> : <PublicLayout />
-            }
-          >
-            {PublicRoutes}
-
-            {status === "authorized" ? (
-              <>
-                <Route path="/profile" element={<ProfileView />} />
-              </>
-            ) : (
-              <></>
-            )}
-
-            {status === "authorized" && (
+          {status === "authorized" ? (
+            <>
               <Route path="/profile" element={<ProfileView />} />
-            )}
+            </>
+          ) : (
+            <></>
+          )}
 
-            {currentUser.user_role === "ADMIN" && (
-              <Route path="/admin" element={<AdminView />} />
-            )}
+          {status === "authorized" && (
+            <Route path="/profile" element={<ProfileView />} />
+          )}
 
-            <Route path="*" element={<Navigate to={"/"} />} />
-          </Route>
-        </Routes>
+          {currentUser.user_role === "ADMIN" && (
+            <Route path="/admin" element={<AdminView />} />
+          )}
+
+          <Route path="*" element={<Navigate to={"/"} />} />
+        </Route>
+      </Routes>
     </Suspense>
   );
 }

@@ -1,13 +1,13 @@
 import { lazy } from "react";
 import { Route } from "react-router-dom";
 
-const HomeView = lazy(() => import("./routes/HomeView"));
-const ProductsView = lazy(() => import("./routes/ProductsView"));
-const ProductView = lazy(() => import("./routes/ProductView"));
-const LoginView = lazy(() => import("./routes/LoginView"));
-const RegisterView = lazy(() => import("./routes/RegisterView"));
-const CartView = lazy(() => import("./routes/CartView"));
-const ContactUsView = lazy(() => import("./routes/ContactUsView"));
+const HomeView = lazy(() => import("./HomeView"));
+const ProductsView = lazy(() => import("./ProductsView"));
+const ProductView = lazy(() => import("./ProductView"));
+const LoginView = lazy(() => import("./LoginView"));
+const RegisterView = lazy(() => import("./RegisterView"));
+const CartView = lazy(() => import("./CartView"));
+const ContactUsView = lazy(() => import("./ContactUsView"));
 
 export const PublicRoutes = [
   <Route path="/" element={<HomeView />} key={1} />,
