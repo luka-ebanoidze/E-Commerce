@@ -14,10 +14,10 @@ export function Search(props: any) {
       const resp = await axios.get(
         `http://localhost:3001/products?search=${searchValue}`
       );
-      
+
       setProducts(resp.data);
     } catch (error: any) {
-      console.log(error); 
+      console.log(error);
     }
   }
 
@@ -30,7 +30,7 @@ export function Search(props: any) {
   }
 
   return (
-    <div className="w-full max-sm:relative max-sm:top-0">
+    <div className="w-full max-sm:relative max-sm:top-0 bg-red-300">
       <form className="">
         <div className="flex w-full relative">
           <div className="relative w-full flex justify-center">
@@ -43,7 +43,7 @@ export function Search(props: any) {
               id="search-dropdown"
               className={`${
                 searching ? "max-sm:block" : "max-sm:hidden"
-              } block p-2.5 w-full  z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-l-2 border border-gray-400 focus:ring-500 focus:border-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-500 outline-none`}
+              }  block p-2.5 w-full  z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-l-2 border border-gray-400 focus:ring-500 focus:border-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-500 outline-none`}
               placeholder="Search..."
               required
             />
@@ -79,18 +79,27 @@ export function Search(props: any) {
           </div>
         </div>
       </form>
-      <div className="absolute w-full z-50 bg-green-500 flex flex-col gap-3">
+      <div
+        className={`absolute w-full ${
+          searchValue === "" && "hidden"
+        }  p-1 rounded-t-md z-50 bg-blue-300 flex flex-col gap-3`}
+      >
         {searchValue !== "" &&
           products.slice(0, 5).map((product: any) => (
             <div
-              className="flex justify-between items-center pr-10"
+              className="flex border-solid gap-5  border-gray-500 border-[2px] justify-between items-center"
               key={product.id}
             >
               <div className="w-[100px] h-[100px] bg-blue-500 object-cover">
                 <img src={product.thumbnail} className="w-full h-full" />
               </div>
-              <div>{product.title}</div>
-              <div>{product.price} $</div>
+              <div
+                className="flex  justify-around
+               max-md:flex-col max-md:gap-2 w-3/4 max-xl:gap-10 max-xl:w-2/4"
+              >
+                <div>{product.title}</div>
+                <div>{product.price} $</div>
+              </div>
             </div>
           ))}
         {searchValue !== "" && products.length === 0 && <div>not fount</div>}
