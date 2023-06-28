@@ -18,7 +18,7 @@ export function Header() {
   const { totalItems } = useCart();
 
   return (
-    <div className="bg-white fixed mb-5 z-50 w-full flex justify-center border-slid border-b-[3px] border-blue-600">
+    <div className="bg-white h-[60px] fixed mb-5 z-50 w-full flex items-center justify-center border-slid border-b-[3px] border-blue-600">
       <header className="w-[70%]">
         <nav className="w-full border-gray-200 py-2.5 dark:bg-gray-800 ">
           <div className="flex flex-wrap justify-between items-center">
