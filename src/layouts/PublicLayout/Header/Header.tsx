@@ -43,7 +43,7 @@ export function Header() {
 
             <div
               onClick={() => setClicked(true)}
-              className="absolute right-5 lg:hidden"
+              className="absolute right-2 lg:hidden"
             >
               <GiHamburgerMenu size={20} />
             </div>
