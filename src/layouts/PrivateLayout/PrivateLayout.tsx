@@ -11,7 +11,7 @@ export default function PrivateLayout() {
   return (
     <div>
       <PrivateHeader />
-      <div className="bg-[blue] flex justify-center w-full">
+      <div className="bg-gray-300 flex justify-center w-full">
         <MainContainer>
           <Outlet />
         </MainContainer>

@@ -22,7 +22,7 @@ export function DeleteProduct(props: any) {
   async function deleteProduct() {
     const resp = await axios.delete(`http://localhost:3001/products/${id}`, {
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0ZDJlMjZhLTI2MzAtNDcyNS1hMDFkLTNiODI0YTZkNDc0MiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY4NzcyNjY0NSwiZXhwIjoxNjg3ODEzMDQ1fQ.5Y2kyLbzG1jYfqf5xiJBY4p0WQj5lZPnrf7HYKkbRUM`,
+        Authorization: `Bearer ${localStorage.getItem("acces-token")}`,
       },
     });
 
@@ -35,11 +35,12 @@ export function DeleteProduct(props: any) {
   }
 
   return (
-    <div className="w-1/3 bg-orange-300 flex justify-between">
-      <div>
+    <div className="w-full p-5 rounded-xl bg-gray-200 flex gap-5 items-center justify-between max-md:flex-col">
+      <div className="w-full">
         <div>
           <p>Id</p>
           <input
+          className="w-full"
             value={id}
             onChange={(e) => setId(e.target.value)}
             type="text"
@@ -47,6 +48,7 @@ export function DeleteProduct(props: any) {
         </div>
       </div>
       <button
+        className="border-solid border-[3px] bg-white border-blue-600 flex justify-center items-center py-2 px-10 rounded-full"
         onClick={() => {
           setReload(!reload);
           deleteProduct();

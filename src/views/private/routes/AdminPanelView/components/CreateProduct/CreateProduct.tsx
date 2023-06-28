@@ -22,25 +22,25 @@ export function CreateProduct(props: any) {
         },
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0ZDJlMjZhLTI2MzAtNDcyNS1hMDFkLTNiODI0YTZkNDc0MiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY4NzcyNjY0NSwiZXhwIjoxNjg3ODEzMDQ1fQ.5Y2kyLbzG1jYfqf5xiJBY4p0WQj5lZPnrf7HYKkbRUM`,
+            Authorization: `Bearer ${localStorage.getItem("acces-token")}`,
           },
         }
       );
-      
     } catch (error) {
       console.log(error);
     }
   }
 
   return (
-    <div className="w-1/3 bg-orange-300 flex justify-between">
-      <div>
-        <div>
+    <div className="w-full justify-between items-center bg-gray-200 flex gap-5 p-5 rounded-xl max-lg:flex-col">
+      <div className="w-2/4 flex flex-col gap-3 max-lg:w-full">
+        <div className="w-full">
           <p>Title</p>
           <input
             value={title}
             onChange={(e) => setTile(e.target.value)}
             type="text"
+            className="w-full"
           />
         </div>
         <div>
@@ -49,6 +49,7 @@ export function CreateProduct(props: any) {
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
             type="text"
+            className="w-full"
           />
         </div>
         <div>
@@ -57,6 +58,7 @@ export function CreateProduct(props: any) {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             type="text"
+            className="w-full"
           />
         </div>
         <div>
@@ -65,10 +67,12 @@ export function CreateProduct(props: any) {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             type="text"
+            className="w-full"
           />
         </div>
       </div>
       <button
+        className="border-solid border-[3px] bg-white border-blue-600 flex justify-center items-center py-2 px-10 rounded-full"
         onClick={() => {
           createProduct();
           setClicked(false);
