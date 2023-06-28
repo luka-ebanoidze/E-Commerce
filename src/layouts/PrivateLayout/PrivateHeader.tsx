@@ -52,7 +52,7 @@ export function PrivateHeader() {
 
             <div
               onClick={() => setClicked(true)}
-              className="absolute right-5 xl:hidden"
+              className="absolute right-2 xl:hidden"
             >
               <GiHamburgerMenu size={20} />
             </div>

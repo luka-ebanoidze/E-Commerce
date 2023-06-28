@@ -30,7 +30,7 @@ export function Search(props: any) {
   }
 
   return (
-    <div className="w-full max-sm:relative max-sm:top-0 bg-red-300">
+    <div className="w-full max-sm:relative max-sm:top-0 ">
       <form className="">
         <div className="flex w-full relative">
           <div className="relative w-full flex justify-center">
