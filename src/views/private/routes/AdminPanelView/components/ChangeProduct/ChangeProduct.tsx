@@ -29,7 +29,7 @@ export function ChangeProduct(props: any) {
     try {
       await axios.put(`http://localhost:3001/products/${id}`, data, {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg0ZDJlMjZhLTI2MzAtNDcyNS1hMDFkLTNiODI0YTZkNDc0MiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY4NzcyNjY0NSwiZXhwIjoxNjg3ODEzMDQ1fQ.5Y2kyLbzG1jYfqf5xiJBY4p0WQj5lZPnrf7HYKkbRUM`,
+          Authorization: `Bearer ${localStorage.getItem('acces-token')}`,
         },
       });
     } catch (error) {
@@ -38,10 +38,10 @@ export function ChangeProduct(props: any) {
   }
 
   return (
-    <div className="w-full bg-orange-300 flex flex-col gap-5 justify-between">
-      <div className="flex gap-5">
+    <div className="w-full bg-gray-200 rounded-xl p-5 flex flex-col gap-5 justify-between">
+      <div className="flex gap-5 max-sm:flex-col">
         <div className="flex gap-3">
-          <label htmlFor="title">title</label>
+          <label htmlFor="title">Title</label>
           <input
             type="checkbox"
             onChange={() => setDisplayTitle(!displaytitle)}
@@ -49,7 +49,7 @@ export function ChangeProduct(props: any) {
           />
         </div>
         <div className="flex gap-3">
-          <label htmlFor="desc">desc</label>
+          <label htmlFor="desc">Desc</label>
           <input
             type="checkbox"
             onChange={() => setDisplayDesc(!displaydesc)}
@@ -57,7 +57,7 @@ export function ChangeProduct(props: any) {
           />
         </div>
         <div className="flex gap-3">
-          <label htmlFor="price">price</label>
+          <label htmlFor="price">Price</label>
           <input
             type="checkbox"
             onChange={() => setDisplayPrice(!displayprice)}
@@ -66,11 +66,16 @@ export function ChangeProduct(props: any) {
         </div>
       </div>
       {/* setClicked(false); formis onsubmitshi */}
-      <form action="#" onSubmit={handleSubmit(changeProduct)}>
-        <div>
-          <div>
+      <form
+        action="#"
+        className="flex justify-between items-center max-xl:flex-col max-xl:gap-5"
+        onSubmit={handleSubmit(changeProduct)}
+      >
+        <div className="flex flex-col gap-4 max-xl:w-full">
+          <div className="">
             <p>Id</p>
             <input
+              className="w-full"
               value={id}
               onChange={(e) => setId(e.target.value)}
               type="text"
@@ -82,6 +87,7 @@ export function ChangeProduct(props: any) {
             <div>
               <p>Title</p>
               <input
+                className="w-full"
                 {...register("title", { required: true })}
                 type="text"
                 name="title"
@@ -93,6 +99,7 @@ export function ChangeProduct(props: any) {
             <div>
               <p>Description</p>
               <input
+                className="w-full"
                 {...register("description", { required: true })}
                 type="text"
                 name="description"
@@ -104,15 +111,21 @@ export function ChangeProduct(props: any) {
             <div>
               <p>Price</p>
               <input
+                className="w-full"
                 type="number"
-                {...register("price",{valueAsNumber: true, required: true })}
+                {...register("price", { valueAsNumber: true, required: true })}
                 name="price"
                 id="price"
               />
             </div>
           )}
         </div>
-        <button type="submit">Change</button>
+        <button
+          type="submit"
+          className="border-solid border-[3px] bg-white border-blue-600 flex justify-center items-center py-2 px-10 rounded-full"
+        >
+          Change
+        </button>
       </form>
     </div>
   );

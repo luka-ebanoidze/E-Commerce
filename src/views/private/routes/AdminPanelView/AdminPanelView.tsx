@@ -17,18 +17,18 @@ export default function AdminPanelView() {
 
   return (
     <AdminContext.Provider value={{ reload, setReload }}>
-      <div>
-        <div className="w-full h-[100vh] bg-purple-500 flex flex-col items-center justify-evenly">
-          <div className="w-2/3 bg-red-400">
+      <div className="pt-20">
+        <div className="w-full py-10 min-h-[100vh] flex flex-col gap-10 items-center justify-evenly">
+          <div className="w-2/3 max-2xl:w-full">
             <AdminSearch />
           </div>
-          <div className="flex gap-5">
+          <div className="flex gap-5 max-sm:flex-col">
             <button
               onClick={() => {
                 setAction("create");
                 setClicked(true);
               }}
-              className="bg-green-500"
+              className="bg-green-500 p-3 rounded-full text-white"
             >
               Create Product
             </button>
@@ -37,7 +37,7 @@ export default function AdminPanelView() {
                 setAction("change");
                 setClicked(true);
               }}
-              className="bg-blue-500"
+              className="bg-blue-500 p-3 rounded-full text-white"
             >
               Change Product
             </button>
@@ -46,17 +46,24 @@ export default function AdminPanelView() {
                 setAction("delete");
                 setClicked(true);
               }}
-              className="bg-red-500"
+              className="bg-red-500 p-3 rounded-full text-white"
             >
               Delete Product
             </button>
           </div>
           {clicked && (
-            <div>
+            <div className="w-2/4 flex flex-col gap-5 items-center max-lg:w-3/4 max-sm:w-full">
               {action === "create" && <CreateProduct setClicked={setClicked} />}
               {action === "change" && <ChangeProduct setClicked={setClicked} />}
               {action === "delete" && <DeleteProduct setClicked={setClicked} />}
-              {<button onClick={() => setClicked(false)}>Close</button>}
+              {
+                <button
+                  className="w-full border-solid border-[3px] bg-white border-blue-600 flex justify-center items-center py-1 rounded-full"
+                  onClick={() => setClicked(false)}
+                >
+                  Close
+                </button>
+              }
             </div>
           )}
         </div>

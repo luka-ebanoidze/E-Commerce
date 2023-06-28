@@ -7,7 +7,7 @@ import MainContainer from "@src/components/MainContainer/MainContainer";
 
 export function PublicLayout() {
   return (
-    <div className="bg-gray-400">
+    <div className="bg-gray-300">
       <Header />
       <div className="flex justify-center w-full">
         <MainContainer>
