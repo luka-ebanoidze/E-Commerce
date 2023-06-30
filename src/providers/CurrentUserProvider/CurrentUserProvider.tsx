@@ -44,10 +44,6 @@ export function CurrentUserProvider({ children }: PropsWithChildren) {
     }
   }, []);
 
-  //   if (currentUser.user_id) {
-  //     return <></>;
-  //   }
-
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       {children}

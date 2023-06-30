@@ -1,8 +1,6 @@
-import { Filter } from "@src/components/Filter";
 import { HomeContent } from "./HomeContent/HomeContent";
 import { Navigation } from "@src/components/Navigation";
 import { Slider } from "@src/components/Slider";
-
 
 export default function HomeView() {
   return (

@@ -2,12 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 
+import "./index.css";
 import "@src/components/LanguageChanger/language.ts" 
 
-import "./index.css";
-
 import { BrowserRouter } from "react-router-dom";
-
 import { Providers } from "./providers/Providers.tsx";
 import { CartProvider } from "react-use-cart";
 

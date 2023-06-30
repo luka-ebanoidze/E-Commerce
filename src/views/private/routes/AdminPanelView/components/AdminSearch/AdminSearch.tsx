@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AdminContext } from "../../context/AdminContext";
 import { useTranslation } from "react-i18next";
+
+import { AdminContext } from "../../context/AdminContext";
+
 
 
 export function AdminSearch() {
@@ -10,9 +12,6 @@ export function AdminSearch() {
   const [products, setProducts] = useState([]);
 
   const {t} = useTranslation()
-
-
-
 
   const { reload, setReload } = useContext(AdminContext);
   

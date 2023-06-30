@@ -1,18 +1,15 @@
-import MainContainer from "@src/components/MainContainer/MainContainer";
-
-import { MainLogo } from "@src/components/MainLogo";
-import { Search } from "@src/components/Search";
+import { Link } from "react-router-dom";
+import { useCart } from "react-use-cart";
 import { useState } from "react";
-import { LanguageChanger } from "@src/components/LanguageChanger";
-
 import { useTranslation } from "react-i18next";
 
 import { BsCart3 } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrFormClose } from "react-icons/gr";
 
-import { Link } from "react-router-dom";
-import { useCart } from "react-use-cart";
+import { MainLogo } from "@src/components/MainLogo";
+import { Search } from "@src/components/Search";
+import { LanguageChanger } from "@src/components/LanguageChanger";
 
 export function Header() {
   const [clicked, setClicked] = useState(false);

@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useTransition } from "react";
 import axios from "axios";
-
-import { public_axios } from "@src/utils/public_axios";
 import { useTranslation } from "react-i18next";
 
+import { public_axios } from "@src/utils/public_axios";
 
 type TRegisterForm = {
   email: string;
@@ -32,13 +30,6 @@ export default function RegisterView() {
     
     try {
       const resp = await axios.post("http://localhost:3001/auth/signup", data);
-      console.log(resp);
-      
-      // console.log(resp.data?.id);
-      
-      // if (resp.data?.id) {
-      //   setCreated(true);
-      // }
 
       if (resp.statusText === 'OK') {
         setCreated(true);

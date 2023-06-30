@@ -1,19 +1,20 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "@src/context/AuthContext";
-import { TAuthorizationStage } from "@src/types/auth.types";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useCart } from "react-use-cart";
 
-import { LanguageChanger } from "@src/components/LanguageChanger";
+import { AuthContext } from "@src/context/AuthContext";
+import { CurrentUserContext } from "@src/providers/CurrentUserProvider/CurrentUserProvider";
+
+import { TAuthorizationStage } from "@src/types/auth.types";
 
 import { BsCart3 } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrFormClose } from "react-icons/gr";
 
+import { LanguageChanger } from "@src/components/LanguageChanger";
 import { MainLogo } from "@src/components/MainLogo";
 import { Search } from "@src/components/Search";
-import { CurrentUserContext } from "@src/providers/CurrentUserProvider/CurrentUserProvider";
-import { useCart } from "react-use-cart";
 
 export function PrivateHeader() {
   const { t } = useTranslation();

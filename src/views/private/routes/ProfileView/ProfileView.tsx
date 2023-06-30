@@ -1,14 +1,16 @@
-import axios from "axios";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function ProfileView() {
   const { t } = useTranslation();
+
   const [clicked, setClicked] = useState(false);
+
   const [firstPass, setFirstPass] = useState("");
   const [secondPass, setSecondPass] = useState("");
   const [paramToChange, setParamToChange] = useState("");
   const [changingValue, setChangingValue] = useState("");
+  
   const [error, setError] = useState("");
 
   function submit(e: any) {

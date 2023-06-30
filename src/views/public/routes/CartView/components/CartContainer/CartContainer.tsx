@@ -1,10 +1,6 @@
-import { BsCart3 } from "react-icons/bs";
-import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 import { Rating } from "@mui/material";
-import { useState } from "react";
-import { Navigate } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 type TProducts = {
   id: number;
@@ -22,8 +18,6 @@ export function CartContainer(props: TProducts) {
   function MoveToSingleProduct(id: number, category: string) {
     navigate(`/products/${category}/${id}`);
   }
-
-  // console.log(title);
 
   return (
     <div className="flex flex-col items-center border-solid  border-[3px] border-gray-400 justify-between gap-2  pb-2 rounded-lg overflow-hidden hover:cursor-pointer">

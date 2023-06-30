@@ -3,8 +3,6 @@ import { useContext, useState } from "react";
 import { AdminContext } from "../../context/AdminContext";
 import { useTranslation } from "react-i18next";
 
-import { categories } from "@src/config/categories";
-
 export function DeleteProduct(props: any) {
   const {t} = useTranslation()
   const { setClicked } = props;
@@ -13,27 +11,12 @@ export function DeleteProduct(props: any) {
 
   const { reload, setReload } = useContext(AdminContext);
 
-  // categories.map((category: any) => {
-  //   console.log(
-  //     category.products.filter(
-  //       (product: any) => product.id !== "47cf27fc-48de-47f3-9825-00ad733ff36d"
-  //     )
-  //   );
-  // });
-
   async function deleteProduct() {
     const resp = await axios.delete(`http://localhost:3001/products/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("acces-token")}`,
       },
     });
-
-    // if (resp) {
-    //   // categories.push({
-    //   //   category: "satesto",
-    //   //   products: [{ title: "ckkd", id: "123" }],
-    //   // });
-    // }
   }
 
   return (

@@ -1,4 +1,3 @@
-import { blue } from "@mui/material/colors";
 import { useGetProducts } from "@src/hooks/useGetProducts";
 import { useState } from "react";
 
@@ -11,7 +10,6 @@ export function Slider() {
 
   // const images = data?[1].thumbnail;
   
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   function Next() {
