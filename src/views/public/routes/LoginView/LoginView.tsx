@@ -1,20 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import jwt_decode from "jwt-decode";
 import { useTranslation } from "react-i18next";
-
 import axios from "axios";
 
 import { public_axios } from "@src/utils/public_axios";
 
-import { TLocalStorage } from "@src/types/localstorage";
-
 import { AuthContext } from "@src/context/AuthContext";
 import { TAuthorizationStage } from "@src/types/auth.types";
-
-import { UserContext } from "@src/context/UserContext";
-import { TUserContextRole } from "@src/types/user.types";
 import { CurrentUserContext } from "@src/providers/CurrentUserProvider/CurrentUserProvider";
 
 type TLoginForm = {
@@ -23,13 +17,10 @@ type TLoginForm = {
 };
 
 export default function LoginView() {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   const { setStatus } = useContext(AuthContext);
-  // const { setCurrentUser } = useContext(UserContext);
-  const { setCurrentUser } = useContext(CurrentUserContext)
-
-  const navigate = useNavigate();
+  const { setCurrentUser } = useContext(CurrentUserContext);
 
   const {
     register,
@@ -39,12 +30,10 @@ export default function LoginView() {
   } = useForm<TLoginForm>();
 
   async function onSubmit(data: TLoginForm) {
-
     try {
       const resp = await axios.post("http://localhost:3001/auth/signin", data);
 
       if (resp.data.accessToken) {
-
         const decodedToken = jwt_decode(resp.data.accessToken);
 
         setCurrentUser({

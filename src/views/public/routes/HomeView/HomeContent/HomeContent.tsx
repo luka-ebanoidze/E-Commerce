@@ -1,5 +1,4 @@
-import { Card } from "@src/components/Card/Card";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { useGetProducts } from "@src/hooks/useGetProducts";
 
@@ -9,16 +8,12 @@ import { Filter } from "@src/components/Filter";
 
 export function HomeContent() {
   const [activePage, setActivePage] = useState(1);
-  const [filteredArr, setFilteredArray] = useState();
   const limit = 10;
-
-  let productss: any = []
 
   const {
     products: { data, loading },
     totalNum: { totalNum },
   } = useGetProducts(activePage, limit);
-
 
   type TProducts = {
     id: number;
@@ -33,7 +28,7 @@ export function HomeContent() {
   return (
     <div className="w-full">
       <div className="w-full flex flex-col items-cente h-full bg-gray-400 rounded-xl">
-        <Filter setFilteredArray={setFilteredArray} />
+        <Filter />
         <div className="grid grid-cols-4 bg-gray-400 gap-4 max-2xl:grid-cols-3 max-xl:grid-cols-2 max-md:grid-cols-1">
           {data?.map((product: TProducts) => {
             return (

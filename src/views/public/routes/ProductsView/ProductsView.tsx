@@ -1,10 +1,9 @@
 import { useParams } from "react-router";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 import { ProductsContainer } from "@src/components/ProductsContainer";
 import { NavHeader } from "@src/components/NavHeader";
-
-import { useEffect, useState } from "react";
 
 export default function ProductsView() {
   const param = useParams();
@@ -27,9 +26,6 @@ export default function ProductsView() {
 
   useEffect(() => {
     try {
-      // if(param.category) {
-      //   console.log(param.category);
-      // }
       (async function () {
         const resp = await axios.get(
           `http://localhost:3001/products?category=${param.category}`

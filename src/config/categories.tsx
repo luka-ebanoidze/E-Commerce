@@ -1,6 +1,3 @@
-import axios from "axios";
-import { useEffect } from "react";
-
 type TCategory = {
   category: string;
   products: any;

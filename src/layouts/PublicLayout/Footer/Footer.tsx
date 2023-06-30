@@ -1,8 +1,8 @@
-import MainContainer from "@src/components/MainContainer/MainContainer";
-import { GoogleMap } from "./GoogleMap";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
-import { useTranslation } from "react-i18next";
+import MainContainer from "@src/components/MainContainer/MainContainer";
+import { GoogleMap } from "./GoogleMap";
 
 export function Footer() {
   const navigate = useNavigate();

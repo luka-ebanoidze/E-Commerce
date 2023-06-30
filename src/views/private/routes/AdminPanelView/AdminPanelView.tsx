@@ -1,12 +1,11 @@
 import { useState } from "react";
-
 import { useTranslation } from "react-i18next";
 
 import { CreateProduct } from "./components/CreateProduct";
 import { ChangeProduct } from "./components/ChangeProduct";
 import { DeleteProduct } from "./components/DeleteProduct";
-import { Search } from "@src/components/Search";
 import { AdminSearch } from "./components/AdminSearch";
+
 import { AdminContext } from "./context/AdminContext";
 
 

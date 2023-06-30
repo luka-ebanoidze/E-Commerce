@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { FormattedMessage } from "react-intl";
-
-import { NavCategory } from "./NavCategory";
-
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+
+import { NavCategory } from "./NavCategory";
 
 export function NavCategories() {
   const {t} = useTranslation()
@@ -36,18 +34,6 @@ export function NavCategories() {
       console.log(error);
     }
   };
-
-  // console.log(categories.map((el:any)=> {
-  //   console.log(el);
-
-  // }));
-  // console.log(categories?[1]);
-
-  // console.log(
-  //   categories.map((el: any) => {
-  //     console.log(el);
-  //   })
-  // );
 
   useEffect(() => {
     getProducts();

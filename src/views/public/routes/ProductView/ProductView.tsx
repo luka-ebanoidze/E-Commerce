@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useCart } from "react-use-cart";
 
 import { useTranslation } from "react-i18next";
 
@@ -8,8 +9,6 @@ import { BsCart3 } from "react-icons/bs";
 
 import { NavHeader } from "@src/components/NavHeader";
 import { SimilarProducts } from "./SimilarProducts";
-import { NavContext } from "@src/components/Navigation/context/NavContext";
-import { useCart } from "react-use-cart";
 
 export default function ProductView() {
 

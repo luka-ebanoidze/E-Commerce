@@ -1,11 +1,9 @@
-import { BsCart3 } from "react-icons/bs";
-import { Rating } from "@mui/material";
-import { useContext, useState } from "react";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
 import { useCart } from "react-use-cart";
-import { NavContext } from "../Navigation/context/NavContext";
+
+import { BsCart3 } from "react-icons/bs";
+
+import { Rating } from "@mui/material";
 
 type TProducts = {
   id: number;
@@ -27,9 +25,6 @@ export function ProductsContainer(props: TProducts) {
     navigate(`/${category}/${title}/${id}`);
   }
 
-  // const { activeCategory } = useContext(NavContext);
-  // console.log(id);
-
   return (
     <div className="flexflex-col items-center justify-between bg-white h-[410px] pb-2 rounded-lg overflow-hidden hover:cursor-pointer max-lg:h-[350px] max-sm:h-[300px]">
       <div
@@ -40,7 +35,7 @@ export function ProductsContainer(props: TProducts) {
           {title}
         </h1>
         <img
-          className="h-[250px] w-[350px] border-solid border-2 w-11/12 mb-2 max-lg:h-[200px] max-sm:h-[150px]"
+          className="h-[250px] w-[350px] border-solid border-2 mb-2 max-lg:h-[200px] max-sm:h-[150px]"
           src={thumbnail}
           alt="thumbnail"
         />

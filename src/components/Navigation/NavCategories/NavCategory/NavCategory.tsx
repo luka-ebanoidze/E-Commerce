@@ -1,16 +1,15 @@
 import { useContext, useState } from "react";
-import { NavContext } from "../../context/NavContext";
-
-import { NavContents } from "../../NavContents";
 import { useNavigate } from "react-router";
 
+import { NavContext } from "../../context/NavContext";
+
 import { AiFillCaretDown } from "react-icons/ai";
+
+import { NavContents } from "../../NavContents";
 
 export function NavCategory({ category, products }: any) {
   const { activeCategory, setActiveCategory } = useContext(NavContext);
   const navigate = useNavigate();
-
-  // console.log(category, products);
 
   const [clicked, setClicked] = useState(false);
 

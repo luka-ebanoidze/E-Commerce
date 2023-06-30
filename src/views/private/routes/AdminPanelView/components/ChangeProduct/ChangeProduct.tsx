@@ -3,9 +3,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-export function ChangeProduct(props: any) {
+export function ChangeProduct() {
   const {t} = useTranslation()
-  const { setClicked } = props;
 
   const [id, setId] = useState("");
 

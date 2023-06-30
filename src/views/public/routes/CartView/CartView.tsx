@@ -1,12 +1,13 @@
 import { useCart } from "react-use-cart";
-import { CartContainer } from "./components/CartContainer";
+import { useContext } from "react";
 import { useTranslation } from "react-i18next";
-
-import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
+import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
+
 import { AuthContext } from "@src/context/AuthContext";
-import { useContext } from "react";
+
+import { CartContainer } from "./components/CartContainer";
 
 // type TProducts = {
 //   id: number;
@@ -22,14 +23,8 @@ export default function CartView() {
   const { status } = useContext(AuthContext);
   const { t } = useTranslation();
 
-
-  // const {
-  //   products: { data },
-  // } = useGetProducts();
-
   const {
     isEmpty,
-    // totalUniqueItems,
     items,
     totalItems,
     cartTotal,
