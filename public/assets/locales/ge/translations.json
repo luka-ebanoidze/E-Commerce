@@ -15,7 +15,8 @@
     "delete": "წაშლა",
     "change": "შეცვლა",
     "create": "შექმნა",
-    "close": "დახურვა"
+    "close": "დახურვა",
+    "pay": "გადახდა"
     },
     "placeHolder": {
     "search": "ძებნა",
@@ -47,7 +48,10 @@
         "desc": "აღწერა",
         "title": "სახელი",
         "price": "ფასი",
-        "category": "კატეგორია"
+        "category": "კატეგორია",
+        "lastName": "გვარი",
+        "phone": "ტელეფონის ნომერი",
+        "address": "მისამართი"
     },
     "cart": {
         "totalPrice": "ჯამური თანხა",

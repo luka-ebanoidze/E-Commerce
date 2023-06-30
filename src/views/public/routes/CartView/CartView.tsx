@@ -3,6 +3,10 @@ import { CartContainer } from "./components/CartContainer";
 import { useTranslation } from "react-i18next";
 
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
+import { Link } from "react-router-dom";
+
+import { AuthContext } from "@src/context/AuthContext";
+import { useContext } from "react";
 
 // type TProducts = {
 //   id: number;
@@ -15,7 +19,10 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 // };
 
 export default function CartView() {
-  const {t} = useTranslation()
+  const { status } = useContext(AuthContext);
+  const { t } = useTranslation();
+
+
   // const {
   //   products: { data },
   // } = useGetProducts();
@@ -32,10 +39,12 @@ export default function CartView() {
   } = useCart();
 
   if (isEmpty) {
-    return <h1 className="text-white text-4xl max-sm:text-xl h-[100vh] flex justify-center items-center mt-20 text-center ">{t("cart.empty")}</h1>;
+    return (
+      <h1 className="text-white text-4xl max-sm:text-xl h-[100vh] flex justify-center items-center mt-20 text-center ">
+        {t("cart.empty")}
+      </h1>
+    );
   }
-
-  
 
   return (
     <div className="mt-20">
@@ -49,7 +58,11 @@ export default function CartView() {
           </h1>
         </div>
         <div className="px-8 hover:cursor-pointer py-2 rounded-full bg-white border-solid border-[4px] border-blue-600">
-          {t("btnText.buy")}
+          {status === "authorized" ? (
+            <Link to="/payment">{t("btnText.buy")}</Link>
+          ) : (
+            <Link to="/login">{t("btnText.buy")}</Link>
+          )}
         </div>
       </div>
       {!totalItems && <div className="h-[500px] w-[500px] bg-black">123</div>}

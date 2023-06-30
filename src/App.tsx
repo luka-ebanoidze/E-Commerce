@@ -18,6 +18,7 @@ import { TAuthorizationStage } from "./types/auth.types";
 import { CurrentUserContext } from "./providers/CurrentUserProvider/CurrentUserProvider";
 const AdminView = lazy(() => import("./views/private/routes/AdminPanelView"));
 const ProfileView = lazy(() => import("./views/private/routes/ProfileView"));
+const PaymentView = lazy(() => import("./views/private/routes/PaymentView"));
 
 function App() {
   const [pending, setPending] = useState(true);
@@ -46,17 +47,12 @@ function App() {
           }
         >
           {PublicRoutes}
-
-          {status === "authorized" ? (
+          
+          {status === "authorized" && (
             <>
               <Route path="/profile" element={<ProfileView />} />
+              <Route path="/payment" element={<PaymentView />} />
             </>
-          ) : (
-            <></>
-          )}
-
-          {status === "authorized" && (
-            <Route path="/profile" element={<ProfileView />} />
           )}
 
           {currentUser.user_role === "ADMIN" && (

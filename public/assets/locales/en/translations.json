@@ -15,7 +15,8 @@
     "delete": "Delete",
     "change": "Change",
     "create": "Create",
-    "close": "Close"
+    "close": "Close",
+    "pay": "Pay"
     },
     "placeHolder": {
     "search": "Search",
@@ -42,12 +43,15 @@
     "label": {
         "mail": "Your email",
         "password": "Password",
-        "userName": "სახელი",
+        "userName": "Name",
         "text": "text",
         "desc": "Desc",
         "title": "Title",
         "price": "Price",
-        "category": "Category"
+        "category": "Category",
+        "lastName": "Last Name",
+        "phone": "Phone Number",
+        "address": "Address"
     },
     "cart": {
         "totalPrice": "Total Price",
