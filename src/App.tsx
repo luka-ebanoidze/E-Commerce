@@ -26,9 +26,9 @@ function App() {
   const { status } = useContext(AuthContext);
   // const { currentUser } = useContext(UserContext);
   const { currentUser } = useContext(CurrentUserContext);
-  console.log(currentUser.user_role);
-  console.log(status, "status");
-  console.log(pending);
+  // console.log(currentUser.user_role);
+  // console.log(status, "status");
+  // console.log(pending);
 
   useEffect(() => {
     if (currentUser.user_role !== "") {

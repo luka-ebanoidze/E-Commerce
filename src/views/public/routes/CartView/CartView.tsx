@@ -1,5 +1,6 @@
 import { useCart } from "react-use-cart";
 import { CartContainer } from "./components/CartContainer";
+import { useTranslation } from "react-i18next";
 
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 
@@ -14,6 +15,7 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 // };
 
 export default function CartView() {
+  const {t} = useTranslation()
   // const {
   //   products: { data },
   // } = useGetProducts();
@@ -30,7 +32,7 @@ export default function CartView() {
   } = useCart();
 
   if (isEmpty) {
-    return <h1 className="text-white text-4xl max-sm:text-xl h-[100vh] flex justify-center items-center mt-20 text-center ">Your Cart Is Empty</h1>;
+    return <h1 className="text-white text-4xl max-sm:text-xl h-[100vh] flex justify-center items-center mt-20 text-center ">{t("cart.empty")}</h1>;
   }
 
   
@@ -40,17 +42,17 @@ export default function CartView() {
       <div className="h-[200px] flex justify-around items-center max-sm:flex-col max-sm:gap-10">
         <div className="flex flex-col gap-10">
           <h1 className="px-5 py-2 rounded-full bg-white border-solid border-[4px] border-blue-600">
-            Total Price: {cartTotal}
+            {t("cart.totalPrice")}: {cartTotal}
           </h1>
           <h1 className="px-5 py-2 rounded-full bg-white border-solid border-[4px] border-blue-600">
-            Total Items: {totalItems}
+            {t("cart.totalItems")}: {totalItems}
           </h1>
         </div>
         <div className="px-8 hover:cursor-pointer py-2 rounded-full bg-white border-solid border-[4px] border-blue-600">
-          Buy Now
+          {t("btnText.buy")}
         </div>
       </div>
-      {!totalItems && (<div className="h-[500px] w-[500px] bg-black">123</div>)}
+      {!totalItems && <div className="h-[500px] w-[500px] bg-black">123</div>}
       <div className="flex flex-col gap-10 py-5">
         {items.map((item: any) => (
           <div
@@ -88,17 +90,22 @@ export default function CartView() {
                   <AiFillMinusCircle />
                 </button>
               </div>
-              <button className="border-solid font-bold border-[3px] py-2 hover:cursor-pointer rounded-full bg-gray-200 border-blue-600" onClick={() => removeItem(item.id)}>Remove</button>
+              <button
+                className="border-solid font-bold border-[3px] py-2 hover:cursor-pointer rounded-full bg-gray-200 border-blue-600"
+                onClick={() => removeItem(item.id)}
+              >
+                {t("btnText.remove")}
+              </button>
             </div>
           </div>
         ))}
         <button
-        className="border-solid border-[4px] hover:cursor-pointer font-bold py-2 rounded-full bg-white border-blue-600"
+          className="border-solid border-[4px] hover:cursor-pointer font-bold py-2 rounded-full bg-white border-blue-600"
           onClick={() => {
             emptyCart();
           }}
         >
-          Clear Cart
+          {t("btnText.clear")}
         </button>
       </div>
     </div>

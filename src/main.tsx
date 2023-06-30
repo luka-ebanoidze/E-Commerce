@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 
+import "@src/components/LanguageChanger/language.ts" 
+
 import "./index.css";
 
 import { BrowserRouter } from "react-router-dom";

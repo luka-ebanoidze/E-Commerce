@@ -1,7 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+import { useTranslation } from "react-i18next";
 
 export function Filter(props: any) {
+  const { t } = useTranslation();
   const { setFilteredArray } = props;
 
   const [filterFirstValue, SetfilterFirstValue] = useState("0");
@@ -29,10 +32,12 @@ export function Filter(props: any) {
   return (
     <div className="min-h-[100px] mb-8 w-full bg-gray-700 flex justify-around items-center">
       <div className="flex gap-3 items-center max-xl:flex-col">
-        <p className="text-white font-bold">Filter By Price :</p>
+        <p className="text-white font-bold">{t("filterComp.filterBy")} :</p>
         <div className="flex gap-3 max-md:flex-col max-md:items-end">
           <span className="flex items-center">
-            <p className="text-white font-bold mr-3">From :</p>
+            <p className="text-white font-bold mr-3">
+              {t("filterComp.from")} :
+            </p>
             <input
               className="pl-2 py-1"
               onChange={(e) => SetfilterFirstValue(e.target.value)}
@@ -42,7 +47,7 @@ export function Filter(props: any) {
             />
           </span>
           <span className="flex items-center">
-            <p className="text-white font-bold mr-3">To :</p>
+            <p className="text-white font-bold mr-3">{t("filterComp.to")} :</p>
             <input
               className="pl-2 py-1"
               onChange={(e) => SetfilterSecondValue(e.target.value)}
@@ -58,7 +63,7 @@ export function Filter(props: any) {
             FilterByPrice(filterFirstValue, filterSecondValue);
           }}
         >
-          Filter
+          {t("btnText.filter")}
         </button>
       </div>
     </div>

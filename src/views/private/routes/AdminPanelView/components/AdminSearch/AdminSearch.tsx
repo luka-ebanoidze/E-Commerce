@@ -2,11 +2,14 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "../../context/AdminContext";
+import { useTranslation } from "react-i18next";
 
 
 export function AdminSearch() {
   const [searchValue, setSearchValue] = useState("");
   const [products, setProducts] = useState([]);
+
+  const {t} = useTranslation()
 
 
 
@@ -45,7 +48,7 @@ export function AdminSearch() {
               }}
               id="search-dropdown"
               className=" block p-2.5 w-full text-sm text-gray-900 bg-gray-50 border-l-1 border border-gray-400 focus:ring-500 focus:border-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-500 outline-none"
-              placeholder="Search..."
+              placeholder={t("placeHolder.search")}
               required
             />
           </div>
@@ -70,7 +73,7 @@ export function AdminSearch() {
               </div>
             </div>
           ))}
-        {searchValue !== "" && products.length === 0 && <div className="h-[50px] flex items-center p-5">Product Not Found</div>}
+        {searchValue !== "" && products.length === 0 && <div className="h-[50px] flex items-center p-5">{t("error.PrNotFound")}</div>}
       </div>
     </div>
   );

@@ -1,0 +1,60 @@
+{
+    "navigation": "Navigation",
+    "btnText": {
+    "profile": "Profile",
+    "login": "Log In",
+    "register": "Register",
+    "logOut":"Log out",
+    "filter":"Filter",
+    "contactUs": "Contact Us",
+    "send": "Send",
+    "buy": "Buy Now",
+    "remove": "Remove",
+    "clear": "Clear",
+    "admin": "Admin Panel",
+    "delete": "Delete",
+    "change": "Change",
+    "create": "Create",
+    "close": "Close"
+    },
+    "placeHolder": {
+    "search": "Search",
+    "username": "Enter Your Name",
+    "mail": "Your email",
+    "text": "Text"
+    },
+    "filterComp": {
+    "filterBy": "Filter By Price",
+    "from": "From",
+    "to": "To"
+    },
+    "footer": {
+        "number": "Number",
+        "mail": "Email",
+        "workHr": "Working Hours"
+    },
+    "auth": {
+        "signInToAcc": "Sign in to your account",
+        "regToAcc": "Create account",
+        "noAcc": "Don’t have an account yet ?",
+        "yesAcc": "Already have an account ?"
+    },
+    "label": {
+        "mail": "Your email",
+        "password": "Password",
+        "userName": "სახელი",
+        "text": "text",
+        "desc": "Desc",
+        "title": "Title",
+        "price": "Price",
+        "category": "Category"
+    },
+    "cart": {
+        "totalPrice": "Total Price",
+        "totalItems": "Total Items",
+        "empty": "Cart is empty"
+    },
+    "error": {
+        "PrNotFound": "Product Not Found"
+    }
+}

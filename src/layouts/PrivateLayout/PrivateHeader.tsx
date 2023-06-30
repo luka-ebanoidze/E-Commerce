@@ -2,6 +2,9 @@ import { useContext, useState } from "react";
 import { AuthContext } from "@src/context/AuthContext";
 import { TAuthorizationStage } from "@src/types/auth.types";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
+import { LanguageChanger } from "@src/components/LanguageChanger";
 
 import { BsCart3 } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -13,6 +16,7 @@ import { CurrentUserContext } from "@src/providers/CurrentUserProvider/CurrentUs
 import { useCart } from "react-use-cart";
 
 export function PrivateHeader() {
+  const { t } = useTranslation();
   const { setStatus } = useContext(AuthContext);
   const { currentUser } = useContext(CurrentUserContext);
 
@@ -57,6 +61,10 @@ export function PrivateHeader() {
               <GiHamburgerMenu size={20} />
             </div>
 
+            <div className="absolute right-3 max-lg:hidden">
+              <LanguageChanger />
+            </div>
+
             <div className="flex items-center lg:order-2 ">
               <Link
                 to="/cart"
@@ -71,21 +79,21 @@ export function PrivateHeader() {
                 to="/profile"
                 className="max-xl:hidden text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
               >
-                Profile
+                {t("btnText.profile")}
               </Link>
               <Link
                 onClick={() => handleLogout()}
                 to="/"
                 className="max-xl:hidden text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
               >
-                Log out
+                {t("btnText.logOut")}
               </Link>
               {currentUser.user_role === "ADMIN" && (
                 <Link
                   to="/admin"
                   className=" max-xl:hidden text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
                 >
-                  Admin Panel
+                  {t("btnText.admin")}
                 </Link>
               )}
             </div>
@@ -113,14 +121,14 @@ export function PrivateHeader() {
                 to="/profile"
                 className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
               >
-                Profile
+                {t("btnText.profile")}
               </Link>
               {currentUser.user_role === "ADMIN" && (
                 <Link
                   to="/admin"
                   className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
                 >
-                  Admin Panel
+                  {t("btnText.admin")}
                 </Link>
               )}
               <Link
@@ -128,8 +136,9 @@ export function PrivateHeader() {
                 to="/"
                 className=" text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
               >
-                Log out
+                {t("btnText.logOut")}
               </Link>
+              <LanguageChanger />
             </div>
           </div>
         )}

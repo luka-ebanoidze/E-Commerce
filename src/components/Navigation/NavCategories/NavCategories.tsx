@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
 
 import { NavCategory } from "./NavCategory";
 
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 export function NavCategories() {
+  const {t} = useTranslation()
   const [currentCategories, setCategories] = useState<any>([]);
 
   const getProducts = async () => {
@@ -53,7 +56,7 @@ export function NavCategories() {
   return (
     <div className="flex w-full flex-col">
       <div className="h-[50px] text-white font-bold tracking-widest rounded-t-xl bg-blue-600 flex justify-center items-center">
-        Navigation
+        {t('navigation')}
       </div>
       <div className="w-full py-1 pl-3 divide-y max-xl:divide-y-0 max-md:divide-y flex flex-col  hover:cursor-pointer max-xl:grid max-xl:grid-cols-3 max-md:grid-cols-1 max-sm:grid-cols-1">
         {currentCategories.map((el: any, index: any) => (

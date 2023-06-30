@@ -2,8 +2,12 @@ import MainContainer from "@src/components/MainContainer/MainContainer";
 import { GoogleMap } from "./GoogleMap";
 import { useNavigate } from "react-router";
 
+import { useTranslation } from "react-i18next";
+
 export function Footer() {
   const navigate = useNavigate();
+
+  const {t} = useTranslation()
 
   return (
     <div>
@@ -14,14 +18,15 @@ export function Footer() {
             <div className="w-2/4 flex gap-2 items-center justify-around max-2xl:flex-col max-xl:items-center max-2xl:gap-10 max-md:w-full">
               <div className="flex flex-col gap-3 bg-gray-400 p-5 rounded-xl">
                 <div className="text-blue-600 font-bold">
-                  Number :{" "}
+                  {t("footer.number")} :{" "}
                   <span className="text-white">(+995) 568-997-091</span>
                 </div>
                 <div className="text-blue-600 font-bold">
-                  Email : <span className="text-white">company@gmail.com</span>
+                  {t("footer.mail")} :{" "}
+                  <span className="text-white">company@gmail.com</span>
                 </div>
                 <div className="text-blue-600 font-bold">
-                  Working Hours :{" "}
+                  {t("footer.workHr")} :{" "}
                   <span className="text-white">9:00 - 18:00</span>
                 </div>
               </div>
@@ -32,7 +37,7 @@ export function Footer() {
                     navigate("/contactus");
                   }}
                 >
-                  Contact Us
+                  {t("btnText.contactUs")}
                 </button>
               </div>
             </div>

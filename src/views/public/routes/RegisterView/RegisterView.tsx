@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
+import { useTransition } from "react";
 import axios from "axios";
 
 import { public_axios } from "@src/utils/public_axios";
+import { useTranslation } from "react-i18next";
 
 
 type TRegisterForm = {
@@ -15,6 +16,7 @@ type TRegisterForm = {
 };
 
 export default function RegisterView() {
+  const {t} = useTranslation()
 
   const [created, setCreated] = useState<boolean>(false);
 
@@ -61,7 +63,7 @@ export default function RegisterView() {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Create and account
+              {t("auth.regToAcc")}
             </h1>
             <form
               className="space-y-4 md:space-y-6"
@@ -70,7 +72,7 @@ export default function RegisterView() {
             >
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  User Name
+                  {t("label.userName")}
                 </label>
                 <input
                   {...register("username", { required: true })}
@@ -78,7 +80,7 @@ export default function RegisterView() {
                   name="username"
                   id="username"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Enter First Name"
+                  placeholder={t("placeHolder.username")}
                 />
                 {errors.username && (
                   <p className="mt-2 text-sm text-red-600 dark:text-red-500">
@@ -89,7 +91,7 @@ export default function RegisterView() {
               </div>
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Your email
+                  {t("label.mail")}
                 </label>
                 <input
                   {...register("email", { required: true })}
@@ -118,7 +120,7 @@ export default function RegisterView() {
               </div>
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Password
+                  {t("label.password")}
                 </label>
                 <input
                   {...register("password", { required: true })}
@@ -155,12 +157,12 @@ export default function RegisterView() {
                 </p>
               )}
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Already have an account?{" "}
+                {t("auth.yesAcc")}{" "}
                 <Link
                   to="/Login"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
-                  Login here
+                  {t("btnText.login")}
                 </Link>
               </p>
             </form>

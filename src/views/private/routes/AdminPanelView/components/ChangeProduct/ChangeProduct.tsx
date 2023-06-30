@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 export function ChangeProduct(props: any) {
+  const {t} = useTranslation()
   const { setClicked } = props;
 
   const [id, setId] = useState("");
@@ -41,7 +43,7 @@ export function ChangeProduct(props: any) {
     <div className="w-full bg-gray-200 rounded-xl p-5 flex flex-col gap-5 justify-between">
       <div className="flex gap-5 max-sm:flex-col">
         <div className="flex gap-3">
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">{t("label.title")}</label>
           <input
             type="checkbox"
             onChange={() => setDisplayTitle(!displaytitle)}
@@ -49,7 +51,7 @@ export function ChangeProduct(props: any) {
           />
         </div>
         <div className="flex gap-3">
-          <label htmlFor="desc">Desc</label>
+          <label htmlFor="desc">{t("label.desc")}</label>
           <input
             type="checkbox"
             onChange={() => setDisplayDesc(!displaydesc)}
@@ -57,7 +59,7 @@ export function ChangeProduct(props: any) {
           />
         </div>
         <div className="flex gap-3">
-          <label htmlFor="price">Price</label>
+          <label htmlFor="price">{t("label.price")}</label>
           <input
             type="checkbox"
             onChange={() => setDisplayPrice(!displayprice)}
@@ -85,7 +87,7 @@ export function ChangeProduct(props: any) {
           </div>
           {displaytitle && (
             <div>
-              <p>Title</p>
+              <p>{t("label.title")}</p>
               <input
                 className="w-full"
                 {...register("title", { required: true })}
@@ -97,7 +99,7 @@ export function ChangeProduct(props: any) {
           )}
           {displaydesc && (
             <div>
-              <p>Description</p>
+              <p>{t("label.desc")}</p>
               <input
                 className="w-full"
                 {...register("description", { required: true })}
@@ -109,7 +111,7 @@ export function ChangeProduct(props: any) {
           )}
           {displayprice && (
             <div>
-              <p>Price</p>
+              <p>{t("label.price")}</p>
               <input
                 className="w-full"
                 type="number"
@@ -124,7 +126,7 @@ export function ChangeProduct(props: any) {
           type="submit"
           className="border-solid border-[3px] bg-white border-blue-600 flex justify-center items-center py-2 px-10 rounded-full"
         >
-          Change
+          {t("btnText.change")}
         </button>
       </form>
     </div>
