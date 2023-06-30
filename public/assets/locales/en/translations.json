@@ -16,7 +16,10 @@
     "change": "Change",
     "create": "Create",
     "close": "Close",
-    "pay": "Pay"
+    "pay": "Pay",
+    "changeUsername": "Change Username",
+    "changeEmail": "Change Email",
+    "changePassword": "Change Password"
     },
     "placeHolder": {
     "search": "Search",
@@ -51,7 +54,11 @@
         "category": "Category",
         "lastName": "Last Name",
         "phone": "Phone Number",
-        "address": "Address"
+        "address": "Address",
+        "retryPass": "Retry Password",
+        "new": "New",
+        "email": "Email",
+        "username": "Username"
     },
     "cart": {
         "totalPrice": "Total Price",

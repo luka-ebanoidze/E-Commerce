@@ -16,7 +16,10 @@
     "change": "შეცვლა",
     "create": "შექმნა",
     "close": "დახურვა",
-    "pay": "გადახდა"
+    "pay": "გადახდა",
+    "changeUsername": "შეცვალე სახელი",
+    "changeEmail": "შეცვალე მეილი",
+    "changePassword": "შეცვალე პაროლი"
     },
     "placeHolder": {
     "search": "ძებნა",
@@ -42,7 +45,7 @@
     },
     "label": {
         "mail": "შენი მეილი",
-        "password": "შენი პაროლი",
+        "password": "პაროლი",
         "userName": "სახელი",
         "text": "ტექსტი",
         "desc": "აღწერა",
@@ -51,7 +54,11 @@
         "category": "კატეგორია",
         "lastName": "გვარი",
         "phone": "ტელეფონის ნომერი",
-        "address": "მისამართი"
+        "address": "მისამართი",
+        "retryPass": "გაიმეორე პაროლი",
+        "new": "ახალი",
+        "email": "მეილი",
+        "username": "სახელი"
     },
     "cart": {
         "totalPrice": "ჯამური თანხა",
