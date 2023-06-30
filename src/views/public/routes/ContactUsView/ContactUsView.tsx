@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
+import { useTranslation } from "react-i18next";
+
 export default function ContactUsView() {
+
+  const {t} = useTranslation()
 
   const [email, setEmail] = useState("");
   const [text, setText] = useState("");
@@ -22,7 +26,7 @@ export default function ContactUsView() {
       >
         <div className="mb-6">
           <label className="block mb-2 text-md font-bold text-gray-900 dark:text-white">
-            Your email
+            {t("label.mail")}
           </label>
           <input
             onChange={(e) => {
@@ -32,20 +36,20 @@ export default function ContactUsView() {
             type="email"
             id="email"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="email"
+            placeholder={t("placeHolder.mail")}
             required
           />
         </div>
         <div className="mb-6">
           <label className="block mb-2 text-md font-bold text-gray-900 dark:text-white">
-            Text
+            {t("label.text")}
           </label>
           <textarea
             onChange={(e) => {
               setText(e.target.value);
             }}
             value={text}
-            placeholder="Text"
+            placeholder={t("placeHolder.text")}
             id="text"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
@@ -55,7 +59,7 @@ export default function ContactUsView() {
           type="submit"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
-          Send
+          {t("btnText.send")}
         </button>
       </form>
     </div>

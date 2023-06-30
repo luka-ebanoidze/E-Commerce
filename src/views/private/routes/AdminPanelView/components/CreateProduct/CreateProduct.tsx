@@ -2,7 +2,10 @@ import { useState } from "react";
 
 import axios from "axios";
 
+import { useTranslation } from "react-i18next";
+
 export function CreateProduct(props: any) {
+  const {t} = useTranslation()
   const { setClicked } = props;
 
   const [title, setTile] = useState("");
@@ -35,7 +38,7 @@ export function CreateProduct(props: any) {
     <div className="w-full justify-between items-center bg-gray-200 flex gap-5 p-5 rounded-xl max-lg:flex-col">
       <div className="w-2/4 flex flex-col gap-3 max-lg:w-full">
         <div className="w-full">
-          <p>Title</p>
+          <p>{t("label.title")}</p>
           <input
             value={title}
             onChange={(e) => setTile(e.target.value)}
@@ -44,7 +47,7 @@ export function CreateProduct(props: any) {
           />
         </div>
         <div>
-          <p>Description</p>
+          <p>{t("label.desc")}</p>
           <input
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
@@ -53,7 +56,7 @@ export function CreateProduct(props: any) {
           />
         </div>
         <div>
-          <p>Price</p>
+          <p>{t("label.price")}</p>
           <input
             value={price}
             onChange={(e) => setPrice(e.target.value)}
@@ -62,7 +65,7 @@ export function CreateProduct(props: any) {
           />
         </div>
         <div>
-          <p>Category</p>
+          <p>{t("label.category")}</p>
           <input
             value={category}
             onChange={(e) => setCategory(e.target.value)}
@@ -78,7 +81,7 @@ export function CreateProduct(props: any) {
           setClicked(false);
         }}
       >
-        Create
+        {t("btnText.create")}
       </button>
     </div>
   );

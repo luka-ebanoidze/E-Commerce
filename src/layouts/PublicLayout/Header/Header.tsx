@@ -3,6 +3,9 @@ import MainContainer from "@src/components/MainContainer/MainContainer";
 import { MainLogo } from "@src/components/MainLogo";
 import { Search } from "@src/components/Search";
 import { useState } from "react";
+import { LanguageChanger } from "@src/components/LanguageChanger";
+
+import { useTranslation } from "react-i18next";
 
 import { BsCart3 } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -14,6 +17,8 @@ import { useCart } from "react-use-cart";
 export function Header() {
   const [clicked, setClicked] = useState(false);
   const [searching, setSearching] = useState(false);
+
+  const { t } = useTranslation();
 
   const { totalItems } = useCart();
 
@@ -47,6 +52,9 @@ export function Header() {
             >
               <GiHamburgerMenu size={20} />
             </div>
+            <div className="absolute right-3 max-lg:hidden">
+              <LanguageChanger />
+            </div>
 
             <div className="flex items-center lg:order-2 ">
               <Link
@@ -62,13 +70,13 @@ export function Header() {
                 to="/Login"
                 className="max-lg:hidden text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
               >
-                Log in
+                {t("btnText.login")}
               </Link>
               <Link
                 to="/Register"
                 className="max-lg:hidden text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
               >
-                Register
+                {t("btnText.register")}
               </Link>
             </div>
           </div>
@@ -95,14 +103,15 @@ export function Header() {
                 to="/Login"
                 className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
               >
-                Log in
+                {t("btnText.login")}
               </Link>
               <Link
                 to="/Register"
                 className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
               >
-                Register
+                {t("btnText.register")}
               </Link>
+              <LanguageChanger />
             </div>
           </div>
         )}

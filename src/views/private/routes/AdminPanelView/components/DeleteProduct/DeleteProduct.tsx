@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { AdminContext } from "../../context/AdminContext";
+import { useTranslation } from "react-i18next";
 
 import { categories } from "@src/config/categories";
 
 export function DeleteProduct(props: any) {
+  const {t} = useTranslation()
   const { setClicked } = props;
 
   const [id, setId] = useState("");
@@ -55,7 +57,7 @@ export function DeleteProduct(props: any) {
           setClicked(false);
         }}
       >
-        Delete
+        {t("btnText.delete")}
       </button>
     </div>
   );

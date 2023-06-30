@@ -2,6 +2,8 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
+import { useTranslation } from "react-i18next";
+
 import { BsCart3 } from "react-icons/bs";
 
 import { NavHeader } from "@src/components/NavHeader";
@@ -12,6 +14,7 @@ import { useCart } from "react-use-cart";
 export default function ProductView() {
 
   const { addItem } = useCart();
+  const {t} = useTranslation()
 
   const productId = useParams();
   const [productData, setProductData] = useState<{
@@ -59,7 +62,7 @@ export default function ProductView() {
           <h2 className="text-xl">{productData.price}</h2>
           <div className="flex gap-[70px] items-center">
             <button className="text-xl border-solid rounded-full hover:cursor-pointer px-6 py-2 border-[3px] border-blue-600">
-              Buy Now
+              {t("btnText.buy")}
             </button>
             <div>
               <button

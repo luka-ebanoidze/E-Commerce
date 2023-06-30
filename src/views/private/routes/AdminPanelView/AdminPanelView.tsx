@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { useTranslation } from "react-i18next";
+
 import { CreateProduct } from "./components/CreateProduct";
 import { ChangeProduct } from "./components/ChangeProduct";
 import { DeleteProduct } from "./components/DeleteProduct";
@@ -10,6 +12,7 @@ import { AdminContext } from "./context/AdminContext";
 
 
 export default function AdminPanelView() {
+  const {t} = useTranslation()
   const [clicked, setClicked] = useState(false);
   const [action, setAction] = useState("");
 
@@ -28,27 +31,27 @@ export default function AdminPanelView() {
                 setAction("create");
                 setClicked(true);
               }}
-              className="bg-green-500 p-3 rounded-full text-white"
+              className="bg-green-500 p-3 min-w-[120px] rounded-full text-white"
             >
-              Create Product
+              {t("btnText.create")}
             </button>
             <button
               onClick={() => {
                 setAction("change");
                 setClicked(true);
               }}
-              className="bg-blue-500 p-3 rounded-full text-white"
+              className="bg-blue-500 p-3 min-w-[120px] rounded-full text-white"
             >
-              Change Product
+              {t("btnText.change")}
             </button>
             <button
               onClick={() => {
                 setAction("delete");
                 setClicked(true);
               }}
-              className="bg-red-500 p-3 rounded-full text-white"
+              className="bg-red-500 p-3 min-w-[120px] rounded-full text-white"
             >
-              Delete Product
+              {t("btnText.delete")}
             </button>
           </div>
           {clicked && (
@@ -61,7 +64,7 @@ export default function AdminPanelView() {
                   className="w-full border-solid border-[3px] bg-white border-blue-600 flex justify-center items-center py-1 rounded-full"
                   onClick={() => setClicked(false)}
                 >
-                  Close
+                  {t("btnText.close")}
                 </button>
               }
             </div>
