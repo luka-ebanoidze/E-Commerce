@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { instance } from "@src/utils/axiosInstance";
 import { useTranslation } from "react-i18next";
 
 import { NavCategory } from "./NavCategory";
@@ -12,7 +12,7 @@ export function NavCategories() {
     const categories: any = [];
 
     try {
-      const resp = await axios.get(`http://localhost:3001/products`);
+      const resp = await instance.get(`/products`);
 
       if (resp.data) {
         resp.data?.map((product: any) => {

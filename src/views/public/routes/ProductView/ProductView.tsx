@@ -1,4 +1,4 @@
-import axios from "axios";
+import { instance } from "@src/utils/axiosInstance";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "react-use-cart";
@@ -11,9 +11,8 @@ import { NavHeader } from "@src/components/NavHeader";
 import { SimilarProducts } from "./SimilarProducts";
 
 export default function ProductView() {
-
   const { addItem } = useCart();
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   const productId = useParams();
   const [productData, setProductData] = useState<{
@@ -33,8 +32,8 @@ export default function ProductView() {
   useEffect(() => {
     try {
       (async function () {
-        const resp = await axios.get(
-          `http://localhost:3001/products/${productId.id}`
+        const resp = await instance.get(
+          `/products/${productId.id}`
         );
         setProductData(resp.data);
       })();
@@ -42,7 +41,6 @@ export default function ProductView() {
       console.log(error);
     }
   }, []);
-
 
   return (
     <div className="mt-20 ">

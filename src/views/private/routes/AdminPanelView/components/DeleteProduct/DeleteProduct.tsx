@@ -1,10 +1,10 @@
-import axios from "axios";
+import { instance } from "@src/utils/axiosInstance";
 import { useContext, useState } from "react";
 import { AdminContext } from "../../context/AdminContext";
 import { useTranslation } from "react-i18next";
 
 export function DeleteProduct(props: any) {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   const { setClicked } = props;
 
   const [id, setId] = useState("");
@@ -12,7 +12,7 @@ export function DeleteProduct(props: any) {
   const { reload, setReload } = useContext(AdminContext);
 
   async function deleteProduct() {
-    const resp = await axios.delete(`http://localhost:3001/products/${id}`, {
+    const resp = await instance.delete(`/products/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("acces-token")}`,
       },
@@ -25,7 +25,7 @@ export function DeleteProduct(props: any) {
         <div>
           <p>Id</p>
           <input
-          className="w-full"
+            className="w-full"
             value={id}
             onChange={(e) => setId(e.target.value)}
             type="text"
