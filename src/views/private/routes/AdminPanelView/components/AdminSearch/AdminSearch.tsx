@@ -1,4 +1,5 @@
-import axios from "axios";
+import { instance } from "@src/utils/axiosInstance";
+
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -19,8 +20,8 @@ export function AdminSearch() {
 
   async function searchProducts() {
     try {
-      const resp = await axios.get(
-        `http://localhost:3001/products?search=${searchValue}`
+      const resp = await instance.get(
+        `/products?search=${searchValue}`
       );   
       
       setProducts(resp.data);

@@ -3,9 +3,8 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import jwt_decode from "jwt-decode";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
 
-import { public_axios } from "@src/utils/public_axios";
+import { instance } from "@src/utils/axiosInstance";
 
 import { AuthContext } from "@src/context/AuthContext";
 import { TAuthorizationStage } from "@src/types/auth.types";
@@ -31,7 +30,7 @@ export default function LoginView() {
 
   async function onSubmit(data: TLoginForm) {
     try {
-      const resp = await axios.post("http://localhost:3001/auth/signin", data);
+      const resp = await instance.post(`/auth/signin`, data);
 
       if (resp.data.accessToken) {
         const decodedToken = jwt_decode(resp.data.accessToken);
@@ -47,17 +46,6 @@ export default function LoginView() {
     } catch (error: any) {
       setError("root", { message: "something went wrong" });
     }
-
-    // try {
-    //   console.log(data)
-    //   const resp = await public_axios.post('/login', data)
-    //   if(resp.data.accessToken) {
-    //     localStorage.setItem(TLocalStorage.ACCESSTOKEN, resp.data.accessToken);
-    //     setStatus(TAuthorizationStage.AUTHORIZED)
-    //   }
-    // } catch (error: any) {
-    //   setError('root', {message: 'something went wrong'} )
-    // }
   }
 
   return (

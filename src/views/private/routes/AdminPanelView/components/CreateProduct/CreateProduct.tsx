@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { instance } from "@src/utils/axiosInstance";
 import { useTranslation } from "react-i18next";
 
 export function CreateProduct(props: any) {
@@ -13,8 +13,8 @@ export function CreateProduct(props: any) {
 
   async function createProduct() {
     try {
-      const resp = await axios.post(
-        "http://localhost:3001/products",
+      const resp = await instance.post(
+        `/products`,
         {
           title: title,
           description: desc,

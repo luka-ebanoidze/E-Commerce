@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import axios from "axios";
+import { instance } from "@src/utils/axiosInstance";
 import { useEffect, useState } from "react";
 
 import { ProductsContainer } from "@src/components/ProductsContainer";
@@ -27,8 +27,8 @@ export default function ProductsView() {
   useEffect(() => {
     try {
       (async function () {
-        const resp = await axios.get(
-          `http://localhost:3001/products?category=${param.category}`
+        const resp = await instance.get(
+          `/products?category=${param.category}`
         );
         
         setProductData(resp.data);

@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { useTranslation } from "react-i18next";
 
-import { public_axios } from "@src/utils/public_axios";
+import { instance } from "@src/utils/axiosInstance";
 
 type TRegisterForm = {
   email: string;
   password: string;
   username: string;
-  role: string
+  role: string;
 };
 
 export default function RegisterView() {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   const [created, setCreated] = useState<boolean>(false);
 
@@ -27,25 +26,16 @@ export default function RegisterView() {
 
   async function onSubmit(data: TRegisterForm) {
     console.log(data);
-    
-    try {
-      const resp = await axios.post("http://localhost:3001/auth/signup", data);
 
-      if (resp.statusText === 'OK') {
+    try {
+      const resp = await instance.post(`/auth/signup`, data);
+
+      if (resp.statusText === "OK") {
         setCreated(true);
       }
     } catch (error: any) {
       setError("root", { message: error.response.data.errors?.[0].msg });
     }
-
-    // try {
-    //   const resp = await public_axios.post("/register", data);
-    //   if (resp.data?.id) {
-    //     setCreated(true)
-    //   }
-    // } catch (error: any) {
-    //   setError("root", { message: error.response.data.errors?.[0].msg });
-    // }
   }
 
   return (

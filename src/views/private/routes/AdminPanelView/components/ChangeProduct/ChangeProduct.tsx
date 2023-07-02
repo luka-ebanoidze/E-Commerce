@@ -1,10 +1,11 @@
-import axios from "axios";
+import { instance } from "@src/utils/axiosInstance";
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 export function ChangeProduct() {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   const [id, setId] = useState("");
 
@@ -26,11 +27,10 @@ export function ChangeProduct() {
   } = useForm<TLoginForm>();
 
   async function changeProduct(data: TLoginForm) {
-
     try {
-      await axios.put(`http://localhost:3001/products/${id}`, data, {
+      await instance.put(`/products/${id}`, data, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('acces-token')}`,
+          Authorization: `Bearer ${localStorage.getItem("acces-token")}`,
         },
       });
     } catch (error) {
