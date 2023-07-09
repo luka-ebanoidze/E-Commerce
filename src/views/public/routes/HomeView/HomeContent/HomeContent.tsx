@@ -27,9 +27,9 @@ export function HomeContent() {
 
   return (
     <div className="w-full">
-      <div className="w-full flex flex-col items-cente h-full bg-gray-400 rounded-xl">
+      <div className="w-full flex flex-col items-cente h-full bg-gray-300 rounded-xl">
         <Filter />
-        <div className="grid grid-cols-4 bg-gray-400 gap-4 max-2xl:grid-cols-3 max-xl:grid-cols-2 max-md:grid-cols-1">
+        <div className="flex flex-wrap justify-center gap-10 bg-gray-300 ">
           {data?.map((product: TProducts) => {
             return (
               <ProductsContainer
@@ -46,11 +46,11 @@ export function HomeContent() {
           })}
         </div>
         <div className="w-full flex justify-center">
-          <Pagination
-            setActivePage={setActivePage}
-            total={totalNum}
-            limit={limit}
-          />
+            <Pagination
+              setActivePage={setActivePage}
+              total={totalNum}
+              limit={limit}
+            />
         </div>
       </div>
     </div>

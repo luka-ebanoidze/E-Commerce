@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-export function ChangeProduct() {
+export function ChangeProduct(props: any) {
+  const { reload, setReload } = props;
   const { t } = useTranslation();
 
   const [id, setId] = useState("");
@@ -13,28 +14,31 @@ export function ChangeProduct() {
   const [displaydesc, setDisplayDesc] = useState(false);
   const [displayprice, setDisplayPrice] = useState(false);
 
+  const [error, setError] = useState("");
+
   type TLoginForm = {
     title: string;
     description: string;
     price: number;
   };
 
-  const {
-    register,
-    handleSubmit,
-    // setError,
-    // formState: { errors },
-  } = useForm<TLoginForm>();
+  const { register, handleSubmit, reset } = useForm<TLoginForm>();
 
   async function changeProduct(data: TLoginForm) {
     try {
-      await instance.put(`/products/${id}`, data, {
+      const resp = await instance.put(`/products/${id}`, data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("acces-token")}`,
         },
       });
+      if (resp) {
+        setReload(!reload)
+        setError("Successfully Changed");
+        reset();
+        setId("");
+      }
     } catch (error) {
-      console.log(error);
+      setError("Something went wrong");
     }
   }
 
@@ -82,6 +86,7 @@ export function ChangeProduct() {
               type="text"
               name="id"
               id="id"
+              required
             />
           </div>
           {displaytitle && (
@@ -93,6 +98,7 @@ export function ChangeProduct() {
                 type="text"
                 name="title"
                 id="title"
+                required
               />
             </div>
           )}
@@ -105,6 +111,7 @@ export function ChangeProduct() {
                 type="text"
                 name="description"
                 id="description"
+                required
               />
             </div>
           )}
@@ -117,9 +124,11 @@ export function ChangeProduct() {
                 {...register("price", { valueAsNumber: true, required: true })}
                 name="price"
                 id="price"
+                required
               />
             </div>
           )}
+          <span className="text-[red]">{error}</span>
         </div>
         <button
           type="submit"

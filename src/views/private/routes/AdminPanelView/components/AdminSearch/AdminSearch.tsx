@@ -1,24 +1,17 @@
 import { instance } from "@src/utils/axiosInstance";
 
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { AdminContext } from "../../context/AdminContext";
-
-
-
-export function AdminSearch() {
+export function AdminSearch(props: any) {
+  const {reload} = props
+  
   const [searchValue, setSearchValue] = useState("");
   const [products, setProducts] = useState([]);
 
   const {t} = useTranslation()
 
-  const { reload, setReload } = useContext(AdminContext);
-  
-  const navigate = useNavigate();
-
-  async function searchProducts() {
+  async function searchProducts() { 
     try {
       const resp = await instance.get(
         `/products?search=${searchValue}`
@@ -29,6 +22,11 @@ export function AdminSearch() {
       console.log(error);
     }
   }
+
+  useEffect(()=> {
+    searchProducts();
+    
+  }, [reload])
 
   useEffect(() => {
     searchProducts();

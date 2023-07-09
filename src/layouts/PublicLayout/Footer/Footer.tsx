@@ -12,11 +12,11 @@ export function Footer() {
   return (
     <div>
       <div className="w-full h-[50px] bg-gray-700"></div>
-      <div className="w-full bg-gray-400 ">
+      <div className="w-full bg-gray-300 ">
         <MainContainer>
           <footer className="bg-white flex justify-around items-center p-5 max-md:flex-col gap-5">
             <div className="w-2/4 flex gap-2 items-center justify-around max-2xl:flex-col max-xl:items-center max-2xl:gap-10 max-md:w-full">
-              <div className="flex flex-col gap-3 bg-gray-400 p-5 rounded-xl">
+              <div className="flex flex-col gap-3 bg-gray-300 p-5 rounded-xl">
                 <div className="text-blue-600 font-bold">
                   {t("footer.number")} :{" "}
                   <span className="text-white">(+995) 568-997-091</span>

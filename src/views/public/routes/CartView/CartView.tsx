@@ -20,6 +20,7 @@ import { CartContainer } from "./components/CartContainer";
 // };
 
 export default function CartView() {
+  
   const { status } = useContext(AuthContext);
   const { t } = useTranslation();
 
@@ -67,7 +68,7 @@ export default function CartView() {
             className=" bg-white py-5 rounded-xl flex justify-around items-center  max-lg:flex-col max-lg:gap-5 "
             key={item.id}
           >
-            <div className="w-[400px] max-sm:w-[200px]">
+            <div className="w-[400px] max-sm:w-10/12">
               <CartContainer
                 key={item.id}
                 title={item.title}

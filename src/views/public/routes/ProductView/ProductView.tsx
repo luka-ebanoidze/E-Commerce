@@ -1,18 +1,21 @@
 import { instance } from "@src/utils/axiosInstance";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { useCart } from "react-use-cart";
-
 import { useTranslation } from "react-i18next";
+
+import { AuthContext } from "@src/context/AuthContext";
 
 import { BsCart3 } from "react-icons/bs";
 
 import { NavHeader } from "@src/components/NavHeader";
 import { SimilarProducts } from "./SimilarProducts";
 
+
 export default function ProductView() {
   const { addItem } = useCart();
   const { t } = useTranslation();
+   const { status } = useContext(AuthContext);
 
   const productId = useParams();
   const [productData, setProductData] = useState<{
@@ -30,6 +33,7 @@ export default function ProductView() {
   });
 
   useEffect(() => {
+
     try {
       (async function () {
         const resp = await instance.get(
@@ -40,7 +44,7 @@ export default function ProductView() {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [productId]);
 
   return (
     <div className="mt-20 ">
@@ -59,7 +63,11 @@ export default function ProductView() {
           <h2 className="text-xl">{productData.price}</h2>
           <div className="flex gap-[70px] items-center">
             <button className="text-xl border-solid rounded-full hover:cursor-pointer px-6 py-2 border-[3px] border-blue-600">
-              {t("btnText.buy")}
+              {status === "authorized" ? (
+                <Link to="/payment">{t("btnText.buy")}</Link>
+              ) : (
+                <Link to="/login">{t("btnText.buy")}</Link>
+              )}
             </button>
             <div>
               <button

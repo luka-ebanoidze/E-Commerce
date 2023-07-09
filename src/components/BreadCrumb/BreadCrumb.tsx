@@ -29,7 +29,9 @@ export function BreadCrumb() {
           <div
             className="max-sm:text-sm text-white"
             onClick={() => {
-              navigate(`/products/${item[1]}`);
+              if(item[0] !== 'product') {
+                navigate(`/products/${item[1]}`);    
+              }
             }}
           >
             {item[1]}

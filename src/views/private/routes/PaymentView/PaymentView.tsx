@@ -4,8 +4,8 @@ export default function PaymentView() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-[100vh] flex items-center justify-center">
-      <div className="w-full max-w-2xl mx-auto p-8">
+    <div className="min-h-[100vh] flex items-center justify-center py-20">
+      <div className="w-full my-10 max-w-2xl mx-auto p-8">
         <div className="bg-white rounded-lg shadow-lg p-6">
           <h2 className="text-lg font-medium mb-6">Payment Information</h2>
           <form className="flex flex-col gap-5">
@@ -14,7 +14,8 @@ export default function PaymentView() {
                 {t("label.mail")}
               </label>
               <input
-                type="text"
+                required
+                type="mail"
                 name="emailr"
                 id="emailr"
                 placeholder="company@gmail.com"
@@ -25,10 +26,11 @@ export default function PaymentView() {
             <div className="grid grid-cols-2 gap-6">
               <div className="col-span-2 sm:col-span-1">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Card Number
+                  {t("label.cardNumber")}
                 </label>
                 <input
-                  type="text"
+                  required
+                  type="number"
                   name="card-number"
                   id="card-number"
                   placeholder="0000 0000 0000 0000"
@@ -37,10 +39,11 @@ export default function PaymentView() {
               </div>
               <div className="col-span-2 sm:col-span-1">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Expiration Date
+                  {t("label.exp")}
                 </label>
                 <input
-                  type="text"
+                  required
+                  type="number"
                   name="expiration-date"
                   id="expiration-date"
                   placeholder="MM / YY"
@@ -49,10 +52,11 @@ export default function PaymentView() {
               </div>
               <div className="col-span-2 sm:col-span-1">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  CVV
+                  CVC
                 </label>
                 <input
-                  type="text"
+                  required
+                  type="number"
                   name="cvv"
                   id="cvv"
                   placeholder="000"
@@ -61,13 +65,14 @@ export default function PaymentView() {
               </div>
               <div className="col-span-2 sm:col-span-1">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Card Holder
+                  {t("label.cardH")}
                 </label>
                 <input
+                  required
                   type="text"
                   name="card-holder"
                   id="card-holder"
-                  placeholder="Full Name"
+                  placeholder={t("placeHolder.fullName")}
                   className="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500"
                 />
               </div>
@@ -79,6 +84,7 @@ export default function PaymentView() {
                   {t("label.userName")}
                 </label>
                 <input
+                  required
                   type="text"
                   className="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500"
                 />
@@ -88,6 +94,7 @@ export default function PaymentView() {
                   {t("label.lastName")}
                 </label>
                 <input
+                  required
                   type="text"
                   className="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500"
                 />
@@ -97,6 +104,7 @@ export default function PaymentView() {
                   {t("label.phone")}
                 </label>
                 <input
+                  required
                   type="number"
                   className="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500"
                 />
@@ -106,6 +114,7 @@ export default function PaymentView() {
                   {t("label.address")}
                 </label>
                 <input
+                  required
                   type="text"
                   className="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500"
                 />
