@@ -1,22 +1,34 @@
 import { instance } from "@src/utils/axiosInstance";
-import { useContext, useState } from "react";
-import { AdminContext } from "../../context/AdminContext";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export function DeleteProduct(props: any) {
   const { t } = useTranslation();
-  const { setClicked } = props;
+  const { setReload, reload } = props;
 
+  const [error, setError] = useState("")
   const [id, setId] = useState("");
 
-  const { reload, setReload } = useContext(AdminContext);
-
   async function deleteProduct() {
-    const resp = await instance.delete(`/products/${id}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("acces-token")}`,
-      },
-    });
+    if(id === "") {
+      setError('Type Something')
+    }
+    try {
+      if (id !== "") {
+        setReload(!reload);
+        const resp = await instance.delete(`/products/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("acces-token")}`,
+          },
+        });
+        if(resp) {
+          setError('Successfully Deleted')
+        }
+        setId("")
+      }
+    } catch (error) {
+      setError("something went wrong")
+    }
   }
 
   return (
@@ -25,19 +37,19 @@ export function DeleteProduct(props: any) {
         <div>
           <p>Id</p>
           <input
+            required
             className="w-full"
             value={id}
             onChange={(e) => setId(e.target.value)}
             type="text"
           />
+          <span className="text-[red]">{error}</span>
         </div>
       </div>
       <button
         className="border-solid border-[3px] bg-white border-blue-600 flex justify-center items-center py-2 px-10 rounded-full"
         onClick={() => {
-          setReload(!reload);
           deleteProduct();
-          setClicked(false);
         }}
       >
         {t("btnText.delete")}

@@ -1,25 +1,27 @@
-import axios from "axios";
+import { instance } from "@src/utils/axiosInstance";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export function Search(props: any) {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState("");
   const [products, setProducts] = useState([]);
+  const [clicked, setClicked] = useState(false)
+
   const navigate = useNavigate();
 
   const { searching, setSearching } = props;
 
   async function searchProducts() {
-    try {
-      const resp = await axios.get(
-        `http://localhost:3001/products?search=${searchValue}`
-      );
+    if (searchValue !== "") {
+      try {
+        const resp = await instance.get(`/products?search=${searchValue}`);
 
-      setProducts(resp.data);
-    } catch (error: any) {
-      console.log(error);
+        setProducts(resp.data);
+      } catch (error: any) {
+        console.log(error);
+      }
     }
   }
 
@@ -28,7 +30,9 @@ export function Search(props: any) {
   }, [searchValue]);
 
   function navigateToSearchedProducts(keyWord: any) {
-    navigate(`/products/${keyWord}`);
+    if (products.length !== 0 && searchValue !== "") {
+      navigate(`/search/${keyWord}`);
+    }
   }
 
   return (
@@ -44,7 +48,7 @@ export function Search(props: any) {
               }}
               id="search-dropdown"
               className={`${
-                searching ? "max-sm:block" : "max-sm:hidden"
+                searching ? "max-sm:block " : "max-sm:hidden "
               }  block p-2.5 w-full  z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-l-2 border border-gray-400 focus:ring-500 focus:border-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-500 outline-none`}
               placeholder={t("placeHolder.search")}
               required
@@ -54,10 +58,10 @@ export function Search(props: any) {
                 navigateToSearchedProducts(searchValue);
                 setSearching(true);
               }}
-              type="submit"
+              type="button"
               className={`${
                 searching
-                  ? "max-sm:absolute right-[-9%] z-20 max-sm:rounded-l-0"
+                  ? "max-sm:absolute right-[-1%] z-20 max-sm:rounded-l-0"
                   : "max-sm:rounded-l-lg"
               } sm:absolute top-0 right-[-2%] z-20 p-2.5 text-sm font-medium text-white bg-blue-600 rounded-r-lg border border-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-700`}
             >
@@ -84,12 +88,17 @@ export function Search(props: any) {
       <div
         className={`absolute w-full ${
           searchValue === "" && "hidden"
-        }  p-1 rounded-t-md z-50 bg-blue-300 flex flex-col gap-3`}
+        }  p-1 rounded-t-md z-50 bg-gray-200 flex flex-col gap-3`}
       >
         {searchValue !== "" &&
           products.slice(0, 5).map((product: any) => (
             <div
-              className="flex border-solid gap-5  border-gray-500 border-[2px] justify-between items-center"
+              onClick={() => {
+                setClicked(true)
+                setSearchValue("")
+                navigate(`/${product.category}/${product.title}/${product.id}`);
+              }}
+              className="flex border-solid gap-5 bg-white  border-gray-500 border-[2px] justify-between items-center"
               key={product.id}
             >
               <div className="w-[100px] h-[100px] bg-blue-500 object-cover">
@@ -104,7 +113,9 @@ export function Search(props: any) {
               </div>
             </div>
           ))}
-        {searchValue !== "" && products.length === 0 && <div>{t("error.PrNotFound")}</div>}
+        {searchValue !== "" && products.length === 0 && (
+          <div>{t("error.PrNotFound")}</div>
+        )}
       </div>
     </div>
   );

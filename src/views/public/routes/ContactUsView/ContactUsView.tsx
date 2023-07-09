@@ -2,23 +2,22 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function ContactUsView() {
-
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   const [email, setEmail] = useState("");
   const [text, setText] = useState("");
 
   function sendText(e: any) {
-    e.preventDefault()
+    e.preventDefault();
 
-    setEmail('')
-    setText('')
+    setEmail("");
+    setText("");
   }
 
   return (
-    <div className="flex items-center justify-center mt-20 h-[100vh]">
+    <div className="flex items-center w-full justify-center mt-20 h-[100vh]">
       <form
-        className="p-5 rounded-xl bg-white w-1/3 h-[350px] flex flex-col justify-between"
+        className="p-5 rounded-xl bg-white w-8/12 min-h-[350px] flex flex-col justify-between"
         onSubmit={(e) => {
           sendText(e);
         }}

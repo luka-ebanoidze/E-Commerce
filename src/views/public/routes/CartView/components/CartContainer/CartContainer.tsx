@@ -20,15 +20,18 @@ export function CartContainer(props: TProducts) {
   }
 
   return (
-    <div className="flex flex-col items-center border-solid  border-[3px] border-gray-400 justify-between gap-2  pb-2 rounded-lg overflow-hidden hover:cursor-pointer">
+    <div className=" flex flex-col items-center border-solid  border-[3px] border-gray-400 justify-between gap-2  pb-2 rounded-lg overflow-hidden hover:cursor-pointer">
       <div
         onClick={() => MoveToSingleProduct(id, category)}
-        className="flex flex-col items-center  w-full "
+        className="flex flex-col items-center "
       >
-        <h1 className="text-2xl h-[90px] text-center">{title}</h1>
+        <h1 className="text-2xl w-full flex justify-center items-center bg-blue-600 h-[70px] text-center">
+          {title}
+        </h1>
         <img
-          className="h-[270px] w-11/12 mb-3 max-sm:w-[300px] max-sm:h-[150px]"
-          src={thumbnail}
+          className="h-[270px] mb-3 max-sm:h-[230px] max-s1:h-[200px] max-s2:h-[180px]"
+          // src={thumbnail}
+          src="https://hbr.org/resources/images/article_assets/2020/04/Apr20_07_1162572100.jpg"
           alt="thumbnail"
         />
         <p className="text-xl">{price}</p>

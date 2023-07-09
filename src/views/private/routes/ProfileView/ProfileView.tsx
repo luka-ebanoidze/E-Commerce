@@ -10,32 +10,33 @@ export default function ProfileView() {
   const [secondPass, setSecondPass] = useState("");
   const [paramToChange, setParamToChange] = useState("");
   const [changingValue, setChangingValue] = useState("");
-  
+
   const [error, setError] = useState("");
+  
 
   function submit(e: any) {
     e.preventDefault();
 
-    if (firstPass === secondPass) {
+    if (firstPass === secondPass && firstPass !== "" && secondPass !== "" && changingValue !== "") {
       setFirstPass("");
       setSecondPass("");
       setChangingValue("");
       setError("");
-      console.log("correct");
-      console.log(changingValue);
+      // console.log("correct");
+      // console.log(changingValue);
+    }else if(firstPass === "" || secondPass === "" || changingValue === ""){
+      setError(t("error.emptyInput"))
     } else {
-      setError("Passwords do not match");
+      setError(t("error.diffPas"));
     }
   }
 
   async function change(param: string) {
-    console.log(param);
-    console.log(paramToChange);
   }
 
   return (
-    <div className="min-h-[100vh] flex items-center justify-center">
-      <div className="flex flex-col items-center bg-white w-7/12 p-5">
+    <div className="min-h-[100vh] flex items-center justify-center py-10">
+      <div className="flex flex-col mt-20 items-center bg-white w-8/12 p-5 max-lg:w-11/12">
         <div className="flex flex-col h-[300px] justify-around">
           <button
             onClick={() => {
@@ -64,17 +65,17 @@ export default function ProfileView() {
         </div>
 
         {clicked && (
-          <form className="w-3/4 bg-gray-300 p-5">
+          <form className="w-3/4 max-lg:w-11/12 bg-gray-300 p-5">
             <div className="mb-6">
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 {t("label.password")}
               </label>
               <input
-                onChange={(e) => setFirstPass(e.target.value)}
+                required
                 value={firstPass}
                 type="password"
+                onChange={(e) => setFirstPass(e.target.value)}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
               />
             </div>
             <div className="mb-6">
@@ -82,11 +83,11 @@ export default function ProfileView() {
                 {t("label.retryPass")}
               </label>
               <input
+                required
                 onChange={(e) => setSecondPass(e.target.value)}
                 value={secondPass}
                 type="password"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
               />
             </div>
             <div className="mb-6">
@@ -97,17 +98,17 @@ export default function ProfileView() {
                 </div>
               </label>
               <input
+                required
                 onChange={(e) => setChangingValue(e.target.value)}
                 value={changingValue}
                 type="text"
                 id="text"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
               />
             </div>
             <div className="my-3 text-red-500 font-bold">{error}</div>
 
-            <div className="flex justify-between">
+            <div className="flex justify-between max-sm:flex-col max-sm:gap-5">
               <button
                 onClick={(e) => {
                   submit(e);

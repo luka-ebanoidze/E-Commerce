@@ -11,14 +11,16 @@ export function NavCategory({ category, products }: any) {
   const { activeCategory, setActiveCategory } = useContext(NavContext);
   const navigate = useNavigate();
 
+  const [closed, setClosed] = useState(true)
   const [clicked, setClicked] = useState(false);
 
   return (
     <div
-      className="w-full h-[30px]   flex justify-between"
+      className="w-full h-[30px] flex justify-between"
       onMouseEnter={() => {
         setActiveCategory(category);
         setClicked(true);
+        setClosed(false)
       }}
       onClick={() => {
         setActiveCategory(category);
@@ -38,21 +40,27 @@ export function NavCategory({ category, products }: any) {
       <div
         onClick={() => {
           setActiveCategory(category);
-          setClicked(!clicked);
+          setClosed(false)
         }}
-        className="absolute right-5 hidden max-md:flex"
+        className="absolute right-5 hidden max-xl:flex"
       >
         <AiFillCaretDown size={20} />
       </div>
-      {activeCategory === category && clicked && (
-        <div
-          onMouseEnter={() => {
-            setActiveCategory(activeCategory);
-          }}
-        >
-          <NavContents category={activeCategory} products={products} />
-        </div>
-      )}
+      <div className={`${closed ? 'hidden' : 'flex'}`}>
+        {activeCategory === category && clicked && (
+          <div
+            onMouseEnter={() => {
+              setActiveCategory(activeCategory);
+            }}
+          >
+            <NavContents
+              setClosed={setClosed}
+              category={activeCategory}
+              products={products}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
