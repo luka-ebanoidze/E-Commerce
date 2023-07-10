@@ -1,31 +1,18 @@
-import axios from "axios";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
-export function Filter(props: any) {
+export function Filter() {
   const { t } = useTranslation();
-  const { setFilteredArray } = props;
+  const navigate = useNavigate()
 
   const [filterFirstValue, SetfilterFirstValue] = useState("0");
   const [filterSecondValue, SetfilterSecondValue] = useState("0");
 
-  const getProducts = async () => {
-    try {
-      const resp = await axios.get(`http://localhost:3001/products`);
-      setFilteredArray(
-        resp.data.filter(
-          (product: any) =>
-            product.price > filterFirstValue &&
-            product.price < filterSecondValue
-        )
-      );
-    } catch (error: any) {
-      console.log(error);
-    }
-  };
-
-  function FilterByPrice(val1: any, val2: any) {
-    getProducts();
+  function FilterByPrice(val1: string, val2: string) {
+   if(val1 !== val2 && val1 < val2) {
+    navigate(`filter/${val1}/${val2}`);
+   }
   }
 
   return (

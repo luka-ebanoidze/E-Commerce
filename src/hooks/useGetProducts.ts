@@ -17,7 +17,7 @@ export function useGetProducts(page = 1, limit = 0) {
     error: undefined,
   });
 
-  //droebiti totalis dasatvleli
+  //total counter
   const getTotal = async () => {
     try {
       const resp = await instance.get(`/products`);
