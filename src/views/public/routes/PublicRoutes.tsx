@@ -9,6 +9,7 @@ const RegisterView = lazy(() => import("./RegisterView"));
 const CartView = lazy(() => import("./CartView"));
 const ContactUsView = lazy(() => import("./ContactUsView"));
 const SearchedView = lazy(() => import("./SearchedView"));
+const FilteredView = lazy(() => import("./FilteredView"));
 
 export const PublicRoutes = [
   <Route path="/" element={<HomeView />} key={1} />,
@@ -19,4 +20,5 @@ export const PublicRoutes = [
   <Route path="/cart" element={<CartView />} key={6} />,
   <Route path="/contactus" element={<ContactUsView />} key={7} />,
   <Route path="/search/:value" element={<SearchedView />} key={8} />,
+  <Route path="/filter/:value1/:value2" element={<FilteredView />} key={9} />,
 ];

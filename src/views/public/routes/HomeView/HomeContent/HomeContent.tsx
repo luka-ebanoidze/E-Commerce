@@ -8,7 +8,7 @@ import { Filter } from "@src/components/Filter";
 
 export function HomeContent() {
   const [activePage, setActivePage] = useState(1);
-  const limit = 10;
+  const limit = 9;
 
   const {
     products: { data, loading },
