@@ -15,7 +15,7 @@ import { SimilarProducts } from "./SimilarProducts";
 export default function ProductView() {
   const { addItem } = useCart();
   const { t } = useTranslation();
-   const { status } = useContext(AuthContext);
+  const { status } = useContext(AuthContext);
 
   const productId = useParams();
   const [productData, setProductData] = useState<{
@@ -24,13 +24,16 @@ export default function ProductView() {
     title: any;
     description: any;
     price: any;
+    category: any;
   }>({
     id: undefined,
     thumbnail: undefined,
     title: undefined,
     description: undefined,
     price: undefined,
+    category: undefined,
   });
+
 
   useEffect(() => {
 
@@ -40,6 +43,7 @@ export default function ProductView() {
           `/products/${productId.id}`
         );
         setProductData(resp.data);
+        
       })();
     } catch (error) {
       console.log(error);
@@ -85,7 +89,7 @@ export default function ProductView() {
           </div>
         </div>
       </div>
-      <SimilarProducts />
+      <SimilarProducts category={productData.category} />
     </div>
   );
 }
