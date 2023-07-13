@@ -7,7 +7,6 @@ import { NavHeader } from "@src/components/NavHeader";
 
 export default function ProductsView() {
   const param = useParams();
-  
 
   // const [productData, setProductData] = useState<{
   //   id: any;
@@ -28,10 +27,8 @@ export default function ProductsView() {
   useEffect(() => {
     try {
       (async function () {
-        const resp = await instance.get(
-          `/products?category=${param.category}`
-        );
-        
+        const resp = await instance.get(`/products?category=${param.category}`);
+
         setProductData(resp.data);
       })();
     } catch (error) {
@@ -40,9 +37,9 @@ export default function ProductsView() {
   }, []);
 
   return (
-    <div className="mt-20 h-[100vh]">
+    <div className="mt-20 min-h-[100vh] pb-10">
       <NavHeader />
-      <div className="grid grid-cols-4 gap-4 max-2xl:grid-cols-3 max-xl:grid-cols-2 max-md:grid-cols-1">
+      <div className="flex flex-wrap justify-center gap-5">
         {productData.map((product: any) => (
           <ProductsContainer
             key={product.id}

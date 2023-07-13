@@ -11,7 +11,29 @@ import { GiHamburgerMenu } from "react-icons/gi";
 export default function FilteredView() {
   const param: any = useParams();
 
+  const pageSize = 9
+
   const navigate = useNavigate();
+
+  const [total, setTotal] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productData, setProductData] = useState([]);
+
+   const startIndex = (currentPage - 1) * pageSize;
+   const endIndex = startIndex + pageSize;
+
+   const currentProducts = productData.slice(startIndex, endIndex);
+   console.log(currentProducts);
+   
+  
+  
+
+  const pages: any = [];
+
+  for (let i = 1; i <= Math.ceil(total / 9); i++) {
+    pages.push(i);
+  }
+
 
   const [clicked, setClicked] = useState(false);
 
@@ -29,23 +51,22 @@ export default function FilteredView() {
   //   price: undefined,
   // });
 
-  const [productData, setProductData] = useState([]);
+  
 
   useEffect(() => {
     try {
       (async function () {
         try {
-            const resp = await instance.get(`/products`);
+          const resp = await instance.get(`/products`);
+          setTotal(resp.data.length);
 
-            setProductData(
-              resp.data.filter(
-                (product: any) =>
-                  product.price > param.value1 && product.price < param.value2
-              )
-            );
-        } catch (error) {
-            
-        }
+          setProductData(
+            resp.data.filter(
+              (product: any) =>
+                product.price > param.value1 && product.price < param.value2
+            )
+          );
+        } catch (error) {}
       })();
     } catch (error) {
       console.log(error);
@@ -53,7 +74,7 @@ export default function FilteredView() {
   }, []);
 
   return (
-    <div className="my-20 h-[100vh]">
+    <div className="my-20 min-h-[100vh]">
       <div className="w-full h-[80px] bg-gray-700 my-12 flex items-center justify-between px-14 max-lg:px-0 max-lg:flex-col-reverse max-lg:items-start max-sm:h-[50px] max-sm:justify-center">
         <div className="relative pl-3">
           <button onClick={() => setClicked(!clicked)}>
@@ -72,8 +93,8 @@ export default function FilteredView() {
           Home
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-4 max-2xl:grid-cols-3 max-xl:grid-cols-2 max-md:grid-cols-1">
-        {productData.map((product: any) => (
+      <div className="flex flex-wrap justify-center gap-10">
+        {currentProducts.map((product: any) => (
           <ProductsContainer
             key={product.id}
             title={product.title}
@@ -84,6 +105,17 @@ export default function FilteredView() {
             item={product}
             category={product.category}
           />
+        ))}
+      </div>
+      <div className="flex flex-wrap justify-center gap-3 m-5">
+        {pages.map((index: number) => (
+          <div
+            key={index}
+            onClick={() => setCurrentPage(index)}
+            className="w-[50px] h-[50px] bg-blue-600 text-white flex justify-center items-center max-lg:w-[35px] max-lg:h-[35px]"
+          >
+            {index}
+          </div>
         ))}
       </div>
     </div>

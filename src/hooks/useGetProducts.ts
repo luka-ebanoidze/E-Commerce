@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import { instance } from "@src/utils/axiosInstance";
 
-export function useGetProducts(page = 1, limit = 0) {
+export function useGetProducts(page = 1, limit = 0, searchKey = "") {
   const [totalNum, setTotalNum] = useState<{ totalNum: any }>({
     totalNum: undefined,
   });
@@ -20,7 +20,7 @@ export function useGetProducts(page = 1, limit = 0) {
   //total counter
   const getTotal = async () => {
     try {
-      const resp = await instance.get(`/products`);
+      const resp = await instance.get(`/products?search=${searchKey}`);
       setTotalNum({ totalNum: resp.data.length });
     } catch (error: any) {
       console.log(error);
@@ -31,9 +31,8 @@ export function useGetProducts(page = 1, limit = 0) {
     try {
       setProducts((prev) => ({ ...prev, loading: true }));
       const resp = await instance.get(
-        `/products?skip=${(page - 1) * limit}&take=${limit}`
+        `/products?skip=${(page - 1) * limit}&take=${limit}&search=${searchKey}`
       );
-
       // setTotalNum({ totalNum: resp.data.total });
       setProducts((prev) => ({ ...prev, loading: false, data: resp.data }));
     } catch (error: any) {

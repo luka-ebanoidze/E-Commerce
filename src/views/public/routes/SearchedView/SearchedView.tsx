@@ -1,18 +1,28 @@
 import { useParams } from "react-router";
-import { instance } from "@src/utils/axiosInstance";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Navigation } from "@src/components/Navigation";
 import { ProductsContainer } from "@src/components/ProductsContainer";
 
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Pagination } from "@src/components/Pagination";
+import { useGetProducts } from "@src/hooks/useGetProducts";
 
 export default function SearchedView() {
   const param = useParams();
   const navigate = useNavigate();
 
+  const [activePage, setActivePage] = useState(1);
+
+  const limit = 9;
+
   const [clicked, setClicked] = useState(false);
+
+  const {
+    products: { data, loading },
+    totalNum: { totalNum },
+  } = useGetProducts(activePage, limit, param.value);
 
   // const [productData, setProductData] = useState<{
   //   id: any;
@@ -28,22 +38,8 @@ export default function SearchedView() {
   //   price: undefined,
   // });
 
-  const [productData, setProductData] = useState([]);
-
-  useEffect(() => {
-    try {
-      (async function () {
-        const resp = await instance.get(`/products?search=${param.value}`);
-
-        setProductData(resp.data);
-      })();
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
   return (
-    <div className="my-20 h-[100vh]">
+    <div className="my-20 min-h-[100vh]">
       <div className="w-full h-[80px] bg-gray-700 my-12 flex items-center justify-between px-14 max-lg:px-0 max-lg:flex-col-reverse max-lg:items-start max-sm:h-[50px] max-sm:justify-center">
         <div className="relative pl-3">
           <button onClick={() => setClicked(!clicked)}>
@@ -53,12 +49,17 @@ export default function SearchedView() {
             {clicked && <Navigation />}
           </div>
         </div>
-        <div onClick={() => {navigate("/")}} className="text-white">
+        <div
+          onClick={() => {
+            navigate("/");
+          }}
+          className="text-white"
+        >
           Home
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-4 max-2xl:grid-cols-3 max-xl:grid-cols-2 max-md:grid-cols-1">
-        {productData.map((product: any) => (
+      <div className="flex flex-wrap justify-center gap-10 bg-gray-300">
+        {data?.map((product: any) => (
           <ProductsContainer
             key={product.id}
             title={product.title}
@@ -71,6 +72,11 @@ export default function SearchedView() {
           />
         ))}
       </div>
+      <Pagination
+        setActivePage={setActivePage}
+        total={totalNum}
+        limit={limit}
+      />
     </div>
   );
 }

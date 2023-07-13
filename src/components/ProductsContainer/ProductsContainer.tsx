@@ -27,7 +27,7 @@ export function ProductsContainer(props: TProducts) {
   }
 
   return (
-    <div className="w-[400px] flex flex-col items-center justify-between bg-white h-[410px] pb-2 rounded-lg overflow-hidden hover:cursor-pointer">
+    <div className="w-[400px] flex flex-col items-center justify-between bg-white h-[410px] max-s2:h-[340px] pb-2 rounded-lg overflow-hidden hover:cursor-pointer">
       <div
         onClick={() => MoveToSingleProduct(id, category, title)}
         className="flex flex-col items-center w-full"
@@ -36,7 +36,7 @@ export function ProductsContainer(props: TProducts) {
           {title}
         </h1>
         <img
-          className="h-[270px] border-solid border-black border-2 mb-2 "
+          className="h-[270px] max-s2:h-[200px] border-solid border-black border-2 mb-2 "
           // src={thumbnail}
           src="https://hbr.org/resources/images/article_assets/2020/04/Apr20_07_1162572100.jpg"
           alt="thumbnail"

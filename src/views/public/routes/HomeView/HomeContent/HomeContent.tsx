@@ -29,7 +29,7 @@ export function HomeContent() {
     <div className="w-full">
       <div className="w-full flex flex-col items-cente h-full bg-gray-300 rounded-xl">
         <Filter />
-        <div className="flex flex-wrap justify-center gap-10 bg-gray-300 ">
+        <div className="flex flex-wrap justify-center gap-10 bg-gray-300">
           {data?.map((product: TProducts) => {
             return (
               <ProductsContainer
