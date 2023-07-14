@@ -11,28 +11,28 @@ export function Footer() {
 
   return (
     <div>
-      <div className="w-full h-[50px] bg-gray-700"></div>
-      <div className="w-full bg-gray-300 ">
+      <div className="w-full h-[50px] border-solid border-y-[4px] border-white bg-gray-700"></div>
+      <div className="w-full bg-gray-200 ">
         <MainContainer>
           <footer className="bg-white flex justify-around items-center p-5 max-md:flex-col gap-5">
             <div className="w-2/4 flex gap-2 items-center justify-around max-2xl:flex-col max-xl:items-center max-2xl:gap-10 max-md:w-full">
               <div className="flex flex-col gap-3 bg-gray-300 p-5 rounded-xl">
-                <div className="text-blue-600 font-bold">
+                <div className="text-gray-700 font-bold">
                   {t("footer.number")} :{" "}
                   <span className="text-white">(+995) 568-997-091</span>
                 </div>
-                <div className="text-blue-600 font-bold">
+                <div className="text-gray-700 font-bold">
                   {t("footer.mail")} :{" "}
                   <span className="text-white">company@gmail.com</span>
                 </div>
-                <div className="text-blue-600 font-bold">
+                <div className="text-gray-700 font-bold">
                   {t("footer.workHr")} :{" "}
                   <span className="text-white">9:00 - 18:00</span>
                 </div>
               </div>
               <div className="flex gap-3">
                 <button
-                  className="bg-white font-bold px-10 py-4 h-1/3 rounded-full border-solid border-[5px] border-blue-600"
+                  className="bg-white font-bold px-10 py-4 h-1/3 rounded-full border-solid border-[5px] border-gray-600"
                   onClick={() => {
                     navigate("/contactus");
                   }}

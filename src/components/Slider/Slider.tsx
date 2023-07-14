@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { FcNext, FcPrevious } from "react-icons/fc";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 const images = [
   "https://www.lezzat.co.uk/wp-content/uploads/2021/03/Amazon-Product-Photography-Agency-UK-1.jpg",
@@ -37,13 +37,13 @@ export function Slider() {
         className="absolute inset-y-2/4 left-5 text-3xl text-white hover:cursor-pointer"
         onClick={() => Previous()}
       >
-        <FcPrevious color="red" />
+        <GrFormPrevious />
       </div>
       <div
         className="absolute inset-y-2/4 right-5 text-3xl hover:cursor-pointer"
         onClick={() => Next()}
       >
-        <FcNext />
+        <GrFormNext />
       </div>
     </div>
   );

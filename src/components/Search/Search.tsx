@@ -63,7 +63,7 @@ export function Search(props: any) {
                 searching
                   ? "max-sm:absolute right-[-1%] z-20 max-sm:rounded-l-0"
                   : "max-sm:rounded-l-lg"
-              } sm:absolute top-0 right-[-2%] z-20 p-2.5 text-sm font-medium text-white bg-blue-600 rounded-r-lg border border-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-700`}
+              } sm:absolute top-0 right-[-2%] z-20 p-2.5 text-sm font-medium text-white bg-gray-700 rounded-r-lg border border-gray-700 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-500 dark:gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700`}
             >
               <svg
                 aria-hidden="true"
@@ -94,14 +94,14 @@ export function Search(props: any) {
           products.slice(0, 5).map((product: any) => (
             <div
               onClick={() => {
-                setClicked(true)
-                setSearchValue("")
+                setClicked(true);
+                setSearchValue("");
                 navigate(`/${product.category}/${product.title}/${product.id}`);
               }}
               className="flex border-solid gap-5 bg-white  border-gray-500 border-[2px] justify-between items-center"
               key={product.id}
             >
-              <div className="w-[100px] h-[100px] bg-blue-500 object-cover">
+              <div className="w-[100px] h-[100px] bg-gray-500 object-cover">
                 <img src={product.thumbnail} className="w-full h-full" />
               </div>
               <div

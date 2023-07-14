@@ -25,7 +25,7 @@ export function CartContainer(props: TProducts) {
         onClick={() => MoveToSingleProduct(id, category)}
         className="flex flex-col items-center "
       >
-        <h1 className="text-2xl w-full flex justify-center items-center bg-blue-600 h-[70px] text-center">
+        <h1 className="text-2xl text-white w-full flex justify-center items-center bg-gray-600 h-[70px] text-center">
           {title}
         </h1>
         <img

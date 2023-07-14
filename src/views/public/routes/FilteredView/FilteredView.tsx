@@ -23,10 +23,6 @@ export default function FilteredView() {
    const endIndex = startIndex + pageSize;
 
    const currentProducts = productData.slice(startIndex, endIndex);
-   console.log(currentProducts);
-   
-  
-  
 
   const pages: any = [];
 
@@ -112,7 +108,7 @@ export default function FilteredView() {
           <div
             key={index}
             onClick={() => setCurrentPage(index)}
-            className="w-[50px] h-[50px] bg-blue-600 text-white flex justify-center items-center max-lg:w-[35px] max-lg:h-[35px]"
+            className="w-[50px] h-[50px] bg-gray-600 text-white flex justify-center items-center max-lg:w-[35px] max-lg:h-[35px]"
           >
             {index}
           </div>

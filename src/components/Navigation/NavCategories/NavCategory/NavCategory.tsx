@@ -32,7 +32,7 @@ export function NavCategory({ category, products }: any) {
       <div
         className=""
         onClick={() => {
-          navigate(`products/${category}`);
+          navigate(`/products/${category}`);
         }}
       >
         {category}

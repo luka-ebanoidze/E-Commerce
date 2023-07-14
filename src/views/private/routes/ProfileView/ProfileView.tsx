@@ -12,27 +12,28 @@ export default function ProfileView() {
   const [changingValue, setChangingValue] = useState("");
 
   const [error, setError] = useState("");
-  
 
   function submit(e: any) {
     e.preventDefault();
 
-    if (firstPass === secondPass && firstPass !== "" && secondPass !== "" && changingValue !== "") {
+    if (
+      firstPass === secondPass &&
+      firstPass !== "" &&
+      secondPass !== "" &&
+      changingValue !== ""
+    ) {
       setFirstPass("");
       setSecondPass("");
       setChangingValue("");
       setError("");
-      // console.log("correct");
-      // console.log(changingValue);
-    }else if(firstPass === "" || secondPass === "" || changingValue === ""){
-      setError(t("error.emptyInput"))
+    } else if (firstPass === "" || secondPass === "" || changingValue === "") {
+      setError(t("error.emptyInput"));
     } else {
       setError(t("error.diffPas"));
     }
   }
 
-  async function change(param: string) {
-  }
+  async function change(param: string) {}
 
   return (
     <div className="min-h-[100vh] flex items-center justify-center py-10">
@@ -75,7 +76,7 @@ export default function ProfileView() {
                 value={firstPass}
                 type="password"
                 onChange={(e) => setFirstPass(e.target.value)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
               />
             </div>
             <div className="mb-6">
@@ -87,7 +88,7 @@ export default function ProfileView() {
                 onChange={(e) => setSecondPass(e.target.value)}
                 value={secondPass}
                 type="password"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
               />
             </div>
             <div className="mb-6">
@@ -103,7 +104,7 @@ export default function ProfileView() {
                 value={changingValue}
                 type="text"
                 id="text"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
               />
             </div>
             <div className="my-3 text-red-500 font-bold">{error}</div>
@@ -115,7 +116,7 @@ export default function ProfileView() {
                   change(changingValue);
                 }}
                 type="submit"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
               >
                 {t("btnText.change")}
               </button>

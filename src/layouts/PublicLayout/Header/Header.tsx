@@ -20,9 +20,9 @@ export function Header() {
   const { totalItems } = useCart();
 
   return (
-    <div className="bg-white h-[60px] fixed mb-5 z-50 w-full flex items-center justify-center border-slid border-b-[3px] border-blue-600">
+    <div className="bg-white h-[60px] fixed mb-5 z-50 w-full flex items-center justify-center border-slid border-b-[3px] border-gray-700">
       <header className="w-[70%]">
-        <nav className="w-full border-gray-200 py-2.5 dark:bg-gray-800 ">
+        <nav className="w-full border-gray-200 py-2.5 dark:bg-gray-700 ">
           <div className="flex flex-wrap justify-between items-center">
             <Link to="/">
               <MainLogo />
@@ -58,7 +58,7 @@ export function Header() {
                 to="/cart"
                 className="max-xl:hidden relative text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
               >
-                <div className="absolute bg-blue-600 flex justify-center items-center top-[-15%] text-white right-[1%] rounded-full h-[25px] w-[25px]">
+                <div className="absolute bg-gray-700 flex justify-center items-center top-[-15%] text-white right-[1%] rounded-full h-[25px] w-[25px]">
                   {totalItems}
                 </div>
                 <BsCart3 size={20} />
@@ -91,7 +91,7 @@ export function Header() {
                 to="/cart"
                 className="relative text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
               >
-                <div className="absolute bg-blue-600 flex justify-center items-center top-[-15%] text-white right-[1%] rounded-full h-[20px] w-[20px]">
+                <div className="absolute bg-gray-700 flex justify-center items-center top-[-15%] text-white right-[1%] rounded-full h-[20px] w-[20px]">
                   {totalItems}
                 </div>
                 <BsCart3 size={20} />

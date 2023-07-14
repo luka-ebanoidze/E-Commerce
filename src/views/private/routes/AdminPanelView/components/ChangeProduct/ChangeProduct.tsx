@@ -132,7 +132,7 @@ export function ChangeProduct(props: any) {
         </div>
         <button
           type="submit"
-          className="border-solid border-[3px] bg-white border-blue-600 flex justify-center items-center py-2 px-10 rounded-full"
+          className="border-solid border-[3px] bg-white border-gray-600 flex justify-center items-center py-2 px-10 rounded-full"
         >
           {t("btnText.change")}
         </button>
