@@ -18,7 +18,7 @@ function App() {
   const { currentUser } = useContext(CurrentUserContext);
 
   return (
-    <Suspense fallback={<div>loading...</div>}>
+    <Suspense fallback={<div></div>}>
       <Routes>
         <Route
           element={

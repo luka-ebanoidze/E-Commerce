@@ -1,9 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 
-import { FcNext } from "react-icons/fc";
+import { GrFormNext } from "react-icons/gr";
 
 export function BreadCrumb() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const params = useParams();
   const arr = Object.entries(params);
 
@@ -22,15 +22,15 @@ export function BreadCrumb() {
         Home
       </div>
       <span className="mx-3">
-        <FcNext />
+        <GrFormNext />
       </span>
       {arr.map((item: any, index: number) => (
         <div className="flex items-center" key={item}>
           <div
             className="max-sm:text-sm text-white"
             onClick={() => {
-              if(item[0] !== 'product') {
-                navigate(`/products/${item[1]}`);    
+              if (item[0] !== "product") {
+                navigate(`/products/${item[1]}`);
               }
             }}
           >
@@ -39,7 +39,7 @@ export function BreadCrumb() {
           <div className="mx-3">
             {index !== arr.length - 1 && (
               <span>
-                <FcNext />
+                <GrFormNext />
               </span>
             )}
           </div>
