@@ -12,7 +12,7 @@ export function BreadCrumb() {
   }
 
   return (
-    <div className="flex items-center max-sm:hidden">
+    <div className="flex items-center max-s1:hidden">
       <div
         className="max-sm:text-sm text-white"
         onClick={() => {

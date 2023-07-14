@@ -57,7 +57,7 @@ export default function ProductView() {
         <div>
           <img
             className="w-[450px] h-[450px] max-xl:h-[375px] max-xl:w-[375px] max-sm:h-[300px] max-sm:w-[325px]"
-            src={productData.thumbnail}
+            src="https://hbr.org/resources/images/article_assets/2020/04/Apr20_07_1162572100.jpg"
             alt="product"
           />
         </div>
