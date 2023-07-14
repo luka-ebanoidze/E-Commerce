@@ -34,7 +34,7 @@ export default function ProductsView() {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [param.category]);
 
   return (
     <div className="mt-20 min-h-[100vh] pb-10">

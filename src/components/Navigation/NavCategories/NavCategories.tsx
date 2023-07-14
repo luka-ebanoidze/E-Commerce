@@ -41,7 +41,7 @@ export function NavCategories() {
 
   return (
     <div className="flex w-full flex-col">
-      <div className="h-[50px] text-white font-bold tracking-widest rounded-t-xl bg-blue-600 flex justify-center items-center">
+      <div className="h-[50px] text-white text-md tracking-widest rounded-t-md bg-gray-600 flex justify-center items-center">
         {t('navigation')}
       </div>
       <div className="w-full py-1 pl-3 divide-y max-xl:divide-y-0 max-md:divide-y flex flex-col  hover:cursor-pointer max-xl:grid  max-md:grid-cols-1 max-sm:grid-cols-1">

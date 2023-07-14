@@ -32,7 +32,7 @@ export function ProductsContainer(props: TProducts) {
         onClick={() => MoveToSingleProduct(id, category, title)}
         className="flex flex-col items-center w-full"
       >
-        <h1 className="text-xl bg-blue-600 w-full flex justify-center items-center h-[60px] text-center">
+        <h1 className="text-xl text-white bg-gray-700 w-full flex justify-center items-center h-[60px] text-center">
           {title}
         </h1>
         <img
@@ -51,7 +51,7 @@ export function ProductsContainer(props: TProducts) {
             addItem(item);
           }}
         >
-          <div className="absolute w-[20px] h-[20px] text-white pb-[2px] top-[-40%] right-[-40%] bg-blue-600 rounded-full flex justify-center items-center">
+          <div className="absolute w-[20px] h-[20px] text-white pb-[2px] top-[-40%] right-[-40%] bg-gray-600 rounded-full flex justify-center items-center">
             +
           </div>
           <BsCart3 size={25} />

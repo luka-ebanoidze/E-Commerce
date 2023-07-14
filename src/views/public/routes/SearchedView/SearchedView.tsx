@@ -58,7 +58,7 @@ export default function SearchedView() {
           Home
         </div>
       </div>
-      <div className="flex flex-wrap justify-center gap-10 bg-gray-300">
+      <div className="flex flex-wrap justify-center gap-10 bg-gray-200">
         {data?.map((product: any) => (
           <ProductsContainer
             key={product.id}

@@ -59,7 +59,7 @@ export default function AdminPanelView() {
             {
               <button
                 onClick={() => setClicked(false)}
-                className="w-full border-solid border-[3px] bg-white border-blue-600 flex justify-center items-center py-1 rounded-full"
+                className="w-full border-solid border-[3px] bg-white border-gray-600 flex justify-center items-center py-1 rounded-full"
               >
                 {t("btnText.close")}
               </button>

@@ -41,7 +41,7 @@ export function LanguageChanger() {
       <button
         onClick={() => setIsopen(!isopen)}
         id="dropdownDefaultButton"
-        className="inline-flex bg-gray-200 justify-center  rounded-md  px-2 py-1.5 text-[black] shadow-sm ring-1 "
+        className="inline-flex bg-gray-300 justify-center items-center rounded-md  px-2 py-1.5 text-[black] shadow-sm ring-1 "
         type="button"
       >
         <div className="flex items-center">
@@ -60,7 +60,7 @@ export function LanguageChanger() {
       {isopen && (
         <div
           id="dropdown"
-          className="absolute right-0 z-10 mt-10 w-full items-center  origin-top-right rounded-md bg-gray-200 "
+          className="absolute right-0 z-10 mt-10 w-full items-center  origin-top-right rounded-md bg-gray-300 "
         >
           <ul className="text-sm mb-0">
             {languages.map(({ code, name, country_code }) => (
