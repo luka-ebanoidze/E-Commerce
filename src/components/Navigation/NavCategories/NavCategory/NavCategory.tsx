@@ -6,10 +6,13 @@ import { NavContext } from "../../context/NavContext";
 import { AiFillCaretDown } from "react-icons/ai";
 
 import { NavContents } from "../../NavContents";
+import { useTranslation } from "react-i18next";
 
 export function NavCategory({ category, products }: any) {
   const { activeCategory, setActiveCategory } = useContext(NavContext);
   const navigate = useNavigate();
+
+  const { t } = useTranslation();
 
   const [closed, setClosed] = useState(true)
   const [clicked, setClicked] = useState(false);
@@ -20,7 +23,7 @@ export function NavCategory({ category, products }: any) {
       onMouseEnter={() => {
         setActiveCategory(category);
         setClicked(true);
-        setClosed(false)
+        setClosed(false);
       }}
       onClick={() => {
         setActiveCategory(category);
@@ -35,18 +38,18 @@ export function NavCategory({ category, products }: any) {
           navigate(`/products/${category}`);
         }}
       >
-        {category}
+        {t(`nav.${category}`)}
       </div>
       <div
         onClick={() => {
           setActiveCategory(category);
-          setClosed(false)
+          setClosed(false);
         }}
         className="absolute right-5 hidden max-xl:flex"
       >
         <AiFillCaretDown size={20} />
       </div>
-      <div className={`${closed ? 'hidden' : 'flex'}`}>
+      <div className={`${closed ? "hidden" : "flex"}`}>
         {activeCategory === category && clicked && (
           <div
             onMouseEnter={() => {

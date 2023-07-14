@@ -72,6 +72,15 @@
     "error": {
         "PrNotFound": "Product Not Found",
         "diffPas": "Passwords do not match",
-        "emptyInput": "Fill all inputs"
+        "emptyInput": "Fill all inputs",
+        "wrong": "Try again Email or Password isnt correct",
+        "wrong2": "Something is wrong"
+    },
+    "nav": {
+        "Mobile": "Mobile",
+        "Laptops": "Laptops",
+        "Digital": "Digital",
+        "Monitors": "Monitors",
+        "Accessories": "Accessories"
     }
 }

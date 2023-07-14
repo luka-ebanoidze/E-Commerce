@@ -66,7 +66,7 @@ export default function ProductView() {
           <p className="text-m">{productData.description}</p>
           <h2 className="text-xl">{productData.price}</h2>
           <div className="flex gap-[70px] items-center">
-            <button className="text-xl border-solid rounded-full hover:cursor-pointer px-6 py-2 border-[3px] border-blue-600">
+            <button className="text-xl border-solid rounded-full hover:cursor-pointer px-6 py-2 border-[3px] border-gray-600">
               {status === "authorized" ? (
                 <Link to="/payment">{t("btnText.buy")}</Link>
               ) : (
@@ -80,7 +80,7 @@ export default function ProductView() {
                   addItem(productData);
                 }}
               >
-                <div className="absolute w-[20px] h-[20px] text-white pb-[2px] top-[-40%] right-[-40%] bg-blue-600 rounded-full flex justify-center items-center">
+                <div className="absolute w-[20px] h-[20px] text-white pb-[2px] top-[-40%] right-[-40%] bg-gray-600 rounded-full flex justify-center items-center">
                   +
                 </div>
                 <BsCart3 size={25} />
