@@ -8,6 +8,8 @@ import { ProductsContainer } from "@src/components/ProductsContainer";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 
+import { TProduct } from "@src/types/product.types";
+
 export default function FilteredView() {
   const param: any = useParams();
 
@@ -30,24 +32,7 @@ export default function FilteredView() {
     pages.push(i);
   }
 
-
-  const [clicked, setClicked] = useState(false);
-
-  // const [productData, setProductData] = useState<{
-  //   id: any;
-  //   thumbnail: any;
-  //   title: any;
-  //   description: any;
-  //   price: any;
-  // }>({
-  //   id: undefined,
-  //   thumbnail: undefined,
-  //   title: undefined,
-  //   description: undefined,
-  //   price: undefined,
-  // });
-
-  
+  const [clicked, setClicked] = useState(false);  
 
   useEffect(() => {
     try {
@@ -90,7 +75,7 @@ export default function FilteredView() {
         </div>
       </div>
       <div className="flex flex-wrap justify-center gap-10">
-        {currentProducts.map((product: any) => (
+        {currentProducts.map((product: TProduct) => (
           <ProductsContainer
             key={product.id}
             title={product.title}

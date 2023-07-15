@@ -28,7 +28,6 @@ export default function LoginView() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm<TLoginForm>();
 
   async function onSubmit(data: TLoginForm) {

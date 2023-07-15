@@ -9,6 +9,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Pagination } from "@src/components/Pagination";
 import { useGetProducts } from "@src/hooks/useGetProducts";
 
+import { TProduct } from "@src/types/product.types";
+
 export default function SearchedView() {
   const param = useParams();
   const navigate = useNavigate();
@@ -20,23 +22,9 @@ export default function SearchedView() {
   const [clicked, setClicked] = useState(false);
 
   const {
-    products: { data, loading },
+    products: { data },
     totalNum: { totalNum },
   } = useGetProducts(activePage, limit, param.value);
-
-  // const [productData, setProductData] = useState<{
-  //   id: any;
-  //   thumbnail: any;
-  //   title: any;
-  //   description: any;
-  //   price: any;
-  // }>({
-  //   id: undefined,
-  //   thumbnail: undefined,
-  //   title: undefined,
-  //   description: undefined,
-  //   price: undefined,
-  // });
 
   return (
     <div className="my-20 min-h-[100vh]">
@@ -59,7 +47,7 @@ export default function SearchedView() {
         </div>
       </div>
       <div className="flex flex-wrap justify-center gap-10 bg-gray-200">
-        {data?.map((product: any) => (
+        {data?.map((product: TProduct) => (
           <ProductsContainer
             key={product.id}
             title={product.title}

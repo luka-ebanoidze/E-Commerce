@@ -6,6 +6,8 @@ import { ProductsContainer } from "@src/components/ProductsContainer";
 import { Pagination } from "@src/components/Pagination";
 import { Filter } from "@src/components/Filter";
 
+import { TProduct } from "@src/types/product.types";
+
 export function HomeContent() {
   const [activePage, setActivePage] = useState(1);
   const limit = 9;
@@ -14,16 +16,6 @@ export function HomeContent() {
     products: { data, loading },
     totalNum: { totalNum },
   } = useGetProducts(activePage, limit);
-
-  type TProducts = {
-    id: number;
-    title: string;
-    price: number;
-    thumbnail: string;
-    rating: number;
-    item: any;
-    category: any;
-  };
 
   if(loading) {
     return (
@@ -55,7 +47,7 @@ export function HomeContent() {
       <div className="w-full flex flex-col items-cente h-full bg-gray-200 rounded-xl">
         <Filter />
         <div className="flex flex-wrap justify-center gap-10 bg-gray-200">
-          {data?.map((product: TProducts) => {
+          {data?.map((product: TProduct) => {
             return (
               <ProductsContainer
                 key={product.id}

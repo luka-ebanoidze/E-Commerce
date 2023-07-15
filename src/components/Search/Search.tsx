@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+import { TProduct } from "@src/types/product.types";
+
 export function Search(props: any) {
   const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState("");
   const [products, setProducts] = useState([]);
-  const [clicked, setClicked] = useState(false)
+  const [clicked, setClicked] = useState(false);
 
   const navigate = useNavigate();
 
@@ -15,6 +17,7 @@ export function Search(props: any) {
 
   async function searchProducts() {
     if (searchValue !== "") {
+      setClicked(false);
       try {
         const resp = await instance.get(`/products?search=${searchValue}`);
 
@@ -57,6 +60,8 @@ export function Search(props: any) {
               onClick={() => {
                 navigateToSearchedProducts(searchValue);
                 setSearching(true);
+                setClicked(true);
+                setSearchValue("");
               }}
               type="button"
               className={`${
@@ -85,38 +90,47 @@ export function Search(props: any) {
           </div>
         </div>
       </form>
-      <div
-        className={`absolute w-full ${
-          searchValue === "" && "hidden"
-        }  p-1 rounded-t-md z-50 bg-gray-200 flex flex-col gap-3`}
-      >
-        {searchValue !== "" &&
-          products.slice(0, 5).map((product: any) => (
-            <div
-              onClick={() => {
-                setClicked(true);
-                setSearchValue("");
-                navigate(`/${product.category}/${product.title}/${product.id}`);
-              }}
-              className="flex border-solid gap-5 bg-white  border-gray-500 border-[2px] justify-between items-center"
-              key={product.id}
-            >
-              <div className="w-[100px] h-[100px] bg-gray-500 object-cover">
-                <img src={product.thumbnail} className="w-full h-full" />
-              </div>
+      {!clicked && (
+        <div
+          className={`absolute w-full ${
+            searchValue === "" && "hidden"
+          }  p-1 rounded-t-md z-50 bg-gray-200 flex flex-col gap-3`}
+        >
+          {searchValue !== "" &&
+            products.slice(0, 5).map((product: TProduct) => (
               <div
-                className="flex  justify-around
-               max-md:flex-col max-md:gap-2 w-3/4 max-xl:gap-10 max-xl:w-2/4"
+                onClick={() => {
+                  setClicked(true);
+                  setSearchValue("");
+                  navigate(
+                    `/${product.category}/${product.title}/${product.id}`
+                  );
+                }}
+                className="flex border-solid gap-5 bg-white  border-gray-500 border-[2px] justify-between items-center"
+                key={product.id}
               >
-                <div>{product.title}</div>
-                <div>{product.price} $</div>
+                <div className="w-[100px] h-[100px] bg-gray-500 object-cover">
+                  <img
+                    src="https://hbr.org/resources/images/article_assets/2020/04/Apr20_07_1162572100.jpg"
+                    className="w-full h-full"
+                  />
+                </div>
+                <div
+                  className="flex  justify-around
+               max-md:flex-col max-md:gap-2 w-3/4 max-xl:gap-10 max-xl:w-2/4"
+                >
+                  <div>{product.title}</div>
+                  <div>{product.price} $</div>
+                </div>
               </div>
+            ))}
+          {searchValue !== "" && products.length === 0 && (
+            <div className="min-h-[50px] flex items-center pl-5">
+              {t("error.PrNotFound")}
             </div>
-          ))}
-        {searchValue !== "" && products.length === 0 && (
-          <div>{t("error.PrNotFound")}</div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

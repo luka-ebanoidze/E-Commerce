@@ -70,7 +70,7 @@ export function ChangeProduct(props: any) {
           />
         </div>
       </div>
-      {/* setClicked(false); formis onsubmitshi */}
+
       <form
         action="#"
         className="flex justify-between items-center max-xl:flex-col max-xl:gap-5"

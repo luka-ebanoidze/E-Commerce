@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 
 import { NavCategory } from "./NavCategory";
 
+import { TProduct } from "@src/types/product.types";
+
 export function NavCategories() {
   const {t} = useTranslation()
   const [currentCategories, setCategories] = useState<any>([]);
@@ -15,7 +17,7 @@ export function NavCategories() {
       const resp = await instance.get(`/products`);
 
       if (resp.data) {
-        resp.data?.map((product: any) => {
+        resp.data?.map((product: TProduct) => {
           if (categories.find((el: any) => el.category === product.category)) {
             categories
               .find((el: any) => el.category === product.category)

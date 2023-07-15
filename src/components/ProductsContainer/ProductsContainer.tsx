@@ -5,24 +5,15 @@ import { BsCart3 } from "react-icons/bs";
 
 import { Rating } from "@mui/material";
 
-type TProducts = {
-  id: number;
-  title: string;
-  price: number;
-  thumbnail: string;
-  rating: number;
-  item: any;
-  category: any;
-};
+import { TProduct } from "@src/types/product.types";
 
-export function ProductsContainer(props: TProducts) {
+export function ProductsContainer(props: TProduct) {
   const { addItem } = useCart();
 
   const navigate = useNavigate();
-  const { title, thumbnail, price, rating, id, item, category } = props;
-  
+  const { title, price, rating, id, item, category } = props;
 
-  function MoveToSingleProduct(id: number, category: any, title: any) {
+  function MoveToSingleProduct(id: number, category: string, title: string) {
     navigate(`/${category}/${title}/${id}`);
   }
 
@@ -37,7 +28,6 @@ export function ProductsContainer(props: TProducts) {
         </h1>
         <img
           className="h-[270px] max-s2:h-[200px] border-solid border-black border-2 mb-2 "
-          // src={thumbnail}
           src="https://hbr.org/resources/images/article_assets/2020/04/Apr20_07_1162572100.jpg"
           alt="thumbnail"
         />
