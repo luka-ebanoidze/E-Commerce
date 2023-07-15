@@ -1,5 +1,5 @@
-import { lazy, useState, useContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import { lazy } from "react";
+import { Route } from "react-router-dom";
 
 const ProfileView = lazy(() => import("./routes/ProfileView"));
 

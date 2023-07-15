@@ -9,16 +9,6 @@ import { AuthContext } from "@src/context/AuthContext";
 
 import { CartContainer } from "./components/CartContainer";
 
-// type TProducts = {
-//   id: number;
-//   title: string;
-//   price: number;
-//   thumbnail: string;
-//   rating: number;
-//   index: number;
-//   prod: any;
-// };
-
 export default function CartView() {
   
   const { status } = useContext(AuthContext);
@@ -76,6 +66,7 @@ export default function CartView() {
                 rating={item.rating}
                 id={item.id}
                 category={item.category}
+                item={item}
               />
             </div>
             <div className="flex w-[300px] h-[100px] justify-between flex-col max-sm:w-[150px]">

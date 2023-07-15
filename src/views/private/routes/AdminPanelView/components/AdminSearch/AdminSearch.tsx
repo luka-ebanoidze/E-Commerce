@@ -3,6 +3,8 @@ import { instance } from "@src/utils/axiosInstance";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { TProduct } from "@src/types/product.types";
+
 export function AdminSearch(props: any) {
   const {reload} = props
   
@@ -54,13 +56,16 @@ export function AdminSearch(props: any) {
       </form>
       <div className="w-full bg-white flex flex-col gap-3 divide-y-2">
         {searchValue !== "" &&
-          products.slice(0, 5).map((product: any) => (
+          products.slice(0, 5).map((product: TProduct) => (
             <div
               className="flex justify-between p-1 items-center pr-10 max-lg:gap-5 max-lg:pr-0 max-sm:justify-center max-sm:pr-0"
               key={product.id}
             >
               <div className="w-[120px] h-[100px] bg-blue-500 object-cover max-sm:hidden">
-                <img src={product.thumbnail} className="w-full h-full" />
+                <img
+                  src="https://hbr.org/resources/images/article_assets/2020/04/Apr20_07_1162572100.jpg"
+                  className="w-full h-full"
+                />
               </div>
               <div className="flex justify-evenly gap-10 max-lg:flex-col max-sm:gap-3 w-full">
                 <div>{product.id}</div>
@@ -71,7 +76,11 @@ export function AdminSearch(props: any) {
               </div>
             </div>
           ))}
-        {searchValue !== "" && products.length === 0 && <div className="h-[50px] flex items-center p-5">{t("error.PrNotFound")}</div>}
+        {searchValue !== "" && products.length === 0 && (
+          <div className="h-[50px] flex items-center p-5">
+            {t("error.PrNotFound")}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -2,6 +2,8 @@ import { ProductsContainer } from "@src/components/ProductsContainer";
 import { instance } from "@src/utils/axiosInstance";
 import { useEffect, useState } from "react";
 
+import { TProduct } from "@src/types/product.types";
+
 export function SimilarProducts(props: any) {
   const { category } = props;
   const [products, setProducts] = useState([]);
@@ -25,7 +27,7 @@ export function SimilarProducts(props: any) {
 
   return (
     <div className="w-full flex flex-wrap  justify-center gap-5 my-14">
-      {products?.map((product: any) => (
+      {products?.map((product: TProduct) => (
         <ProductsContainer
           key={product.id}
           title={product.title}

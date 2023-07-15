@@ -18,6 +18,7 @@ export default function ProductView() {
   const { status } = useContext(AuthContext);
 
   const productId = useParams();
+  
   const [productData, setProductData] = useState<{
     id: any;
     thumbnail: any;

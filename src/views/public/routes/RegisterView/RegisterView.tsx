@@ -21,7 +21,6 @@ export default function RegisterView() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm<TRegisterForm>();
 
   async function onSubmit(data: TRegisterForm) {

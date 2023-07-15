@@ -5,22 +5,10 @@ import { useEffect, useState } from "react";
 import { ProductsContainer } from "@src/components/ProductsContainer";
 import { NavHeader } from "@src/components/NavHeader";
 
+import { TProduct } from "@src/types/product.types";
+
 export default function ProductsView() {
   const param = useParams();
-
-  // const [productData, setProductData] = useState<{
-  //   id: any;
-  //   thumbnail: any;
-  //   title: any;
-  //   description: any;
-  //   price: any;
-  // }>({
-  //   id: undefined,
-  //   thumbnail: undefined,
-  //   title: undefined,
-  //   description: undefined,
-  //   price: undefined,
-  // });
 
   const [productData, setProductData] = useState([]);
 
@@ -40,7 +28,7 @@ export default function ProductsView() {
     <div className="mt-20 min-h-[100vh] pb-10">
       <NavHeader />
       <div className="flex flex-wrap justify-center gap-5">
-        {productData.map((product: any) => (
+        {productData.map((product: TProduct) => (
           <ProductsContainer
             key={product.id}
             title={product.title}
