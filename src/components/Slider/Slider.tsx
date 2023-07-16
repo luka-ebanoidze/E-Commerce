@@ -3,7 +3,7 @@ import { useState } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 const images = [
-  "https://www.lezzat.co.uk/wp-content/uploads/2021/03/Amazon-Product-Photography-Agency-UK-1.jpg",
+  "https://queue-it.com/media/ppcp1twv/product-drop.jpg",
   "https://cdn.shopify.com/s/files/1/0070/7032/files/diy-product-photography.jpg?v=1599161908",
   "https://paymentcloudinc.com/blog/wp-content/uploads/2021/08/product-ideas-to-sell.jpg",
 ];
