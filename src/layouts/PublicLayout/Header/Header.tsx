@@ -22,7 +22,7 @@ export function Header() {
   return (
     <div className="bg-white h-[60px] fixed mb-5 z-50 w-full flex items-center justify-center border-slid border-b-[3px] border-gray-700">
       <header className="w-[70%]">
-        <nav className="w-full border-gray-200 py-2.5 dark:bg-gray-700 ">
+        <nav className="w-full border-gray-200 py-2.5">
           <div className="flex flex-wrap justify-between items-center">
             <Link to="/">
               <MainLogo />
@@ -56,7 +56,7 @@ export function Header() {
             <div className="flex items-center lg:order-2 ">
               <Link
                 to="/cart"
-                className="max-xl:hidden relative text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                className="max-xl:hidden relative text-gray-800  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2  focus:outline-none "
               >
                 <div className="absolute bg-gray-700 flex justify-center items-center top-[-15%] text-white right-[1%] rounded-full h-[25px] w-[25px]">
                   {totalItems}
@@ -65,13 +65,13 @@ export function Header() {
               </Link>
               <Link
                 to="/Login"
-                className="max-xl:hidden text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                className="max-xl:hidden text-gray-800  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2  focus:outline-none "
               >
                 {t("btnText.login")}
               </Link>
               <Link
                 to="/Register"
-                className="max-xl:hidden text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                className="max-xl:hidden text-gray-800  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2  focus:outline-none "
               >
                 {t("btnText.register")}
               </Link>
@@ -89,7 +89,7 @@ export function Header() {
               </div>
               <Link
                 to="/cart"
-                className="relative text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                className="relative text-gray-800  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2  focus:outline-none "
               >
                 <div className="absolute bg-gray-700 flex justify-center items-center top-[-15%] text-white right-[1%] rounded-full h-[20px] w-[20px]">
                   {totalItems}
@@ -98,13 +98,13 @@ export function Header() {
               </Link>
               <Link
                 to="/Login"
-                className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                className="text-gray-800  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2  focus:outline-none "
               >
                 {t("btnText.login")}
               </Link>
               <Link
                 to="/Register"
-                className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                className="text-gray-800  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2  focus:outline-none "
               >
                 {t("btnText.register")}
               </Link>

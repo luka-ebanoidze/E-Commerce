@@ -52,7 +52,7 @@ export function Search(props: any) {
               id="search-dropdown"
               className={`${
                 searching ? "max-sm:block " : "max-sm:hidden "
-              }  block p-2.5 w-full  z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-l-2 border border-gray-400 focus:ring-500 focus:border-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-500 outline-none`}
+              }  block p-2.5 w-full  z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-l-2 border border-gray-400 focus:ring-500 focus:border-500 outline-none`}
               placeholder={t("placeHolder.search")}
               required
             />
@@ -68,7 +68,7 @@ export function Search(props: any) {
                 searching
                   ? "max-sm:absolute right-[-1%] z-20 max-sm:rounded-l-0"
                   : "max-sm:rounded-l-lg"
-              } sm:absolute top-0 right-[-2%] z-20 p-2.5 text-sm font-medium text-white bg-gray-700 rounded-r-lg border border-gray-700 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-500 dark:gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700`}
+              } sm:absolute top-0 right-[-2%] z-20 p-2.5 text-sm font-medium text-white bg-gray-700 rounded-r-lg border border-gray-700 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-500 `}
             >
               <svg
                 aria-hidden="true"
