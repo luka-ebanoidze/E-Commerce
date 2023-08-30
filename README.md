@@ -8,6 +8,18 @@
 
 [https://lnkd.in/dwn2En9p](https://lnkd.in/dwn2En9p)
 
+
+<h2>🧐 Features</h2>
+
+Here're some of the project's best features:
+
+*   Login
+*   Registration
+*   Admin Panel
+*   Cart
+*   Information Change
+*   Payment
+
   
   
 <h2>💻 Built with</h2>
@@ -19,5 +31,6 @@ Technologies used in the project:
 *   TailWind
 *   TypeScript
 *   React JS
+*   Context
 *   npm
 *   git
